@@ -201,18 +201,24 @@
   /* ── TICKER ──────────────────────────── */
   .ticker {
     border-bottom: 1px solid var(--border);
-    padding: 0 56px;
+    padding: 0 0 0 56px;
     display: flex; align-items: center; gap: 0;
-    overflow: hidden; height: 48px;
+    height: 48px; overflow: hidden;
   }
   .ticker-label {
     font-size: 10px; letter-spacing: 2px; font-weight: 700;
     color: var(--text-low); text-transform: uppercase;
     white-space: nowrap; padding-right: 28px;
     border-right: 1px solid var(--border);
-    margin-right: 28px; flex-shrink: 0;
+    margin-right: 0; flex-shrink: 0;
   }
-  .ticker-items { display: flex; gap: 36px; }
+  .ticker-items {
+    display: flex; gap: 36px;
+    overflow-x: auto; scroll-behavior: smooth;
+    padding: 0 28px;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .ticker-items::-webkit-scrollbar { display: none; }
   .ticker-item {
     font-size: 12px; color: var(--text-low);
     white-space: nowrap; letter-spacing: 0.3px;
