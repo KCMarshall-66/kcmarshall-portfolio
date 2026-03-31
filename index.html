@@ -275,6 +275,53 @@
   .work-card.featured .work-thumb { min-height: 320px; }
 
   /* Unique visual treatments per card */
+  .wt-rules {
+    background: linear-gradient(160deg, #0d1a2e 0%, #06090f 100%);
+  }
+  .wt-rules::after {
+    content: '';
+    position: absolute;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(93,232,184,0.06) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+  }
+  /* Rule builder mockup */
+  .wt-rules .thumb-inner {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 28px 24px; width: 100%;
+  }
+  .rb-row {
+    display: flex; align-items: center; gap: 7px;
+  }
+  .rb-connector {
+    font-size: 9px; font-weight: 700; letter-spacing: 1px;
+    color: rgba(93,232,184,0.5);
+    background: rgba(93,232,184,0.08);
+    border: 1px solid rgba(93,232,184,0.18);
+    border-radius: 4px;
+    padding: 3px 7px;
+    flex-shrink: 0;
+  }
+  .rb-pill {
+    height: 28px; border-radius: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center;
+    padding: 0 10px;
+    font-size: 10px; color: rgba(240,240,238,0.35); letter-spacing: 0.5px;
+    flex: 1;
+  }
+  .rb-pill.active {
+    background: rgba(93,232,184,0.08);
+    border-color: rgba(93,232,184,0.22);
+    color: rgba(93,232,184,0.65);
+  }
+  .rb-divider {
+    height: 1px; background: rgba(255,255,255,0.05); margin: 2px 0;
+  }
+
   .wt-onetrust {
     background: linear-gradient(160deg, #0d2235 0%, #06141f 100%);
   }
@@ -663,8 +710,52 @@
 
   <div class="work-grid">
 
-    <!-- Featured: OneTrust -->
-    <a href="/work/onetrust-design-system.html" class="work-card featured" style="text-decoration:none;color:inherit">
+    <!-- Featured: Rules Builder -->
+    <a href="/work/rules-builder-case-study.html" class="work-card featured" style="text-decoration:none;color:inherit">
+      <div class="work-thumb wt-rules">
+        <div class="thumb-inner">
+          <div class="rb-row">
+            <span class="rb-pill active">Data Category</span>
+            <span class="rb-pill active">is</span>
+            <span class="rb-pill active">Personal Data</span>
+          </div>
+          <div class="rb-row">
+            <span class="rb-connector">AND</span>
+            <span class="rb-pill active">Region</span>
+            <span class="rb-pill active">contains</span>
+            <span class="rb-pill active">EU</span>
+          </div>
+          <div class="rb-divider"></div>
+          <div class="rb-row">
+            <span class="rb-connector">OR</span>
+            <span class="rb-pill">Select property…</span>
+            <span class="rb-pill">operator</span>
+            <span class="rb-pill">value</span>
+          </div>
+          <div class="rb-row">
+            <span class="rb-connector">AND</span>
+            <span class="rb-pill">Select property…</span>
+            <span class="rb-pill">operator</span>
+            <span class="rb-pill">value</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-info">
+        <div class="work-tag">Design Systems · Enterprise UX · Usability Research</div>
+        <div class="work-title">Unifying a Rule Builder Across an Enterprise Platform</div>
+        <div class="work-meta">
+          OneTrust
+          <span class="work-meta-dot"></span>
+          March 2026
+          <span class="work-meta-dot"></span>
+          Sr. Principal UX Lead
+        </div>
+      </div>
+      <div class="work-arrow">→</div>
+    </a>
+
+    <!-- OneTrust Design System -->
+    <a href="/work/onetrust-design-system.html" class="work-card" style="text-decoration:none;color:inherit">
       <div class="work-thumb wt-onetrust">
         <div class="thumb-inner">
           <div class="ds-chip">Button / Primary</div>
@@ -685,29 +776,10 @@
       <div class="work-info">
         <div class="work-tag">Design Systems · Enterprise SaaS · AI</div>
         <div class="work-title">OneTrust Design System &amp; AI-Driven Prototyping</div>
-        <div class="work-meta">
-          OneTrust
-          <span class="work-meta-dot"></span>
-          2024 – Present
-          <span class="work-meta-dot"></span>
-          Sr. Principal UX Lead
-        </div>
+        <div class="work-meta">OneTrust <span class="work-meta-dot"></span> 2024 – Present</div>
       </div>
       <div class="work-arrow">→</div>
     </a>
-
-    <!-- Schlage -->
-    <div class="work-card">
-      <div class="work-thumb wt-schlage">
-        <span class="thumb-label">E-Commerce Redesign</span>
-      </div>
-      <div class="work-info">
-        <div class="work-tag">E-Commerce · UX Research</div>
-        <div class="work-title">Schlage.com End-to-End Redesign</div>
-        <div class="work-meta">The Basement <span class="work-meta-dot"></span> 2022</div>
-      </div>
-      <div class="work-arrow">→</div>
-    </div>
 
     <!-- Healthcare -->
     <div class="work-card">
