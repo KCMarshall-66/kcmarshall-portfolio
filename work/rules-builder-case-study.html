@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rule Builder — KC Marshall</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --bg:        #0b0c0e;
+    --bg-2:      #111317;
+    --bg-3:      #16191f;
+    --border:    rgba(255,255,255,0.07);
+    --border-m:  rgba(255,255,255,0.12);
+    --accent:    #5de8b8;
+    --text:      #f0f0ee;
+    --text-mid:  rgba(240,240,238,0.55);
+    --text-low:  rgba(240,240,238,0.28);
+    --sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ─────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 56px; height: 60px;
+    background: rgba(11,12,14,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-left { display: flex; align-items: center; gap: 20px; }
+  .nav-logo {
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; gap: 9px;
+    color: var(--text);
+  }
+  .nav-logo-mark {
+    width: 26px; height: 26px; border-radius: 5px;
+    background: var(--accent); color: var(--bg);
+    font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-back {
+    font-size: 13px; color: var(--text-low);
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .nav-back::before { content: '←'; margin-right: 2px; }
+  .breadcrumb {
+    font-size: 12px; color: var(--text-low);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .breadcrumb span { color: var(--text-mid); }
+  .breadcrumb::before { content: '/'; color: var(--border-m); }
+
+  /* ── HERO ────────────────────────────── */
+  .cs-hero {
+    background: linear-gradient(170deg, #0c1620 0%, #06090d 60%, var(--bg) 100%);
+    padding: 80px 56px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .cs-hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(93,232,184,0.07) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+
+  .cs-company-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .cs-company-tag::before {
+    content: '';
+    width: 16px; height: 1.5px; background: var(--accent);
+  }
+
+  .cs-title {
+    font-size: 52px; font-weight: 800; line-height: 1.08;
+    letter-spacing: -2px; color: var(--text);
+    max-width: 760px; margin-bottom: 20px;
+  }
+
+  .cs-subtitle {
+    font-size: 18px; color: var(--text-mid);
+    max-width: 640px; line-height: 1.7;
+    margin-bottom: 56px;
+  }
+
+  .outcome-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 14px; max-width: 680px;
+    margin-bottom: 56px;
+    position: relative; z-index: 1;
+  }
+  .outcome-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-m);
+    border-radius: 12px; padding: 24px 22px;
+    position: relative; overflow: hidden;
+  }
+  .outcome-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .o-num {
+    font-size: 42px; font-weight: 800; color: var(--accent);
+    letter-spacing: -2px; line-height: 1; margin-bottom: 8px;
+  }
+  .o-label {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* META ROW */
+  .meta-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.3);
+  }
+  .meta-cell {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .meta-cell:last-child { border-right: none; }
+  .meta-key {
+    font-size: 10px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase; margin-bottom: 7px;
+  }
+  .meta-val {
+    font-size: 13px; font-weight: 600; color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* ── BODY ────────────────────────────── */
+  .cs-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .cs-section { margin-bottom: 72px; }
+
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 3px; font-weight: 700;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 12px; opacity: 0.8;
+  }
+  .section-h2 {
+    font-size: 30px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.8px; margin-bottom: 18px; line-height: 1.2;
+  }
+  .section-body {
+    font-size: 16px; color: var(--text-mid);
+    line-height: 1.8; margin-bottom: 28px;
+  }
+  .section-body + .section-body { margin-top: -12px; }
+
+  /* Callout block */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(93,232,184,0.06);
+    padding: 20px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 28px 0;
+  }
+  .callout p {
+    font-size: 16px; color: rgba(240,240,238,0.75);
+    line-height: 1.7; font-style: italic;
+  }
+  .callout-attr {
+    font-size: 11px; color: var(--text-low);
+    margin-top: 10px; font-style: normal;
+    letter-spacing: 0.5px;
+  }
+
+  /* Problem cards */
+  .problem-grid {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .problem-card {
+    display: grid; grid-template-columns: 44px 1fr;
+    align-items: start; gap: 20px;
+    padding: 24px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+  }
+  .problem-card:last-child { border-bottom: none; }
+  .problem-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(93,232,184,0.08);
+    border: 1px solid rgba(93,232,184,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .problem-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 6px; letter-spacing: -0.2px;
+  }
+  .problem-desc {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* Artifact grid */
+  .artifact-grid {
+    display: grid; gap: 14px;
+    margin: 28px 0;
+  }
+  .artifact-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .artifact-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .artifact-card {
+    border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    background: var(--bg-2);
+  }
+  .artifact-img {
+    height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--text-low);
+    position: relative;
+  }
+  .ai-dark {
+    background: linear-gradient(135deg, #0d1a2a 0%, #06101a 100%);
+  }
+  .ai-dark::before {
+    content: '';
+    position: absolute; inset: 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .ai-dark-2 {
+    background: linear-gradient(135deg, #1a0d2a 0%, #0d0618 100%);
+  }
+  .ai-mid {
+    background: linear-gradient(135deg, #0d1a14 0%, #060e0a 100%);
+  }
+  .ai-warm {
+    background: linear-gradient(135deg, #1a140d 0%, #0e0a06 100%);
+  }
+  .artifact-caption {
+    padding: 11px 15px;
+    font-size: 12px; color: var(--text-low);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+    line-height: 1.4;
+  }
+
+  /* Insight cards */
+  .insight-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin: 28px 0;
+  }
+  .insight-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 22px 20px;
+  }
+  .insight-num {
+    font-size: 32px; font-weight: 800;
+    color: var(--accent); letter-spacing: -1.5px;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .insight-label {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* Process steps */
+  .process-steps {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .process-step {
+    display: grid; grid-template-columns: 48px 1fr;
+    align-items: start; gap: 20px;
+    padding: 24px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+  }
+  .process-step:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(93,232,184,0.1);
+    border: 1px solid rgba(93,232,184,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .step-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 5px; letter-spacing: -0.2px;
+  }
+  .step-desc {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* A/B comparison */
+  .ab-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin: 28px 0;
+  }
+  .ab-card {
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    background: var(--bg-2);
+  }
+  .ab-card.winner { border-color: rgba(93,232,184,0.3); }
+  .ab-header {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .ab-label {
+    font-size: 12px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.2px;
+  }
+  .ab-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 3px 8px;
+    border-radius: 100px;
+  }
+  .ab-badge.preferred {
+    background: rgba(93,232,184,0.15);
+    color: var(--accent);
+    border: 1px solid rgba(93,232,184,0.25);
+  }
+  .ab-badge.variant {
+    background: rgba(255,255,255,0.05);
+    color: var(--text-low);
+    border: 1px solid var(--border);
+  }
+  .ab-body {
+    padding: 18px; height: 120px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ab-diagram {
+    font-size: 11px; color: var(--text-low);
+    text-align: center; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .ab-caption {
+    padding: 12px 18px;
+    font-size: 12px; color: var(--text-mid);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+    line-height: 1.5;
+  }
+
+  /* Capability grid */
+  .capability-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin: 28px 0;
+  }
+  .capability-item {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .cap-icon {
+    font-size: 18px; flex-shrink: 0; margin-top: 1px;
+    width: 28px; text-align: center;
+  }
+  .cap-title {
+    font-size: 13px; font-weight: 700; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .cap-desc {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* Tool chips */
+  .tool-chips {
+    display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0;
+  }
+  .tool-chip {
+    font-size: 12px; font-weight: 600;
+    padding: 5px 13px; border-radius: 100px;
+    background: rgba(93,232,184,0.08);
+    border: 1px solid rgba(93,232,184,0.18);
+    color: var(--accent);
+  }
+
+  /* Divider */
+  .section-divider {
+    height: 1px; background: var(--border);
+    margin: 0 0 72px;
+  }
+
+  /* Outcome summary */
+  .outcome-summary {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 40px;
+    margin: 28px 0;
+  }
+  .os-heading {
+    font-size: 18px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.3px; margin-bottom: 24px;
+  }
+  .os-items {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .os-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .os-item:last-child { border-bottom: none; }
+  .os-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(93,232,184,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--accent);
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .os-text { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+  .os-text strong { color: var(--text); font-weight: 600; }
+
+  /* Reflection */
+  .reflection {
+    background: rgba(93,232,184,0.04);
+    border: 1px solid rgba(93,232,184,0.1);
+    border-radius: 14px; padding: 36px 40px;
+    margin: 28px 0;
+  }
+  .reflection-label {
+    font-size: 10px; letter-spacing: 3px; font-weight: 700;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 14px;
+  }
+  .reflection-body {
+    font-size: 15px; color: var(--text-mid); line-height: 1.8;
+  }
+  .reflection-body + .reflection-body { margin-top: 14px; }
+
+  /* ── PAGINATION ──────────────────────── */
+  .cs-pagination {
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .page-link {
+    padding: 32px 56px;
+    display: flex; flex-direction: column; gap: 8px;
+    border-right: 1px solid var(--border);
+  }
+  .page-link.next {
+    border-right: none; text-align: right;
+    align-items: flex-end;
+  }
+  .page-direction {
+    font-size: 11px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase;
+  }
+  .page-title {
+    font-size: 16px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.2px;
+  }
+  .page-co { font-size: 12px; color: var(--text-low); }
+
+  /* ── FOOTER ──────────────────────────── */
+  .footer {
+    padding: 28px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-left { font-size: 13px; color: var(--text-low); }
+  .footer-right { display: flex; gap: 24px; }
+  .footer-right a { font-size: 12px; color: var(--text-low); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="/" class="nav-logo" style="text-decoration:none;color:inherit">
+      <div class="nav-logo-mark">KC</div>
+      KC Marshall
+    </a>
+    <a href="/" class="nav-back">All Work</a>
+    <div class="breadcrumb"><span>Rule Builder</span></div>
+  </div>
+  <div class="nav-right" style="display:flex;align-items:center;gap:24px;font-size:13px;color:rgba(240,240,238,0.55);">
+    <a href="/#about" style="color:inherit;text-decoration:none;">About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-company-tag">OneTrust · AI Prototyping · Enterprise UX · UX Research</div>
+  <h1 class="cs-title">Unifying a rule builder used across an entire enterprise platform</h1>
+  <p class="cs-subtitle">How I audited five distinct, incompatible rule builder implementations across OneTrust's product suite, defined a single cohesive design standard, and validated the solution through head-to-head Maze testing — delivering a component built to scale.</p>
+
+  <div class="outcome-strip">
+    <div class="outcome-card">
+      <div class="o-num">5+</div>
+      <div class="o-label">Inconsistent rule builder variants found across the platform</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">A/B</div>
+      <div class="o-label">Interaction patterns validated via Maze usability study</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">6th</div>
+      <div class="o-label">Generation prototype — iterated to production-ready fidelity</div>
+    </div>
+  </div>
+
+  <div class="meta-row">
+    <div class="meta-cell">
+      <div class="meta-key">My Role</div>
+      <div class="meta-val">Sr. Principal UX Design Lead</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Timeline</div>
+      <div class="meta-val">March 2026</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Platform</div>
+      <div class="meta-val">Enterprise SaaS</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Core Tools</div>
+      <div class="meta-val">Figma · Maze · OneTrust DS</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Contribution</div>
+      <div class="meta-val">Sole Designer</div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="cs-body">
+
+  <!-- 01: CONTEXT -->
+  <div class="cs-section">
+    <div class="section-eyebrow">01 — Context</div>
+    <h2 class="section-h2">The same task, built five different ways</h2>
+    <p class="section-body">Rules and logic are at the heart of what OneTrust's platform does — users define conditions to trigger automation, enforce data policies, and configure complex workflows. But the component they used to do it wasn't a component at all. It was a collection of one-offs: some products used dropdowns, others used checkboxes, some used free-text inputs, and others launched modal dialogs. Each team had built their own interpretation of the same interaction.</p>
+    <p class="section-body">The "MS-Rules UI" in the design system's component library served as a nominal foundation, but adoption was inconsistent. The result was a fragmented experience where a user working across multiple OneTrust products — Privacy, Integrations, Data Discovery, AI Governance — would encounter a completely different rule-building paradigm in each one. Re-learning the same interaction multiple times across the same platform is a fundamental UX failure. That's what this project set out to fix.</p>
+    <div class="callout">
+      <p>"OneTrust's Rule Builder component (variations on) show strong intent but lack cohesiveness and robustness. Consistency in control placement, labeling, and interaction models is missing — compromising discoverability and reducing the likelihood of successful self-service."</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 02: DISCOVERY -->
+  <div class="cs-section">
+    <div class="section-eyebrow">02 — Audit & Discovery</div>
+    <h2 class="section-h2">Five categories of failure, one component</h2>
+    <p class="section-body">Before touching a single frame in Figma, I conducted a comprehensive audit of every rule builder implementation across the OneTrust platform. This meant cataloguing each variant, documenting how it handled property selection, operators, value inputs, logical grouping, and error states — then comparing them systematically. What I found was worse than expected: inconsistency wasn't just present across products, it existed within the same product, on the same page, depending on which view a user selected.</p>
+
+    <div class="insight-row">
+      <div class="insight-card">
+        <div class="insight-num">5+</div>
+        <div class="insight-label">Distinct rule builder implementations found across the platform</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">3+</div>
+        <div class="insight-label">Features where inconsistent UX patterns appeared within the same workflow</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">0</div>
+        <div class="insight-label">Shared UI patterns, templates, or validation feedback across implementations</div>
+      </div>
+    </div>
+
+    <p class="section-body">The audit surfaced five distinct problem categories:</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">⚠</div>
+        <div>
+          <div class="problem-title">Inconsistent Implementations ("One-Offs")</div>
+          <div class="problem-desc">Dropdowns, checkboxes, free-text fields, and modal dialogs — each product team had independently interpreted the same user task. Users were forced to re-learn the same interaction every time they crossed a product boundary, compounding cognitive load and undermining efficiency.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⧉</div>
+        <div>
+          <div class="problem-title">No Shared Patterns or Visual Structure</div>
+          <div class="problem-desc">Some implementations rendered each rule as a separate line item with property/operator/value fields; others grouped conditions under a single panel. Even collapsed states varied — toggle placement and container background colors were inconsistent across actual-size views of the same product area.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⛓</div>
+        <div>
+          <div class="problem-title">Limited Scalability & Logical Complexity</div>
+          <div class="problem-desc">Available builders could handle simple AND/OR relationships, but not nested logic — the kind users actually need for real business conditions (e.g., "1 AND (2 OR 3)"). Without parentheses support or clear logical group labeling, complex rules became impossible to build, read, or debug.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">◫</div>
+        <div>
+          <div class="problem-title">No Templates, No Context-Awareness</div>
+          <div class="problem-desc">Users had no pre-configured rule templates to reduce setup time or promote best practices. Operator lists didn't adapt to data type: a text field and a numeric field surfaced the same set of comparators. The system didn't know what the user was working with, so it couldn't help them work faster.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">◉</div>
+        <div>
+          <div class="problem-title">Poor Visual Feedback & Rule Management</div>
+          <div class="problem-desc">No inline preview, no syntax validation, no clear indication of whether a rule was well-formed or actionable. Removing or reordering clauses worked differently across instances — sometimes via icon buttons, sometimes via drag handles — creating unnecessary interaction friction at critical decision points.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 03: STRATEGY -->
+  <div class="cs-section">
+    <div class="section-eyebrow">03 — Design Strategy</div>
+    <h2 class="section-h2">Defining what a rule builder should actually be</h2>
+    <p class="section-body">Before designing anything, I needed to establish a working definition — a reference specification for what a complex yet flexible rule builder does, so that every decision made downstream could be measured against it. This wasn't just a UX exercise; it became the conceptual foundation I used to align stakeholders, inform component architecture, and scope the Maze validation.</p>
+    <p class="section-body">I also surveyed how the industry's most respected design systems had approached this problem. IBM's Carbon, Salesforce Lightning, Atlassian, Google Material, and Shopify Polaris were all evaluated. The finding was notable: none of them ship a rule builder as a ready-made component. They provide the building blocks — selects, inputs, toggles, buttons — and assume product teams will assemble them. This meant OneTrust had an opportunity to do something genuinely differentiating: build a governed, reusable rule builder that didn't require each team to reinvent the wheel.</p>
+
+    <div class="capability-grid">
+      <div class="capability-item">
+        <div class="cap-icon">☰</div>
+        <div>
+          <div class="cap-title">Property Selection</div>
+          <div class="cap-desc">Fields or dataset attributes (e.g., "Country," "Purchase Amount," "Status") surfaced in context</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">≡</div>
+        <div>
+          <div class="cap-title">Context-Aware Operators</div>
+          <div class="cap-desc">Comparators that adapt to data type — "contains" for text, "greater than" for numeric — not a one-size list</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">◫</div>
+        <div>
+          <div class="cap-title">Typed Value Inputs</div>
+          <div class="cap-desc">Input fields that match the property type — text, numeric ranges, date pickers — reducing input errors</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">⛓</div>
+        <div>
+          <div class="cap-title">Nested Logical Grouping</div>
+          <div class="cap-desc">Support for simple AND/OR and nested expressions like "1 AND (2 OR 3)" for real-world rule complexity</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">⊟</div>
+        <div>
+          <div class="cap-title">Visual "Lines" with Controls</div>
+          <div class="cap-desc">Each clause in its own row with intuitive Add, Remove, drag-to-reorder, and grouping controls</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">◉</div>
+        <div>
+          <div class="cap-title">Live Preview & Validation</div>
+          <div class="cap-desc">Real-time logic expression preview; highlighting for invalid or ambiguous clauses before submission</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">◱</div>
+        <div>
+          <div class="cap-title">Templates & Smart Defaults</div>
+          <div class="cap-desc">Pre-configured rule patterns common to the use case — reducing setup time and cognitive effort at the start</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">⌨</div>
+        <div>
+          <div class="cap-title">Free-Form Switching</div>
+          <div class="cap-desc">Toggle between structured visual mode and free-text/SQL-like expression mode for advanced users</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-3">
+      <div class="artifact-card">
+        <div class="artifact-img ai-dark">Component Anatomy</div>
+        <div class="artifact-caption">Documented anatomy: collapsed and expanded states, status indicators, and action groupings</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img ai-mid">Off-the-Shelf Components</div>
+        <div class="artifact-caption">Mapped existing DS primitives — toggles, selects, inputs, segmented controls — to rule builder slots</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img ai-warm">Interaction Flows</div>
+        <div class="artifact-caption">Implementation flow mapping across Basic, Tab/Drawer, and nested workflow patterns</div>
+      </div>
+    </div>
+
+    <div class="tool-chips">
+      <span class="tool-chip">Figma</span>
+      <span class="tool-chip">OneTrust Design System</span>
+      <span class="tool-chip">Vitreous Components</span>
+      <span class="tool-chip">Atomic Design</span>
+      <span class="tool-chip">Maze</span>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 04: TESTING -->
+  <div class="cs-section">
+    <div class="section-eyebrow">04 — Testing & Validation</div>
+    <h2 class="section-h2">Two approaches. One Maze study. A clear answer.</h2>
+    <p class="section-body">With the audit complete and the component architecture defined, the core design question came down to interaction model: how should users add conditions and build logical groups? I designed two distinct approaches and put them head-to-head in a Maze unmoderated usability study to let actual users resolve the debate.</p>
+
+    <div class="ab-grid">
+      <div class="ab-card winner">
+        <div class="ab-header">
+          <div class="ab-label">Common Pattern</div>
+          <div class="ab-badge preferred">Preferred</div>
+        </div>
+        <div class="ab-body">
+          <div class="ab-diagram">Property · Operator · Operand<br><br>[ + Add condition ] &nbsp;&nbsp; [ + Add group ]</div>
+        </div>
+        <div class="ab-caption">Uses explicit "Add condition" and "Add group" controls to expand the formula and create nested logical expressions. Clear affordances, predictable structure.</div>
+      </div>
+      <div class="ab-card">
+        <div class="ab-header">
+          <div class="ab-label">Minimalist Approach</div>
+          <div class="ab-badge variant">Variant</div>
+        </div>
+        <div class="ab-body">
+          <div class="ab-diagram">Property · Operator · Operand<br><br>[ AND / OR ↕ toggle ] &nbsp; [ + ]</div>
+        </div>
+        <div class="ab-caption">Attempts to reduce visual overload by combining AND/OR toggling and nesting into a single multi-use control. Cleaner visually, but less legible in practice.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>The Maze study results were close — both patterns performed similarly on core tasks — but the Common Pattern was the clear user preference. The explicit affordances reduced ambiguity when constructing complex nested logic, particularly for less experienced users. The minimalist approach traded clarity for density in a way that didn't pay off at scale.</p>
+    </div>
+
+    <p class="section-body">The study confirmed what the audit had suggested: when users are constructing formal logic, they want to see what they're building. Reducing visual noise at the cost of legibility is the wrong tradeoff for a component used to define business-critical rules. The Common Pattern — with its explicit "Add condition" and "Add group" controls — gave users a mental model they could trust, and that trust compounded as rules grew more complex.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 05: SOLUTION -->
+  <div class="cs-section">
+    <div class="section-eyebrow">05 — The Solution</div>
+    <h2 class="section-h2">A flexible component with intentional focus</h2>
+    <p class="section-body">The final design was built around a single principle: reduce cognitive load through intentional focus states, not by removing information. The component exists in two configurations — a "Complete View" with all features enabled, and a "Bare-Bones" mode representing the minimum needed to create a valid rule — so that product teams can deploy it at the right level of complexity for their context.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Collapsed State with Badges</div>
+          <div class="step-desc">Rules display in a compact row with status, condition count, and action count surfaced as badges. Consistent across every implementation — same pattern whether you're in Privacy, Data Discovery, or AI Governance.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Expanded Editable & Preview Modes</div>
+          <div class="step-desc">Expanded rules have two views: an editable state for building conditions and actions, and a preview (locked) state showing the rule in written form — reducing ambiguity about what the rule actually does before it's applied.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Contextual Conditions & Actions Panels</div>
+          <div class="step-desc">The Conditions panel supports nested AND/OR logic via "Add condition" and "Add group" controls. The Actions panel supports the same boolean structure, and can optionally surface fully customizable forms for complex, context-specific action types.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Intentional Focus & Collapsed Animation</div>
+          <div class="step-desc">The entire experience is designed around focus: intentional collapsed states and loading animations guide users sequentially through the rule-building process, preventing overwhelm when working with multi-condition formulas.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">5</div>
+        <div>
+          <div class="step-title">Optional Schedule & Custom Properties</div>
+          <div class="step-desc">Additional contextual fields — schedules, custom properties — are surfaced as optional layers that can be toggled off when not needed, keeping the default experience clean without sacrificing flexibility for advanced use cases.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img ai-dark">Complete View</div>
+        <div class="artifact-caption">Full-featured configuration — all conditions, actions, preview, and optional properties enabled</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img ai-mid">Bare-Bones Mode</div>
+        <div class="artifact-caption">Minimum viable rule builder — stripped to the essential inputs needed to create a valid, actionable rule</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img ai-dark-2">Sixth-Gen Logic Prototype</div>
+        <div class="artifact-caption">High-fidelity interactive prototype demonstrating nested condition building, focus states, and animation</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img ai-warm">Implementation Flow Map</div>
+        <div class="artifact-caption">Guidance for product teams on which deployment pattern to use — Basic, Tab/Drawer, or embedded workflow step</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 06: OUTCOMES -->
+  <div class="cs-section">
+    <div class="section-eyebrow">06 — Outcomes</div>
+    <h2 class="section-h2">One component, built to last across the platform</h2>
+    <p class="section-body">The Rule Builder project delivered more than a redesigned UI. It established a documented, validated standard that any OneTrust product team can now adopt — eliminating the conditions that created five incompatible implementations in the first place.</p>
+
+    <div class="outcome-summary">
+      <div class="os-heading">Key Results</div>
+      <div class="os-items">
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Single unified rule builder standard</strong> — documented anatomy, component mapping, and implementation guidance replaces five one-off implementations across the platform</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Maze-validated interaction model</strong> — the A/B study resolved a genuine design tension between two credible approaches, giving the recommendation a data foundation rather than opinion</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Sixth-generation interactive prototype</strong> — iterative fidelity that demonstrates focus states, nested logic, collapsed animations, and both Complete and Bare-Bones configurations</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Scalable architecture for product teams</strong> — three documented implementation patterns (Basic, Tab/Drawer, Step) so each product context gets the right deployment, not the same default</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Foundation for design system governance</strong> — the component joins the platform DS with usage guidance that reduces the likelihood of future one-offs appearing as the product suite grows</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 07: REFLECTION -->
+  <div class="cs-section">
+    <div class="section-eyebrow">07 — Reflection</div>
+    <h2 class="section-h2">What this project reinforced about platform-level design</h2>
+    <div class="reflection">
+      <div class="reflection-label">Honest Retrospective</div>
+      <p class="reflection-body">The most surprising part of this audit wasn't finding five different implementations — it was finding inconsistency within a single feature. When the same product uses two different rule builder patterns depending on which view a user opens, the problem isn't a lack of standards. It's that standards weren't enforced at the decision point where those views diverged. That's a governance failure, not a design failure — and it's a reminder that creating a great component is only half the job. Getting teams to actually use it consistently is the other half.</p>
+      <p class="reflection-body">What I'd do again: using Maze to resolve the A/B question before committing to the final design. The two interaction models were genuinely close — reasonable designers could have argued for either. Having participant data, not just preference, made the recommendation defensible in a way that personal conviction wouldn't. When the stakes are a component that will touch every major product surface in the platform, "I think this one is better" isn't a sufficient answer.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGINATION -->
+<div class="cs-pagination">
+  <a href="#" class="page-link">
+    <div class="page-direction">← Previous</div>
+    <div class="page-title">OneTrust Design System</div>
+    <div class="page-co">OneTrust · 2024–Present</div>
+  </a>
+  <a href="#" class="page-link next">
+    <div class="page-direction">Next →</div>
+    <div class="page-title">Schlage.com End-to-End Redesign</div>
+    <div class="page-co">The Basement · 2022</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">© 2026 KC Marshall · Fishers, IN</div>
+  <div class="footer-right">
+    <a href="#">LinkedIn</a>
+    <a href="#">Resume</a>
+    <a href="#">Back to Top ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>
