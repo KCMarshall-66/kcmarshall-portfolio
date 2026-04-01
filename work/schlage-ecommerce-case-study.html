@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Schlage.com Redesign — KC Marshall</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --bg:        #0b0c0e;
+    --bg-2:      #111317;
+    --bg-3:      #16191f;
+    --border:    rgba(255,255,255,0.07);
+    --border-m:  rgba(255,255,255,0.12);
+    --accent:    #5de8b8;
+    --text:      #f0f0ee;
+    --text-mid:  rgba(240,240,238,0.55);
+    --text-low:  rgba(240,240,238,0.28);
+    --sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ─────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 56px; height: 60px;
+    background: rgba(11,12,14,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-left { display: flex; align-items: center; gap: 20px; }
+  .nav-logo {
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; gap: 9px;
+    color: var(--text);
+  }
+  .nav-logo-mark {
+    width: 26px; height: 26px; border-radius: 5px;
+    background: var(--accent); color: var(--bg);
+    font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-back {
+    font-size: 13px; color: var(--text-low);
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .nav-back::before { content: '←'; margin-right: 2px; }
+  .breadcrumb {
+    font-size: 12px; color: var(--text-low);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .breadcrumb span { color: var(--text-mid); }
+  .breadcrumb::before { content: '/'; color: var(--border-m); }
+
+  /* ── HERO ────────────────────────────── */
+  .cs-hero {
+    background: linear-gradient(170deg, #12100a 0%, #0a0907 60%, var(--bg) 100%);
+    padding: 80px 56px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .cs-hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(93,232,184,0.06) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+
+  .cs-company-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .cs-company-tag::before {
+    content: '';
+    width: 16px; height: 1.5px; background: var(--accent);
+  }
+
+  .cs-title {
+    font-size: 52px; font-weight: 800; line-height: 1.08;
+    letter-spacing: -2px; color: var(--text);
+    max-width: 760px; margin-bottom: 20px;
+  }
+
+  .cs-subtitle {
+    font-size: 18px; color: var(--text-mid);
+    max-width: 640px; line-height: 1.7;
+    margin-bottom: 56px;
+  }
+
+  .outcome-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 14px; max-width: 680px;
+    margin-bottom: 56px;
+    position: relative; z-index: 1;
+  }
+  .outcome-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-m);
+    border-radius: 12px; padding: 24px 22px;
+    position: relative; overflow: hidden;
+  }
+  .outcome-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .o-num {
+    font-size: 42px; font-weight: 800; color: var(--accent);
+    letter-spacing: -2px; line-height: 1; margin-bottom: 8px;
+  }
+  .o-label {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* META ROW */
+  .meta-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.3);
+  }
+  .meta-cell {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .meta-cell:last-child { border-right: none; }
+  .meta-key {
+    font-size: 10px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase; margin-bottom: 7px;
+  }
+  .meta-val {
+    font-size: 13px; font-weight: 600; color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* ── BODY ────────────────────────────── */
+  .cs-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .cs-section { margin-bottom: 72px; }
+
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 3px; font-weight: 700;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 12px; opacity: 0.8;
+  }
+  .section-h2 {
+    font-size: 30px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.8px; margin-bottom: 18px; line-height: 1.2;
+  }
+  .section-body {
+    font-size: 16px; color: var(--text-mid);
+    line-height: 1.8; margin-bottom: 28px;
+  }
+  .section-body + .section-body { margin-top: -12px; }
+
+  /* Callout block */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(93,232,184,0.06);
+    padding: 20px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 28px 0;
+  }
+  .callout p {
+    font-size: 16px; color: rgba(240,240,238,0.75);
+    line-height: 1.7; font-style: italic;
+  }
+  .callout-attr {
+    font-size: 11px; color: var(--text-low);
+    margin-top: 10px; font-style: normal;
+    letter-spacing: 0.5px;
+  }
+
+  /* Problem cards */
+  .problem-grid {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .problem-card {
+    display: grid; grid-template-columns: 44px 1fr;
+    align-items: start; gap: 20px;
+    padding: 24px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+  }
+  .problem-card:last-child { border-bottom: none; }
+  .problem-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(93,232,184,0.08);
+    border: 1px solid rgba(93,232,184,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .problem-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 6px; letter-spacing: -0.2px;
+  }
+  .problem-desc {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* Artifact grid */
+  .artifact-grid {
+    display: grid; gap: 14px;
+    margin: 28px 0;
+  }
+  .artifact-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .artifact-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .artifact-card {
+    border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    background: var(--bg-2);
+  }
+  .artifact-img {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--text-low);
+    position: relative; overflow: hidden;
+  }
+  .artifact-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .ai-dark {
+    background: linear-gradient(135deg, #0d1a2a 0%, #06101a 100%);
+  }
+  .ai-dark::before {
+    content: '';
+    position: absolute; inset: 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .ai-mid {
+    background: linear-gradient(135deg, #0d1a14 0%, #060e0a 100%);
+  }
+  .ai-warm {
+    background: linear-gradient(135deg, #1a140d 0%, #0e0a06 100%);
+  }
+  .ai-slate {
+    background: linear-gradient(135deg, #10141a 0%, #080b10 100%);
+  }
+  .artifact-caption {
+    padding: 11px 15px;
+    font-size: 12px; color: var(--text-low);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+    line-height: 1.4;
+  }
+
+  /* Insight cards */
+  .insight-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin: 28px 0;
+  }
+  .insight-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 22px 20px;
+  }
+  .insight-num {
+    font-size: 32px; font-weight: 800;
+    color: var(--accent); letter-spacing: -1.5px;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .insight-label {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* Process steps */
+  .process-steps {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .process-step {
+    display: grid; grid-template-columns: 48px 1fr;
+    align-items: start; gap: 20px;
+    padding: 24px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+  }
+  .process-step:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(93,232,184,0.1);
+    border: 1px solid rgba(93,232,184,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .step-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 5px; letter-spacing: -0.2px;
+  }
+  .step-desc {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* Capability grid */
+  .capability-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin: 28px 0;
+  }
+  .capability-item {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .cap-icon {
+    font-size: 18px; flex-shrink: 0; margin-top: 1px;
+    width: 28px; text-align: center;
+  }
+  .cap-title {
+    font-size: 13px; font-weight: 700; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .cap-desc {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* Tool chips */
+  .tool-chips {
+    display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0;
+  }
+  .tool-chip {
+    font-size: 12px; font-weight: 600;
+    padding: 5px 13px; border-radius: 100px;
+    background: rgba(93,232,184,0.08);
+    border: 1px solid rgba(93,232,184,0.18);
+    color: var(--accent);
+  }
+
+  /* Divider */
+  .section-divider {
+    height: 1px; background: var(--border);
+    margin: 0 0 72px;
+  }
+
+  /* Outcome summary */
+  .outcome-summary {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 40px;
+    margin: 28px 0;
+  }
+  .os-heading {
+    font-size: 18px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.3px; margin-bottom: 24px;
+  }
+  .os-items {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .os-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .os-item:last-child { border-bottom: none; }
+  .os-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(93,232,184,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--accent);
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .os-text { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+  .os-text strong { color: var(--text); font-weight: 600; }
+
+  /* Reflection */
+  .reflection {
+    background: rgba(93,232,184,0.04);
+    border: 1px solid rgba(93,232,184,0.1);
+    border-radius: 14px; padding: 36px 40px;
+    margin: 28px 0;
+  }
+  .reflection-label {
+    font-size: 10px; letter-spacing: 3px; font-weight: 700;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 14px;
+  }
+  .reflection-body {
+    font-size: 15px; color: var(--text-mid); line-height: 1.8;
+  }
+  .reflection-body + .reflection-body { margin-top: 14px; }
+
+  /* ── PAGINATION ──────────────────────── */
+  .cs-pagination {
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .page-link {
+    padding: 32px 56px;
+    display: flex; flex-direction: column; gap: 8px;
+    border-right: 1px solid var(--border);
+  }
+  .page-link.next {
+    border-right: none; text-align: right;
+    align-items: flex-end;
+  }
+  .page-direction {
+    font-size: 11px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase;
+  }
+  .page-title {
+    font-size: 16px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.2px;
+  }
+  .page-co { font-size: 12px; color: var(--text-low); }
+
+  /* ── FOOTER ──────────────────────────── */
+  .footer {
+    padding: 28px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-left { font-size: 13px; color: var(--text-low); }
+  .footer-right { display: flex; gap: 24px; }
+  .footer-right a { font-size: 12px; color: var(--text-low); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="/" class="nav-logo" style="text-decoration:none;color:inherit">
+      <div class="nav-logo-mark">KC</div>
+      KC Marshall
+    </a>
+    <a href="/" class="nav-back">All Work</a>
+    <div class="breadcrumb"><span>Schlage.com Redesign</span></div>
+  </div>
+  <div class="nav-right" style="display:flex;align-items:center;gap:24px;font-size:13px;color:rgba(240,240,238,0.55);">
+    <a href="/#about" style="color:inherit;text-decoration:none;">About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-company-tag">The Basement · E-Commerce · UX Research</div>
+  <h1 class="cs-title">Redesigning Schlage.com from the ground up</h1>
+  <p class="cs-subtitle">How I led end-to-end UX for a large-scale enterprise e-commerce platform — from research and empathy mapping through design system architecture, motion prototyping, and validated usability testing.</p>
+
+  <div class="outcome-strip">
+    <div class="outcome-card">
+      <div class="o-num">5+</div>
+      <div class="o-label">User research artifacts including empathy maps, journey maps, and service blueprints</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">A/B</div>
+      <div class="o-label">Mobile navigation patterns tested head-to-head before final implementation</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">2×</div>
+      <div class="o-label">Parallel workstreams — e-commerce UX and a unified atomic design system</div>
+    </div>
+  </div>
+
+  <div class="meta-row">
+    <div class="meta-cell">
+      <div class="meta-key">My Role</div>
+      <div class="meta-val">UX Director</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Timeline</div>
+      <div class="meta-val">2022</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Platform</div>
+      <div class="meta-val">E-Commerce · Retail</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Core Tools</div>
+      <div class="meta-val">Adobe XD · Maze · UXTweak</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Client</div>
+      <div class="meta-val">Schlage via The Basement</div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="cs-body">
+
+  <!-- 01: CONTEXT -->
+  <div class="cs-section">
+    <div class="section-eyebrow">01 — Context</div>
+    <h2 class="section-h2">A complex e-commerce platform built from scratch</h2>
+    <p class="section-body">Schlage is a leading manufacturer of locks and security hardware — a brand with a broad consumer base, a complex product catalog, and a website that wasn't keeping pace with how people shop. This was a large, enterprise-level e-commerce redesign currently in production, covering the full spectrum of UX activity: from initial discovery and stakeholder alignment, through strategy and tiered release planning, to final design system delivery.</p>
+    <p class="section-body">My role as UX Director meant owning both the research-to-design process and the systems that would govern how that design scaled. No off-the-shelf templates — every pattern, component, and interaction model was defined, tested, and documented from the ground up.</p>
+    <div class="callout">
+      <p>"The heart of any project is the design system. Think of a style guide, pattern library, and component library all rolled into one — a single source of truth that evolves with the project."</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 02: RESEARCH & DISCOVERY -->
+  <div class="cs-section">
+    <div class="section-eyebrow">02 — Research &amp; Discovery</div>
+    <h2 class="section-h2">Understanding the customer before touching a frame</h2>
+    <p class="section-body">Every project starts with understanding people — both the users and the business stakeholders behind them. I conducted heuristic evaluations of the existing site alongside stakeholder interviews to calibrate user empathy against business objectives. That groundwork informed a deeper research phase: end-user interviews, usability testing on existing flows, site heuristics, and technology audits to understand platform constraints before making design decisions.</p>
+    <p class="section-body">The research phase produced a suite of artifacts that gave the project team a shared model of who we were designing for and what their experience actually looked like — not just what the business assumed it to be.</p>
+
+    <div class="insight-row">
+      <div class="insight-card">
+        <div class="insight-num">2</div>
+        <div class="insight-label">Primary user personas built from interview research (Charles and Amy)</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">4</div>
+        <div class="insight-label">Research methods deployed: interviews, usability testing, heuristics, technology audit</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">1</div>
+        <div class="insight-label">Service blueprint mapping end-to-end process opportunities across the buying journey</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/12/Empathy-map-Charles-1024x649.png" alt="Empathy Map — Charles" />
+        </div>
+        <div class="artifact-caption">Empathy Map — Charles. Captures goals, frustrations, and mental models surfaced during user interviews.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/12/Empathy-map-Amy-1024x649.png" alt="Empathy Map — Amy" />
+        </div>
+        <div class="artifact-caption">Empathy Map — Amy. A secondary persona with distinct motivations, particularly around home security purchasing decisions.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/12/Entrepreneur-Journey-Map-%E2%80%93-Assumptive-2-1024x768.png" alt="Entrepreneur Journey Map" />
+        </div>
+        <div class="artifact-caption">Assumptive Journey Map — Entrepreneur path. Documents each stage of the purchase journey, emotional highs and lows, and friction points ripe for improvement.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/12/Service-Process-Blueprint-1024x497.png" alt="Service Process Blueprint" />
+        </div>
+        <div class="artifact-caption">Service Blueprint. Maps the full service process to surface industry-level process opportunities beyond the screen.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 03: DESIGN SYSTEM -->
+  <div class="cs-section">
+    <div class="section-eyebrow">03 — Design System</div>
+    <h2 class="section-h2">Building the atomic foundation first</h2>
+    <p class="section-body">Before designing pages, I established the design system — the single source of truth that would govern every decision made downstream. I adopted the Atomic Design Methodology, organizing the system into hierarchical levels: Atoms (colors, typography), Molecules (buttons, icon pairs), Organisms (headers, footers, feature blocks), and Templates. Implemented using Adobe XD's component library, any change made at the atomic level cascaded automatically across every team artboard.</p>
+    <p class="section-body">The result was a living document that saved measurable design and development time — changes at any organizational level kept all designs up-to-date without manual rework, and gave the development team a clear, unambiguous specification at every stage of implementation.</p>
+
+    <div class="capability-grid">
+      <div class="capability-item">
+        <div class="cap-icon">🎨</div>
+        <div>
+          <div class="cap-title">Color Atoms</div>
+          <div class="cap-desc">A defined palette governing primary, secondary, neutral, and semantic states across all surfaces</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">Aa</div>
+        <div>
+          <div class="cap-title">Typography Atoms</div>
+          <div class="cap-desc">Type scale, weight hierarchy, and line-height rules established at the atom level and enforced throughout</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">⬜</div>
+        <div>
+          <div class="cap-title">Button &amp; UI Molecules</div>
+          <div class="cap-desc">Interactive states (default, hover, active, disabled) documented with interaction rules for consistent behavior</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">☰</div>
+        <div>
+          <div class="cap-title">Navigation Organisms</div>
+          <div class="cap-desc">Header and footer organisms with responsive behavior rules and documented content variation patterns</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">▦</div>
+        <div>
+          <div class="cap-title">Component Library</div>
+          <div class="cap-desc">Reusable components enabling dynamic changes across all team artboards via XD's component override system</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">◱</div>
+        <div>
+          <div class="cap-title">Feature Blocks &amp; Organisms</div>
+          <div class="cap-desc">Complex layout patterns — feature blocks, promotional modules — with documented interaction rules and content flexibility</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/11/schlage_colors.png" alt="Schlage Color System" />
+        </div>
+        <div class="artifact-caption">Color atoms — primary, secondary, and neutral palettes with semantic usage guidance.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/11/schlage_typography.png" alt="Schlage Typography System" />
+        </div>
+        <div class="artifact-caption">Typography atoms — type scale, weight hierarchy, and line-height rules for all text styles.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/11/schlage_buttons_tabs_ui_patterns.png" alt="Buttons, Tabs, and UI Patterns" />
+        </div>
+        <div class="artifact-caption">Button molecules and UI pattern documentation — all interactive states defined and ready for dev handoff.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/11/Components.png" alt="Component Library" />
+        </div>
+        <div class="artifact-caption">Component library overview — reusable molecules and organisms powering the entire platform.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/11/Header.png" alt="Header Organism" />
+        </div>
+        <div class="artifact-caption">Header organism — responsive navigation with documented content rules and interaction states.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/11/Footer.png" alt="Footer Organism" />
+        </div>
+        <div class="artifact-caption">Footer organism — structured for content flexibility while maintaining visual consistency across pages.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-1" style="grid-template-columns:1fr;">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:240px;">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/11/Features-and-Blocks-Quick-Hits.png" alt="Feature Blocks" />
+        </div>
+        <div class="artifact-caption">Feature blocks and promotional organisms — modular layout patterns with documented interaction and content variation rules.</div>
+      </div>
+    </div>
+
+    <div class="tool-chips">
+      <span class="tool-chip">Adobe XD</span>
+      <span class="tool-chip">Atomic Design</span>
+      <span class="tool-chip">Component Library</span>
+      <span class="tool-chip">Design Tokens</span>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 04: PROTOTYPING -->
+  <div class="cs-section">
+    <div class="section-eyebrow">04 — Prototyping &amp; Motion</div>
+    <h2 class="section-h2">Static artboards aren't enough</h2>
+    <p class="section-body">For a site with complex interactions — favoriting products, search, navigation, and dynamic inventory-driven layouts — static designs don't communicate the full intent. Motion prototypes were created for key interactions to facilitate both rigorous user testing and precise developer handoffs. The goal was to remove ambiguity at every decision point before engineering investment was made.</p>
+
+    <div class="callout">
+      <p>"Static artboards simply aren't enough for thoroughly testing complex patterns such as favoriting an item or searching for help. Micro-interactions require comprehensive prototyping before developer handoff."</p>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:220px;">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/11/find-finish-1024x576.gif" alt="Find to Finish Motion Prototype" />
+        </div>
+        <div class="artifact-caption">Find-to-Finish motion prototype — animating the full product discovery-to-checkout interaction model for user testing and dev handoff.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:220px;">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/12/mobile-menus-1024x576.png" alt="Mobile Navigation Approaches" />
+        </div>
+        <div class="artifact-caption">Multiple mobile navigation approaches prototyped and tested before implementation — A/B comparison used to determine the strongest pattern.</div>
+      </div>
+    </div>
+
+    <p class="section-body">Documentation played a critical role alongside prototyping. Element documentation gathered stakeholder feedback, secured development alignment, and ensured the design team understood how dynamic content — database and inventory changes — would impact layouts across states.</p>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/12/Schlage-default-head-on-1024x428.png" alt="Default State Documentation" />
+        </div>
+        <div class="artifact-caption">Element documentation — default layout states showing component specifications and responsive breakpoint behavior.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/12/Product-Card-Homepage-Desktop-and-Mobile-1024x573.png" alt="Product Card — Desktop and Mobile" />
+        </div>
+        <div class="artifact-caption">Product card usage documentation — desktop and mobile variants with defined content rules for inventory-driven display variations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 05: TESTING -->
+  <div class="cs-section">
+    <div class="section-eyebrow">05 — Testing &amp; Validation</div>
+    <h2 class="section-h2">Quantitative data at every stage, not just the end</h2>
+    <p class="section-body">Opinions are easy to come by. What the project needed was quantitative evidence. Testing wasn't a single gate at the end of the design process — it was embedded throughout, with tools selected to answer specific questions at specific stages: tree testing to validate information architecture before building navigation, and prototype testing to validate interaction models before committing to implementation.</p>
+
+    <div class="callout">
+      <p>"It's easy to look at a design and give an opinion such as 'I like it' or 'I'm not sure this is going to work'. Without any quantitative stats, you really are missing the opportunity for insights, improvements, and confirmation."</p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">🌳</div>
+        <div>
+          <div class="problem-title">UXTweak Tree Testing — Information Architecture</div>
+          <div class="problem-desc">Before building navigation, I ran unmoderated tree tests using UXTweak to validate the proposed site taxonomy with real users. The resulting pie chart visualizations revealed where users expected to find products and content — and where the proposed IA created confusion — before a single navigation component was designed.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🧪</div>
+        <div>
+          <div class="problem-title">Maze Prototype Testing — Shopping Paths</div>
+          <div class="problem-desc">High-fidelity Axure RP prototypes were deployed through Maze to run unmoderated usability tests uncovering how users actually navigated the shopping experience. Task completion rates, misclick analysis, and path data surfaced friction points that static reviews had missed — and confirmed which design decisions held up under real use conditions.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">👥</div>
+        <div>
+          <div class="problem-title">User Interviews &amp; Mural Synthesis</div>
+          <div class="problem-desc">Moderated user interviews provided qualitative depth to complement the quantitative testing data. Interview findings were synthesized in Mural, allowing the team to collaboratively identify patterns, cluster insights, and prioritize which friction points had the highest impact on conversion and satisfaction.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/12/Screenshot-2023-08-15-at-2.34.55-PM-1024x698.png" alt="Maze Usability Test Results" />
+        </div>
+        <div class="artifact-caption">Maze usability test results — task path analysis and misclick heatmaps revealing friction in the shopping flow.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img">
+          <img src="https://kcmarshall.com/wp-content/uploads/2023/12/Screenshot-2023-08-15-at-2.36.13-PM-1024x763.png" alt="UXTweak Tree Test Results" />
+        </div>
+        <div class="artifact-caption">UXTweak tree test output — pie chart visualization confirming IA structure before navigation components were built.</div>
+      </div>
+    </div>
+
+    <div class="tool-chips">
+      <span class="tool-chip">Maze</span>
+      <span class="tool-chip">UXTweak</span>
+      <span class="tool-chip">Axure RP</span>
+      <span class="tool-chip">User Interviews</span>
+      <span class="tool-chip">Mural</span>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 06: OUTCOMES -->
+  <div class="cs-section">
+    <div class="section-eyebrow">06 — Outcomes</div>
+    <h2 class="section-h2">Research-backed design, delivered at scale</h2>
+    <p class="section-body">The Schlage.com redesign delivered a full-stack UX engagement — from foundational user research through a production-ready atomic design system and validated interaction models. The dual workstreams of e-commerce UX and design system architecture were executed in parallel, ensuring the final designs were both user-tested and built to scale with the platform's evolving product catalog.</p>
+
+    <div class="outcome-summary">
+      <div class="os-heading">Key Deliverables</div>
+      <div class="os-items">
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Full user research suite</strong> — empathy maps, assumptive journey maps, and a service blueprint establishing a shared understanding of user needs before any design work began</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Atomic design system</strong> — a living component library governing color, typography, interactions, and layout organisms, enabling dynamic updates across all artboards and reducing design-to-development friction</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Motion prototypes for critical interactions</strong> — find-to-finish flows, favoriting, search, and mobile navigation tested and documented before engineering investment was committed</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Validated information architecture</strong> — UXTweak tree testing confirmed the site taxonomy with real users, eliminating IA assumptions before navigation was built</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Quantitative usability evidence</strong> — Maze prototype testing and user interview synthesis provided a data-grounded foundation for every major interaction decision made during the project</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 07: REFLECTION -->
+  <div class="cs-section">
+    <div class="section-eyebrow">07 — Reflection</div>
+    <h2 class="section-h2">What this project reinforced about end-to-end UX</h2>
+    <div class="reflection">
+      <div class="reflection-label">Honest Retrospective</div>
+      <p class="reflection-body">Running a design system and an e-commerce UX engagement in parallel is genuinely difficult — and genuinely worth it. The temptation on projects like this is to treat the design system as a cleanup task: something you build after the product designs stabilize. That approach creates rework. Building the atomic foundation first — even when it slows the early phases — means every component you design later is already governed, already reusable, and already documented for development. The system pays back its investment within the first major feature cycle.</p>
+      <p class="reflection-body">What I'd do again: the embedded testing cadence. Tree testing before navigation, prototype testing before interaction commitment, interview synthesis alongside quantitative data. Each layer added something the others couldn't — and each one surfaced at least one finding that would have cost significantly more to fix post-launch than it did to address during design. The goal isn't to test everything; it's to test at the moments where being wrong is most expensive.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGINATION -->
+<div class="cs-pagination">
+  <a href="/work/rules-builder-case-study.html" class="page-link">
+    <div class="page-direction">← Previous</div>
+    <div class="page-title">Unifying a Rule Builder</div>
+    <div class="page-co">OneTrust · 2026</div>
+  </a>
+  <a href="#" class="page-link next">
+    <div class="page-direction">Next →</div>
+    <div class="page-title">50% Call Time Reduction via Service Design</div>
+    <div class="page-co">DMI Consulting · 2019</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">© 2026 KC Marshall · Fishers, IN</div>
+  <div class="footer-right">
+    <a href="#">LinkedIn</a>
+    <a href="#">Resume</a>
+    <a href="#">Back to Top ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>
