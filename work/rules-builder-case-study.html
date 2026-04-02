@@ -730,9 +730,164 @@
 
   <div class="section-divider"></div>
 
-  <!-- 04: TESTING -->
+  <!-- 04: COMPETITIVE RESEARCH -->
   <div class="cs-section">
-    <div class="section-eyebrow">04 — Testing & Validation</div>
+    <div class="section-eyebrow">04 — Competitive Research &amp; Pattern Analysis</div>
+    <h2 class="section-h2">What the market got right — and what it left unbuilt</h2>
+    <p class="section-body">With the internal audit complete and a working definition established, I used Claude Cowork to conduct a systematic sweep of how competing products and major design systems had approached rule building. The goal wasn't inspiration — it was triangulation. Understanding where the market had converged on patterns would tell me which decisions were already settled, and where genuine differentiation was still possible.</p>
+    <p class="section-body">The sweep covered both design system primitives (IBM Carbon, Salesforce Lightning, Atlassian, Google Material, Shopify Polaris) and standalone products with mature condition builders (Zapier, Segment, Braze, Amplitude). The finding across design systems was consistent: none of them ship a rule builder as a ready-made component. They provide the building blocks and expect product teams to assemble them. Standalone products were more instructive — each had made deliberate choices about how to structure the Property · Operator · Value triplet, handle logical grouping, and communicate rule state to users.</p>
+
+    <div class="insight-row">
+      <div class="insight-card">
+        <div class="insight-num">5</div>
+        <div class="insight-label">Major design systems evaluated — none shipping a ready-made rule builder component</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">4+</div>
+        <div class="insight-label">Standalone products with mature condition builders analyzed for interaction patterns</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">0</div>
+        <div class="insight-label">Competitors offering AI-assisted rule building as a native, integrated feature</div>
+      </div>
+    </div>
+
+    <p class="section-body">Across every evaluated product, the same core patterns surfaced consistently — representing the settled conventions that any rule builder needs to meet before it can differentiate:</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">☰</div>
+        <div>
+          <div class="problem-title">Property · Operator · Value as the base unit</div>
+          <div class="problem-desc">Every mature rule builder organizes conditions as a triplet: a property (what you're evaluating), an operator (how you're comparing), and a value (what you're comparing against). The triplet is the atomic unit — get it wrong and everything built on top of it breaks.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⛓</div>
+        <div>
+          <div class="problem-title">AND/OR toggling at the group level</div>
+          <div class="problem-desc">Logical connectors (AND, OR) operate on groups of conditions, not individual clauses. Products that placed the toggle at the wrong level — between individual rows rather than at the group header — consistently produced confusion in usability testing across the evaluated set.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⊟</div>
+        <div>
+          <div class="problem-title">Explicit add controls, not implied affordances</div>
+          <div class="problem-desc">The highest-performing pattern across all evaluated products used distinct "Add condition" and "Add group" buttons rather than contextual hover controls or inline + icons. Explicit affordances outperformed minimalist approaches consistently — particularly when users were building nested logic for the first time.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">◉</div>
+        <div>
+          <div class="problem-title">Rule summary / plain-language preview</div>
+          <div class="problem-desc">Products that rendered the constructed rule as a human-readable sentence — "If Country is US AND Purchase Amount is greater than 100" — alongside the visual builder dramatically reduced user errors and increased confidence before submission. No competitor had extended this to AI-generated natural language input.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>The gap in the market was clear: every competitor had built a better mousetrap for constructing logic manually. None had asked whether the user needed to construct it manually at all. That insight — that an AI-assisted input layer could scaffold rule conditions from natural language descriptions — became the defining differentiator of the OneTrust implementation.</p>
+    </div>
+
+    <div class="tool-chips">
+      <span class="tool-chip">Claude Cowork</span>
+      <span class="tool-chip">Competitive Analysis</span>
+      <span class="tool-chip">IBM Carbon</span>
+      <span class="tool-chip">Salesforce Lightning</span>
+      <span class="tool-chip">Zapier</span>
+      <span class="tool-chip">Segment</span>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 05: AI PROTOTYPING -->
+  <div class="cs-section">
+    <div class="section-eyebrow">05 — AI-Assisted Prototyping</div>
+    <h2 class="section-h2">Building functional prototypes with Figma Make and Claude Opus 4.6</h2>
+    <p class="section-body">The competitive research had identified the gap. The next challenge was proving the concept worked — not just as a static mockup, but as a functional, interactive prototype that could be put in front of users and tested. This is where the process shifted from traditional UX design into something new: using Figma Make, powered by Claude Opus 4.6, to generate working functional prototypes directly from detailed design mockups.</p>
+    <p class="section-body">The methodology was deliberate. Rather than using AI as a generic code generator, I structured the Figma mockups as a communication layer — every layer was labeled with precision and intent. Component names like <code style="font-family:monospace;font-size:13px;background:rgba(93,232,184,0.08);padding:2px 6px;border-radius:4px;color:var(--accent)">condition-row</code>, <code style="font-family:monospace;font-size:13px;background:rgba(93,232,184,0.08);padding:2px 6px;border-radius:4px;color:var(--accent)">operator-dropdown</code>, <code style="font-family:monospace;font-size:13px;background:rgba(93,232,184,0.08);padding:2px 6px;border-radius:4px;color:var(--accent)">add-condition-btn</code>, and <code style="font-family:monospace;font-size:13px;background:rgba(93,232,184,0.08);padding:2px 6px;border-radius:4px;color:var(--accent)">logic-group-header</code> gave the model the context it needed to understand component relationships and wire up interactive behaviors accurately. Prompts were written to describe intent, not just appearance — specifying what each element should do, what state changes should look like, and how the logic should flow between components.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Intentional Layer Labeling as a Prompt Layer</div>
+          <div class="step-desc">Before engaging Figma Make, every component in the mockup was labeled with functional intent. Layers weren't named for organization — they were named to communicate behavior. This approach dramatically improved the quality of the generated prototype logic on the first pass, reducing iteration cycles needed to get the interaction model right.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Iterative Prototype Generation (Six Generations)</div>
+          <div class="step-desc">The prototype went through six generations of iteration — each cycle incorporating feedback from usability testing, stakeholder review, and functional testing. Claude Opus 4.6 handled the implementation of each iteration, allowing design feedback to be translated directly into a working prototype without a separate development handoff cycle in between.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Wiring the AI Rule Builder Module</div>
+          <div class="step-desc">The most complex use of Figma Make was wiring the logic for the AI-assisted rule builder — the feature that set the OneTrust implementation apart from every competitor. Users could describe a rule in natural language ("notify me when a high-risk data subject submits a request from the EU") and the module would scaffold the corresponding conditions automatically. Claude Opus 4.6 was used to implement the suggestion engine logic, mapping natural language intent to Property · Operator · Value condition triplets.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Final Review with Claude Cowork</div>
+          <div class="step-desc">Each prototype generation was reviewed using Claude Cowork before advancing to user testing. Reviews covered three areas: UI consistency with the OneTrust design system, logical correctness of nested AND/OR expressions under edge cases, and interaction model coherence across the full rule-building flow. This human-plus-AI review loop consistently surfaced issues that manual review alone would have taken significantly longer to catch.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>The AI-assisted rule builder module was the feature no competitor had built. Rather than replacing the structured visual builder, the AI input layer sat above it — users could either construct conditions manually or describe their intent in plain language and let the module scaffold the logic. The two modes coexisted, giving both technical and non-technical users a path to the same outcome.</p>
+    </div>
+
+    <div class="capability-grid">
+      <div class="capability-item">
+        <div class="cap-icon">🤖</div>
+        <div>
+          <div class="cap-title">Natural Language Rule Input</div>
+          <div class="cap-desc">Users describe their rule intent in plain language; the AI module translates it into structured Property · Operator · Value conditions automatically</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">✏️</div>
+        <div>
+          <div class="cap-title">Editable Scaffolded Conditions</div>
+          <div class="cap-desc">AI-generated conditions are immediately editable — users can accept, modify, or reject any suggested clause before the rule is committed</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">🔀</div>
+        <div>
+          <div class="cap-title">Seamless Mode Switching</div>
+          <div class="cap-desc">Users can toggle between AI-assisted input and manual structured building at any point in the rule-building flow without losing work</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">🔍</div>
+        <div>
+          <div class="cap-title">Context-Aware Suggestions</div>
+          <div class="cap-desc">The suggestion engine surfaces condition options relevant to the product context — properties and operators appropriate to the specific data model in use</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-chips">
+      <span class="tool-chip">Figma Make</span>
+      <span class="tool-chip">Claude Opus 4.6</span>
+      <span class="tool-chip">Claude Cowork</span>
+      <span class="tool-chip">Figma</span>
+      <span class="tool-chip">Iterative Prototyping</span>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 06: TESTING -->
+  <div class="cs-section">
+    <div class="section-eyebrow">06 — Testing & Validation</div>
     <h2 class="section-h2">Two approaches. One Maze study. A clear answer.</h2>
     <p class="section-body">With the audit complete and the component architecture defined, the core design question came down to interaction model: how should users add conditions and build logical groups? I designed two distinct approaches and put them head-to-head in a Maze unmoderated usability study to let actual users resolve the debate.</p>
 
@@ -770,7 +925,7 @@
 
   <!-- 05: SOLUTION -->
   <div class="cs-section">
-    <div class="section-eyebrow">05 — The Solution</div>
+    <div class="section-eyebrow">07 — The Solution</div>
     <h2 class="section-h2">A flexible component with intentional focus</h2>
     <p class="section-body">The final design was built around a single principle: reduce cognitive load through intentional focus states, not by removing information. The component exists in two configurations — a "Complete View" with all features enabled, and a "Bare-Bones" mode representing the minimum needed to create a valid rule — so that product teams can deploy it at the right level of complexity for their context.</p>
 
@@ -839,7 +994,7 @@
 
   <!-- 06: OUTCOMES -->
   <div class="cs-section">
-    <div class="section-eyebrow">06 — Outcomes</div>
+    <div class="section-eyebrow">08 — Outcomes</div>
     <h2 class="section-h2">One component, built to last across the platform</h2>
     <p class="section-body">The Rule Builder project delivered more than a redesigned UI. It established a documented, validated standard that any OneTrust product team can now adopt — eliminating the conditions that created five incompatible implementations in the first place.</p>
 
@@ -874,7 +1029,7 @@
 
   <!-- 07: REFLECTION -->
   <div class="cs-section">
-    <div class="section-eyebrow">07 — Reflection</div>
+    <div class="section-eyebrow">09 — Reflection</div>
     <h2 class="section-h2">What this project reinforced about platform-level design</h2>
     <div class="reflection">
       <div class="reflection-label">Honest Retrospective</div>
