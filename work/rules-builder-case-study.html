@@ -565,6 +565,9 @@
   <div class="cs-section">
     <div class="section-eyebrow">01 — Context</div>
     <h2 class="section-h2">The same task, built five different ways</h2>
+    <div style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
+      <img src="/assets/images/rules-builder-5-designs-wideB.png" alt="Five distinct rule builder implementations found across the OneTrust platform" style="width:100%; display:block;" />
+    </div>
     <p class="section-body">Rules and logic are at the heart of what OneTrust's platform does — users define conditions to trigger automation, enforce data policies, and configure complex workflows. But the component they used to do it wasn't a component at all. It was a collection of one-offs: some products used dropdowns, others used checkboxes, some used free-text inputs, and others launched modal dialogs. Each team had built their own interpretation of the same interaction.</p>
     <p class="section-body">The "MS-Rules UI" in the design system's component library served as a nominal foundation, but adoption was inconsistent. The result was a fragmented experience where a user working across multiple OneTrust products — Privacy, Integrations, Data Discovery, AI Governance — would encounter a completely different rule-building paradigm in each one. Re-learning the same interaction multiple times across the same platform is a fundamental UX failure. That's what this project set out to fix.</p>
     <div class="callout">
@@ -642,6 +645,9 @@
   <div class="cs-section">
     <div class="section-eyebrow">03 — Design Strategy</div>
     <h2 class="section-h2">Defining what a rule builder should actually be</h2>
+    <div style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
+      <img src="/assets/images/header-anatomyB.png" alt="Rule builder component anatomy" style="width:100%; display:block;" />
+    </div>
     <p class="section-body">Before designing anything, I needed to establish a working definition — a reference specification for what a complex yet flexible rule builder does, so that every decision made downstream could be measured against it. This wasn't just a UX exercise; it became the conceptual foundation I used to align stakeholders, inform component architecture, and scope the Maze validation.</p>
     <p class="section-body">I also surveyed how the industry's most respected design systems had approached this problem. IBM's Carbon, Salesforce Lightning, Atlassian, Google Material, and Shopify Polaris were all evaluated. The finding was notable: none of them ship a rule builder as a ready-made component. They provide the building blocks — selects, inputs, toggles, buttons — and assume product teams will assemble them. This meant OneTrust had an opportunity to do something genuinely differentiating: build a governed, reusable rule builder that didn't require each team to reinvent the wheel.</p>
 
@@ -898,7 +904,7 @@
           <div class="ab-badge preferred">Preferred</div>
         </div>
         <div class="ab-body">
-          <div class="ab-diagram">Property · Operator · Operand<br><br>[ + Add condition ] &nbsp;&nbsp; [ + Add group ]</div>
+          <img src="/assets/images/common.png" alt="Common Pattern interaction model" style="width:100%; display:block; border-radius: 6px;" />
         </div>
         <div class="ab-caption">Uses explicit "Add condition" and "Add group" controls to expand the formula and create nested logical expressions. Clear affordances, predictable structure.</div>
       </div>
@@ -908,7 +914,7 @@
           <div class="ab-badge variant">Variant</div>
         </div>
         <div class="ab-body">
-          <div class="ab-diagram">Property · Operator · Operand<br><br>[ AND / OR ↕ toggle ] &nbsp; [ + ]</div>
+          <img src="/assets/images/minimalist.png" alt="Minimalist Approach interaction model" style="width:100%; display:block; border-radius: 6px;" />
         </div>
         <div class="ab-caption">Attempts to reduce visual overload by combining AND/OR toggling and nesting into a single multi-use control. Cleaner visually, but less legible in practice.</div>
       </div>
