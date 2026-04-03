@@ -445,6 +445,65 @@
   .footer-left { font-size: 13px; color: var(--text-low); }
   .footer-right { display: flex; gap: 24px; }
   .footer-right a { font-size: 12px; color: var(--text-low); }
+
+  /* ── MOBILE RESPONSIVE ───────────────── */
+  @media (max-width: 768px) {
+
+    /* Nav */
+    .nav { padding: 0 20px; }
+    .nav-logo { white-space: nowrap; }
+    .breadcrumb { display: none; }
+
+    /* Hero */
+    .cs-hero { padding: 40px 24px 0; }
+    .cs-company-tag { font-size: 10px; letter-spacing: 1.5px; }
+    .cs-title { font-size: 32px; letter-spacing: -1px; margin-bottom: 16px; }
+    .cs-subtitle { font-size: 15px; margin-bottom: 36px; }
+
+    /* Outcome strip — 3 col → single col */
+    .outcome-strip {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      margin-bottom: 36px;
+    }
+
+    /* Meta row — 5 col → 2 col */
+    .meta-row { grid-template-columns: 1fr 1fr; }
+    .meta-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .meta-cell:nth-child(odd) { border-right: 1px solid var(--border); }
+    .meta-cell:last-child { border-bottom: none; }
+
+    /* Body */
+    .cs-body { padding: 48px 20px; }
+    .section-h2 { font-size: 24px; }
+
+    /* Artifact grids — collapse all to single col */
+    .artifact-grid.cols-2,
+    .artifact-grid.cols-3 { grid-template-columns: 1fr; }
+
+    /* Insight row — 3 col → single col */
+    .insight-row { grid-template-columns: 1fr; }
+
+    /* A/B grid — stack on mobile */
+    .ab-grid { grid-template-columns: 1fr; }
+    .ab-body { height: auto; min-height: 120px; }
+
+    /* Capability grid — 2 col → single col */
+    .capability-grid { grid-template-columns: 1fr; }
+
+    /* Pagination */
+    .cs-pagination { grid-template-columns: 1fr; }
+    .page-link { padding: 24px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+    .page-link.next { text-align: left; align-items: flex-start; border-bottom: none; }
+
+    /* Footer */
+    .footer {
+      padding: 24px 20px;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
 </style>
 </head>
 <body>
