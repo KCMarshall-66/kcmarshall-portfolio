@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Purdue OTC — KC Marshall</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --bg:        #0b0c0e;
+    --bg-2:      #111317;
+    --bg-3:      #16191f;
+    --border:    rgba(255,255,255,0.07);
+    --border-m:  rgba(255,255,255,0.12);
+    --accent:    #5de8b8;
+    --text:      #f0f0ee;
+    --text-mid:  rgba(240,240,238,0.55);
+    --text-low:  rgba(240,240,238,0.28);
+    --sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ─────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 56px; height: 60px;
+    background: rgba(11,12,14,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-left { display: flex; align-items: center; gap: 20px; }
+  .nav-logo {
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; gap: 9px;
+    color: var(--text);
+  }
+  .nav-logo-mark {
+    width: 26px; height: 26px; border-radius: 5px;
+    background: var(--accent); color: var(--bg);
+    font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-back {
+    font-size: 13px; color: var(--text-low);
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .nav-back::before { content: '←'; margin-right: 2px; }
+  .breadcrumb {
+    font-size: 12px; color: var(--text-low);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .breadcrumb span { color: var(--text-mid); }
+  .breadcrumb::before { content: '/'; color: var(--border-m); }
+
+  /* ── HERO ────────────────────────────── */
+  .cs-hero {
+    background: linear-gradient(170deg, #0c1620 0%, #06090d 60%, var(--bg) 100%);
+    padding: 80px 56px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .cs-hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(93,232,184,0.07) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+
+  .cs-company-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .cs-company-tag::before {
+    content: '';
+    width: 16px; height: 1.5px; background: var(--accent);
+  }
+
+  .cs-title {
+    font-size: 52px; font-weight: 800; line-height: 1.08;
+    letter-spacing: -2px; color: var(--text);
+    max-width: 760px; margin-bottom: 20px;
+  }
+
+  .cs-subtitle {
+    font-size: 18px; color: var(--text-mid);
+    max-width: 640px; line-height: 1.7;
+    margin-bottom: 56px;
+  }
+
+  .outcome-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 14px; max-width: 680px;
+    margin-bottom: 56px;
+    position: relative; z-index: 1;
+  }
+  .outcome-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-m);
+    border-radius: 12px; padding: 24px 22px;
+    position: relative; overflow: hidden;
+  }
+  .outcome-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .o-num {
+    font-size: 42px; font-weight: 800; color: var(--accent);
+    letter-spacing: -2px; line-height: 1; margin-bottom: 8px;
+  }
+  .o-label {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* META ROW */
+  .meta-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.3);
+  }
+  .meta-cell {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .meta-cell:last-child { border-right: none; }
+  .meta-key {
+    font-size: 10px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase; margin-bottom: 7px;
+  }
+  .meta-val {
+    font-size: 13px; font-weight: 600; color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* ── BODY ────────────────────────────── */
+  .cs-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .cs-section { margin-bottom: 72px; }
+
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 3px; font-weight: 700;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 12px; opacity: 0.8;
+  }
+  .section-h2 {
+    font-size: 30px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.8px; margin-bottom: 18px; line-height: 1.2;
+  }
+  .section-body {
+    font-size: 16px; color: var(--text-mid);
+    line-height: 1.8; margin-bottom: 28px;
+  }
+  .section-body + .section-body { margin-top: -12px; }
+
+  /* Callout block */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(93,232,184,0.06);
+    padding: 20px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 28px 0;
+  }
+  .callout p {
+    font-size: 16px; color: rgba(240,240,238,0.75);
+    line-height: 1.7; font-style: italic;
+  }
+  .callout-attr {
+    font-size: 11px; color: var(--text-low);
+    margin-top: 10px; font-style: normal;
+    letter-spacing: 0.5px;
+  }
+
+  /* Problem cards */
+  .problem-grid {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .problem-card {
+    display: grid; grid-template-columns: 44px 1fr;
+    align-items: start; gap: 20px;
+    padding: 24px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+  }
+  .problem-card:last-child { border-bottom: none; }
+  .problem-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(93,232,184,0.08);
+    border: 1px solid rgba(93,232,184,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .problem-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 6px; letter-spacing: -0.2px;
+  }
+  .problem-desc {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* Artifact grid */
+  .artifact-grid {
+    display: grid; gap: 14px;
+    margin: 28px 0;
+  }
+  .artifact-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .artifact-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .artifact-card {
+    border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    background: var(--bg-2);
+  }
+  .artifact-img {
+    height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--text-low);
+    position: relative;
+  }
+  .ai-dark {
+    background: linear-gradient(135deg, #0d1a2a 0%, #06101a 100%);
+  }
+  .ai-dark::before {
+    content: '';
+    position: absolute; inset: 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .ai-mid {
+    background: linear-gradient(135deg, #0d1a14 0%, #060e0a 100%);
+  }
+  .ai-warm {
+    background: linear-gradient(135deg, #1a140d 0%, #0e0a06 100%);
+  }
+  .artifact-caption {
+    padding: 11px 15px;
+    font-size: 12px; color: var(--text-low);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+    line-height: 1.4;
+  }
+
+  /* Insight cards */
+  .insight-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin: 28px 0;
+  }
+  .insight-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 22px 20px;
+  }
+  .insight-num {
+    font-size: 32px; font-weight: 800;
+    color: var(--accent); letter-spacing: -1.5px;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .insight-label {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* Process steps */
+  .process-steps {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .process-step {
+    display: grid; grid-template-columns: 48px 1fr;
+    align-items: start; gap: 20px;
+    padding: 24px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+  }
+  .process-step:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(93,232,184,0.1);
+    border: 1px solid rgba(93,232,184,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .step-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 5px; letter-spacing: -0.2px;
+  }
+  .step-desc {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* Capability grid */
+  .capability-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 10px; margin: 28px 0;
+  }
+  .capability-item {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .cap-icon {
+    font-size: 18px; flex-shrink: 0; margin-top: 1px;
+    width: 28px; text-align: center;
+  }
+  .cap-title {
+    font-size: 13px; font-weight: 700; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .cap-desc {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* Divider */
+  .section-divider {
+    height: 1px; background: var(--border);
+    margin: 0 0 72px;
+  }
+
+  /* Outcome summary */
+  .outcome-summary {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 40px;
+    margin: 28px 0;
+  }
+  .os-heading {
+    font-size: 18px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.3px; margin-bottom: 24px;
+  }
+  .os-items {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .os-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .os-item:last-child { border-bottom: none; }
+  .os-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(93,232,184,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--accent);
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .os-text { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+  .os-text strong { color: var(--text); font-weight: 600; }
+
+  /* Reflection */
+  .reflection {
+    background: rgba(93,232,184,0.04);
+    border: 1px solid rgba(93,232,184,0.1);
+    border-radius: 14px; padding: 36px 40px;
+    margin: 28px 0;
+  }
+  .reflection-label {
+    font-size: 10px; letter-spacing: 3px; font-weight: 700;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 14px;
+  }
+  .reflection-body {
+    font-size: 15px; color: var(--text-mid); line-height: 1.8;
+  }
+  .reflection-body + .reflection-body { margin-top: 14px; }
+
+  /* ── PAGINATION ──────────────────────── */
+  .cs-pagination {
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .page-link {
+    padding: 32px 56px;
+    display: flex; flex-direction: column; gap: 8px;
+    border-right: 1px solid var(--border);
+  }
+  .page-link.next {
+    border-right: none; text-align: right;
+    align-items: flex-end;
+  }
+  .page-direction {
+    font-size: 11px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase;
+  }
+  .page-title {
+    font-size: 16px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.2px;
+  }
+  .page-co { font-size: 12px; color: var(--text-low); }
+
+  /* ── FOOTER ──────────────────────────── */
+  .footer {
+    padding: 28px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-left { font-size: 13px; color: var(--text-low); }
+  .footer-right { display: flex; gap: 24px; }
+  .footer-right a { font-size: 12px; color: var(--text-low); }
+
+  /* ── MOBILE RESPONSIVE ───────────────── */
+  @media (max-width: 768px) {
+
+    /* Nav */
+    .nav { padding: 0 20px; }
+    .nav-logo { white-space: nowrap; }
+    .breadcrumb { display: none; }
+
+    /* Hero */
+    .cs-hero { padding: 40px 24px 0; }
+    .cs-company-tag { font-size: 10px; letter-spacing: 1.5px; }
+    .cs-title { font-size: 32px; letter-spacing: -1px; margin-bottom: 16px; }
+    .cs-subtitle { font-size: 15px; margin-bottom: 36px; }
+
+    /* Outcome strip — 3 col → single col */
+    .outcome-strip {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      margin-bottom: 36px;
+    }
+
+    /* Meta row — 5 col → 2 col */
+    .meta-row { grid-template-columns: 1fr 1fr; }
+    .meta-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .meta-cell:nth-child(odd) { border-right: 1px solid var(--border); }
+    .meta-cell:last-child { border-bottom: none; }
+
+    /* Body */
+    .cs-body { padding: 48px 20px; }
+    .section-h2 { font-size: 24px; }
+
+    /* Artifact grids — collapse all to single col */
+    .artifact-grid.cols-2,
+    .artifact-grid.cols-3 { grid-template-columns: 1fr; }
+
+    /* Insight row — 3 col → single col */
+    .insight-row { grid-template-columns: 1fr; }
+
+    /* Capability grid — 2 col → single col */
+    .capability-grid { grid-template-columns: 1fr; }
+
+    /* Pagination */
+    .cs-pagination { grid-template-columns: 1fr; }
+    .page-link { padding: 24px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+    .page-link.next { text-align: left; align-items: flex-start; border-bottom: none; }
+
+    /* Footer */
+    .footer {
+      padding: 24px 20px;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="/" class="nav-logo" style="text-decoration:none;color:inherit">
+      <div class="nav-logo-mark">KC</div>
+      KC Marshall
+    </a>
+    <a href="/" class="nav-back">All Work</a>
+    <div class="breadcrumb"><span>Purdue OTC</span></div>
+  </div>
+  <div class="nav-right" style="display:flex;align-items:center;gap:24px;font-size:13px;color:rgba(240,240,238,0.55);">
+    <a href="/#about" style="color:inherit;text-decoration:none;">About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-company-tag">Purdue Research Foundation · UX Research · Service Design · Information Architecture</div>
+  <h1 class="cs-title">Redesigning how Purdue research reaches the market</h1>
+  <p class="cs-subtitle">How a homepage request became a full-system rethink — connecting inventors, technology scouts, and investors through a user-centered digital experience built for the way innovation actually gets discovered.</p>
+
+  <div class="outcome-strip">
+    <div class="outcome-card">
+      <div class="o-num">4</div>
+      <div class="o-label">Distinct user groups researched and designed for simultaneously</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">3</div>
+      <div class="o-label">Core discovery failures identified and resolved through research</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">9</div>
+      <div class="o-label">Research-to-prototype phases delivered across the engagement</div>
+    </div>
+  </div>
+
+  <div class="meta-row">
+    <div class="meta-cell">
+      <div class="meta-key">My Role</div>
+      <div class="meta-val">UX Research Lead</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Client</div>
+      <div class="meta-val">Purdue Research Foundation</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Platform</div>
+      <div class="meta-val">Higher Ed / Web</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Core Tools</div>
+      <div class="meta-val">Figma · Miro · Usability Testing</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Deliverables</div>
+      <div class="meta-val">Research · Wireframes · Prototype</div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="cs-body">
+
+  <!-- 01: OVERVIEW -->
+  <div class="cs-section">
+    <div class="section-eyebrow">01 — Context</div>
+    <h2 class="section-h2">A homepage request that revealed a system problem</h2>
+    <p class="section-body">The Purdue Research Foundation's Office of Technology Commercialization (Purdue OTC) is one of the most comprehensive technology transfer programs among leading research universities in the United States. The organization protects Purdue's intellectual property and leads technology transfer activities for patented innovations — innovations now used in more than 100 countries worldwide by millions of people.</p>
+    <p class="section-body">Purdue OTC approached us with a focused request: redesign their homepage. What we discovered through rigorous research was a far more systemic challenge — one that, if left unaddressed, would have made any homepage redesign a cosmetic fix to a structural problem.</p>
+
+    <div style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
+      <img src="/assets/images/purdue-bright.png" alt="Purdue Office of Technology Commercialization" style="width:100%; display:block;" />
+    </div>
+
+    <div class="callout">
+      <p>The stated problem is rarely the actual problem. Purdue OTC asked for a homepage redesign. What they needed — and what this engagement delivered — was a rethinking of how their entire digital presence served the people who needed to use it most.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 02: THE CHALLENGE -->
+  <div class="cs-section">
+    <div class="section-eyebrow">02 — The Challenge</div>
+    <h2 class="section-h2">Beyond the homepage</h2>
+    <p class="section-body">Through stakeholder interviews, user research, and a thorough audit of the existing site, it became clear that the homepage was not the root problem — it was a symptom of deeper structural issues. The existing site failed its most critical audience — technology scouts and investors — in three fundamental ways.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">🏷️</div>
+        <div>
+          <div class="problem-title">Incorrect Taxonomy</div>
+          <div class="problem-desc">Discoveries were categorized in ways that didn't align with how technology scouts and investors search for and classify technologies. Industry-standard classifications were absent, making efficient browsing nearly impossible.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔍</div>
+        <div>
+          <div class="problem-title">Broken Discovery Experience</div>
+          <div class="problem-desc">The search and listing interfaces were awkward and returned inefficient results. Technology scouts could not quickly scan for new discoveries relevant to their investors' interests — a core job the site needed to support.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📄</div>
+        <div>
+          <div class="problem-title">Unconsumed Documentation</div>
+          <div class="problem-desc">Technology disclosures and innovation PDFs were poorly structured — non-descriptive titles, no clickable links, and content that didn't meet the standard format scouts need to catalog and present to investors.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-body">With these discoveries in hand, the project shifted from a homepage facelift to a comprehensive UX research and design engagement aimed at rethinking how Purdue packaged, presented, and connected its innovations with the right audiences at the right time. The ecosystem involved four distinct user groups whose needs had to be balanced:</p>
+
+    <div class="insight-row">
+      <div class="insight-card">
+        <div class="insight-num">01</div>
+        <div class="insight-label">Purdue Researchers, Scientists & Professors — inventors seeking to disclose and commercialize their work</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">02</div>
+        <div class="insight-label">Technology Scouts — industry professionals who identify innovations to recommend to investors</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">03</div>
+        <div class="insight-label">Investors & Licensees — organizations seeking to license or fund Purdue technologies</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 03: RESEARCH -->
+  <div class="cs-section">
+    <div class="section-eyebrow">03 — Research & Discovery</div>
+    <h2 class="section-h2">Understanding the ecosystem</h2>
+    <p class="section-body">A multi-method research approach was used to develop a holistic understanding of all user groups — their workflows, pain points, and mental models. Discovery was structured across four key activities, each designed to surface different layers of the problem.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Stakeholder Sessions</div>
+          <div class="step-desc">Collaborative sessions using digital whiteboarding tools to map the current state, surface organizational goals, and align on project priorities — covering the purpose of the OTC digital presence, how success is measured, and who is actually visiting the site and whether they find what they need.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Current Process Walk-Through</div>
+          <div class="step-desc">A detailed walkthrough of the existing site and internal workflows to document the current user experience from both an inventor and licensee perspective — revealing the disconnect between how OTC organized content and how technology scouts actually searched for innovations.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">User Interviews</div>
+          <div class="step-desc">Structured interviews across user groups focused on demographics and domain expertise, current workflows for discovering university technologies, step-by-step task flows, pain points with the existing site, the language users actually use, and what tools and formats would improve their workflow.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Empathy Mapping — The Technology Scout</div>
+          <div class="step-desc">A detailed empathy map was developed for the primary external user: the Technology Scout. This artifact captured what scouts see, think, feel, and do when working with university technology transfer sites — grounding all subsequent design decisions in the realities of their workflow.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 04: UX ARTIFACTS -->
+  <div class="cs-section">
+    <div class="section-eyebrow">04 — UX Artifacts</div>
+    <h2 class="section-h2">Synthesizing research into direction</h2>
+    <p class="section-body">Research findings were synthesized into a suite of UX artifacts that grounded design decisions in observed user behavior and business process realities. These artifacts became the shared language between research, design, and stakeholders — ensuring every structural decision that followed was traceable to something a real user said or did.</p>
+
+    <div class="capability-grid">
+      <div class="capability-item">
+        <div class="cap-icon">🗺️</div>
+        <div>
+          <div class="cap-title">Inventor & Licensee Journey Map</div>
+          <div class="cap-desc">A dual-track journey map visualizing the end-to-end experience for both inventors and licensees — from initial awareness through campaign, landing page engagement, onboarding, and follow-up. Key emotions revealed that both groups experienced frustration at the browsing and engagement stages due to lack of guidance and inadequate content depth.</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">📐</div>
+        <div>
+          <div class="cap-title">Service Blueprint</div>
+          <div class="cap-desc">A service blueprint documenting the full ecosystem of people, processes, and technology supporting the digital experience — frontstage content publishing (WordPress, HubSpot, Absorb LMS), backstage OTC and PRF staff operations, and support processes (Google Drive, Salesforce CRM).</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">👤</div>
+        <div>
+          <div class="cap-title">Primary Inventor Personas</div>
+          <div class="cap-desc">Two primary inventor personas defined to represent the Purdue research community — capturing the goals, workflows, and barriers of faculty researchers navigating the disclosure and commercialization process for the first time and returning users managing active IP portfolios.</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">🧭</div>
+        <div>
+          <div class="cap-title">Technology Scout Empathy Map</div>
+          <div class="cap-desc">A detailed empathy map for the primary external audience — capturing what scouts see when evaluating competing TTO sites, what they think when navigating innovation databases, what they feel when they can't find what they need quickly, and what they do to compensate for poor IA.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 05: INFORMATION ARCHITECTURE -->
+  <div class="cs-section">
+    <div class="section-eyebrow">05 — Information Architecture</div>
+    <h2 class="section-h2">Mapping the current state</h2>
+    <p class="section-body">A comprehensive sitemap of the existing OTC website was developed to document and analyze the full information architecture. The existing structure revealed significant complexity working against the needs of all user groups — a site organized around internal process logic rather than user need.</p>
+
+    <div class="callout">
+      <p>The main navigation included seven top-level items — Technologies, About, Licensing, Resources, Trask Innovation Fund, News, and Contact Us — with nearly every item containing deep dropdown sub-navigation. No clear role-based navigation existed. A technology scout and a researcher submitting a disclosure were expected to navigate the same undifferentiated site.</p>
+    </div>
+
+    <p class="section-body">The sitemap analysis confirmed three architectural failures that compounded the taxonomy and documentation issues found in user research:</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">📂</div>
+        <div>
+          <div class="problem-title">Depth Over Accessibility</div>
+          <div class="problem-desc">Key tasks required multiple clicks through dropdown menus with no progressive disclosure or user-type orientation. Critical information was reachable only after navigating three or four levels deep.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🏢</div>
+        <div>
+          <div class="problem-title">Internal Logic Externalized</div>
+          <div class="problem-desc">The site's structure mirrored OTC's internal org chart rather than the user's mental model or task flow. Categories and labels made sense to staff but created confusion for scouts, investors, and inventors alike.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🔎</div>
+        <div>
+          <div class="problem-title">No Technology Browsing Experience</div>
+          <div class="problem-desc">Innovations were accessible through search only, with no browsable category structure aligned to industry-standard classifications. Scouts couldn't scan the portfolio quickly — they had to know exactly what they were looking for before they could find anything.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 06: WIREFRAMES -->
+  <div class="cs-section">
+    <div class="section-eyebrow">06 — Wireframes</div>
+    <h2 class="section-h2">Rethinking the experience</h2>
+    <p class="section-body">With research findings and architectural analysis complete, wireframes were developed to explore new structural and interaction patterns that would serve all user groups while prioritizing the technology scout and investor experience. A central design decision was to introduce explicit role-based entry points on the homepage.</p>
+
+    <div class="capability-grid">
+      <div class="capability-item">
+        <div class="cap-icon">💼</div>
+        <div>
+          <div class="cap-title">For Investors</div>
+          <div class="cap-desc">Surfacing trending technologies, category snapshots, and licensing pathways — giving scouts the "quick scan" experience they described as essential for regular return visits.</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">🔬</div>
+        <div>
+          <div class="cap-title">For Inventors</div>
+          <div class="cap-desc">Clear paths to disclosure forms, inventor resources, and the Purdue Inventor Hub — cleanly separated from the licensee/investor experience with no ambiguity about where to go.</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">📊</div>
+        <div>
+          <div class="cap-title">Top 5 Trending Research Categories</div>
+          <div class="cap-desc">Dynamic, data-driven category blocks showing innovation counts (e.g., Electrical Engineering: 243, Mechanical Engineering: 207) — giving scouts an immediate sense of portfolio depth and breadth on every visit.</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">🔧</div>
+        <div>
+          <div class="cap-title">Technology Quick Search</div>
+          <div class="cap-desc">A simplified, prominent search interface with category, subcategory, and date filters aligned to how scouts actually query innovation databases — not how OTC internally categorizes IP.</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-body">Supporting content modules wireframed for the redesigned homepage included quarterly report statistics and success stories to reinforce Purdue's commercialization track record, an upcoming tech events calendar, and a category-specific newsletter signup allowing scouts to receive alerts only for the technology areas relevant to their portfolio.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 07: DESIGN CONCEPTS -->
+  <div class="cs-section">
+    <div class="section-eyebrow">07 — Design Concepts</div>
+    <h2 class="section-h2">Bringing it to life</h2>
+    <p class="section-body">Visual design concepts translated the wireframe structures into a high-fidelity direction that honored Purdue's brand while creating a modern, credible digital experience that could compete with top-tier technology commercialization offices globally. The visual concept centered on three qualities most important to technology scouts, investors, and inventors navigating the site.</p>
+
+    <div class="insight-row">
+      <div class="insight-card">
+        <div class="insight-num" style="font-size:22px; letter-spacing: -0.5px;">Authority</div>
+        <div class="insight-label">Dark hero treatment with bold, full-width messaging communicating scale and ambition to arriving scouts and investors immediately</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num" style="font-size:22px; letter-spacing: -0.5px;">Innovation</div>
+        <div class="insight-label">Gold and dark palette used with intention — Purdue brand colors for calls to action and key data points, dark backgrounds for authority and focus</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num" style="font-size:22px; letter-spacing: -0.5px;">Accessibility</div>
+        <div class="insight-label">Data-forward category grid with innovation counts giving scouts an immediate sense of portfolio depth and breadth without any searching required</div>
+      </div>
+    </div>
+
+    <p class="section-body">A redesigned technology listing page resolved the taxonomy issues identified in research — replacing internal classifications with industry-standard categories, adding filterable attributes (People, Keywords, Categories), and introducing lead inventor attribution and bookmark functionality allowing scouts to curate shortlists for investor presentations.</p>
+
+    <div class="callout">
+      <p>A dedicated licensing module — "License a technology for your business, easily" — was introduced alongside a "Reasons to Believe" section anchoring Purdue's credentials (#6 in the world for patents, 400+ innovations available, 100+ countries) immediately below the technology browsing experience.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 08: PROTOTYPES -->
+  <div class="cs-section">
+    <div class="section-eyebrow">08 — Prototypes</div>
+    <h2 class="section-h2">Validating the solution</h2>
+    <p class="section-body">High-fidelity interactive prototypes were developed to validate the redesigned experience with users before development handoff. The prototype covered the full homepage experience, the technology browsing flow, the inventor disclosure pathway, and the licensing engagement flow.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">Homepage</div>
+          <div class="step-desc">Role-based orientation, trending categories, technology quick search, and dynamic content modules — the full entry-point experience for both scouts and inventors.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Technology Browse</div>
+          <div class="step-desc">Category-filtered listing with improved taxonomy, bookmarking, and inventor attribution — designed around the scout's actual research workflow, not OTC's internal filing system.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Inventor Path</div>
+          <div class="step-desc">Disclosure submission flow, Purdue Inventor Hub, and resource navigation — a step-by-step journey that reduced the ambiguity inventors described as their primary barrier to engaging OTC.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Investor / Licensee Path</div>
+          <div class="step-desc">Technology deep-dive pages, licensing process overview, and OTC contact flow — giving investors a clear, frictionless path from technology discovery to licensing conversation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>Prototype testing with technology scouts confirmed the core hypotheses developed during research: role-based entry points eliminated the primary navigation confusion reported in interviews, the restructured taxonomy dramatically reduced time-to-find, and the trending technologies module created the "quick scan" experience scouts described as essential for regular return visits.</p>
+    </div>
+
+    <div style="margin: 32px 0;">
+      <div style="font-size: 10px; letter-spacing: 3px; font-weight: 700; color: var(--text-low); text-transform: uppercase; margin-bottom: 12px;">Interactive Prototype — Innovations Database Redesign</div>
+      <a href="https://lfrsd8.axshare.com/#id=7chfgk&p=page_1&c=1" target="_blank" rel="noopener noreferrer" style="display:block; text-decoration:none;">
+        <div style="border: 1px solid rgba(93,232,184,0.2); border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #0d1a2a 0%, #06101a 100%); padding: 56px 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; cursor: pointer; transition: border-color 0.2s;">
+          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(93,232,184,0.12); border: 1px solid rgba(93,232,184,0.25); display: flex; align-items: center; justify-content: center; font-size: 24px;">⚡</div>
+          <div style="text-align: center;">
+            <div style="font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; margin-bottom: 8px;">View Interactive Prototype</div>
+            <div style="font-size: 13px; color: var(--text-mid); line-height: 1.6; max-width: 480px;">Axure prototype featuring the redesigned innovation card layout with improved taxonomy, TRL maturity indicators, inventor attribution, and a single-input newsletter signup with micro-animations.</div>
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--bg); font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 6px;">
+            Launch Prototype <span style="font-weight: 400;">→</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-low); letter-spacing: 0.5px;">Opens in new tab · Axure Share</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 09: INSIGHTS & OUTCOMES -->
+  <div class="cs-section">
+    <div class="section-eyebrow">09 — Insights & Outcomes</div>
+    <h2 class="section-h2">What we learned</h2>
+    <p class="section-body">This project reinforced a fundamental truth about UX research: the stated problem is rarely the actual problem. Purdue OTC asked for a homepage redesign. What they needed — and what this engagement delivered — was a rethinking of how their entire digital presence served the people who needed to use it most.</p>
+
+    <div class="outcome-summary">
+      <div class="os-heading">Key outcomes delivered</div>
+      <div class="os-items">
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Scope expansion through research.</strong> By investing in discovery before touching design, the project moved from a surface-level cosmetic update to a systemic solution with real business impact.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Taxonomy realigned to industry standards.</strong> The discovery that technology listing taxonomy was misaligned with industry expectations was the pivotal insight that redirected the entire engagement.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Direct bridge from inventors to the market.</strong> The redesigned experience created a navigable connection between Purdue's researchers and the investors and scouts who could bring their discoveries to market.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Scout-first information architecture.</strong> By designing for the scout's workflow — not the institution's org chart — the platform became a tool scouts could return to regularly and rely on for their work.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reflection">
+      <div class="reflection-label">Reflection</div>
+      <div class="reflection-body">Expanding scope through research before touching design is an act of trust — the client came with a specific ask, and we had to demonstrate enough rigor early to earn the right to reframe the problem. The research wasn't just about gathering data; it was about building the shared understanding that made a broader solution possible.</div>
+      <div class="reflection-body">The design principles that guided this work — authority, innovation, and accessibility — weren't chosen arbitrarily. They came directly from what technology scouts described in interviews as the qualities that make them trust and return to a technology transfer site. That's the difference between designing for a user and designing with one.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGINATION -->
+<div class="cs-pagination">
+  <a href="/work/schlage-ecommerce-case-study" class="page-link">
+    <div class="page-direction">← Previous</div>
+    <div class="page-title">Schlage.com End-to-End Redesign</div>
+    <div class="page-co">The Basement · 2022</div>
+  </a>
+  <a href="#" class="page-link next">
+    <div class="page-direction">Next →</div>
+    <div class="page-title">PERQ.com — Scaling to 1M+ Consumers</div>
+    <div class="page-co">PERQ Software</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">© 2026 KC Marshall · Fishers, IN</div>
+  <div class="footer-right">
+    <a href="#">LinkedIn</a>
+    <a href="#">Resume</a>
+    <a href="#">Back to Top ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>
