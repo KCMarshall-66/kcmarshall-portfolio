@@ -403,6 +403,24 @@
     color: rgba(255,255,255,0.18);
   }
 
+  .wt-purdue {
+    background: linear-gradient(160deg, #0d1a10 0%, #060e08 100%);
+  }
+  .wt-purdue::after {
+    content: '';
+    position: absolute;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    border: 1px solid rgba(93,232,184,0.15);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    box-shadow: 0 0 40px rgba(93,232,184,0.06);
+  }
+  .wt-purdue .thumb-label {
+    position: relative; z-index: 1;
+    font-size: 11px; letter-spacing: 2px;
+    color: rgba(93,232,184,0.3);
+  }
+
   .work-info {
     padding: 20px 22px 22px;
     border-top: 1px solid var(--border);
@@ -854,6 +872,19 @@
         <div class="work-tag">UX Research · Advanced Prototyping</div>
         <div class="work-title">Advancing the Office of Commercial Technology</div>
         <div class="work-meta">Purdue OTC <span class="work-meta-dot"></span> 2023</div>
+      </div>
+      <div class="work-arrow">→</div>
+    </a>
+
+    <!-- Purdue OTC -->
+    <a href="/work/purdue-otc-case-study" class="work-card" style="text-decoration:none;color:inherit">
+      <div class="work-thumb wt-purdue">
+        <span class="thumb-label">Innovation Portal Redesign</span>
+      </div>
+      <div class="work-info">
+        <div class="work-tag">Higher Ed · UX Strategy</div>
+        <div class="work-title">Redesigning how Purdue research reaches the market</div>
+        <div class="work-meta">The Basement <span class="work-meta-dot"></span> 2023</div>
       </div>
       <div class="work-arrow">→</div>
     </a>
