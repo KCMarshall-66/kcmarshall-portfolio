@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPM Remediation Roadmap — Privacy Posture Management</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; background: #f9f9f7; color: #2C2C2A; margin: 0; padding: 24px; }
+  h1 { font-size: 18px; font-weight: 500; color: #1D5BA6; margin: 0 0 4px; }
+  .subtitle { font-size: 13px; color: #888780; margin: 0 0 20px; }
+
+  .legend-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; font-size: 12px; color: #5F5E5A; }
+  .leg { display: flex; align-items: center; gap: 5px; }
+  .leg-sq { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  .posture-section { background: #F1EFE8; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }
+  .posture-title { font-size: 12px; font-weight: 500; color: #5F5E5A; margin-bottom: 10px; }
+  .posture-phase { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .posture-phase:last-child { margin-bottom: 0; }
+  .phase-lbl { font-size: 11px; color: #888780; width: 72px; flex-shrink: 0; }
+  .score-track { height: 6px; border-radius: 3px; background: #D3D1C7; flex: 1; overflow: hidden; }
+  .score-fill { height: 100%; border-radius: 3px; background: #1D9E75; }
+  .score-val { font-size: 12px; font-weight: 500; width: 60px; text-align: right; }
+
+  .gantt-wrap { overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
+  .gantt-table { border-collapse: collapse; min-width: 700px; width: 100%; table-layout: fixed; }
+  .gantt-table th { font-size: 10px; font-weight: 500; color: #888780; padding: 4px 3px; text-align: center; border-bottom: 0.5px solid #D3D1C7; }
+  .gantt-table td { padding: 3px 0; vertical-align: middle; }
+  .row-meta { padding: 5px 10px 5px 0 !important; white-space: nowrap; vertical-align: middle; cursor: pointer; }
+  .row-meta:hover .row-title { color: #1D5BA6; }
+  .row-num { font-size: 11px; color: #888780; width: 18px; display: inline-block; }
+  .row-title { font-size: 12px; color: #2C2C2A; transition: color 0.15s; }
+  .row-owner { font-size: 10px; color: #888780; margin-top: 1px; }
+  .bar-cell { padding: 3px 1px !important; }
+  .gantt-bar { height: 22px; border-radius: 3px; display: flex; align-items: center; padding: 0 5px; font-size: 10px; font-weight: 500; white-space: nowrap; overflow: hidden; cursor: pointer; transition: opacity 0.15s; }
+  .gantt-bar:hover { opacity: 0.75; }
+
+  .detail-panel { background: #fff; border: 0.5px solid #B4B2A9; border-radius: 12px; padding: 16px; margin-top: 4px; display: none; }
+  .detail-panel.open { display: block; }
+  .dp-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .dp-num { font-size: 11px; color: #888780; }
+  .dp-title { font-size: 14px; font-weight: 500; color: #2C2C2A; }
+  .dp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .dp-cell { background: #F1EFE8; border-radius: 8px; padding: 9px 12px; }
+  .dp-lbl { font-size: 10px; color: #888780; margin: 0 0 3px; }
+  .dp-val { font-size: 12px; color: #2C2C2A; font-weight: 500; margin: 0; }
+  .dp-risk { background: #F1EFE8; border-radius: 8px; padding: 9px 12px; font-size: 12px; color: #5F5E5A; margin-bottom: 10px; }
+  .tag { font-size: 10px; padding: 2px 7px; border-radius: 8px; font-weight: 500; }
+  .tag-c  { background: #FCEBEB; color: #791F1F; }
+  .tag-h  { background: #FAEEDA; color: #633806; }
+  .tag-m  { background: #E6F1FB; color: #0C447C; }
+  .tag-qw { background: #E1F5EE; color: #085041; }
+  .action-btn { font-size: 12px; padding: 6px 14px; border-radius: 8px; border: 0.5px solid #B4B2A9; background: transparent; color: #2C2C2A; cursor: pointer; font-family: Arial, sans-serif; margin-right: 8px; }
+  .action-btn:hover { background: #F1EFE8; }
+
+  .watermark { font-size: 11px; color: #B4B2A9; margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<h1>Remediation roadmap</h1>
+<p class="subtitle">Privacy Posture Management — 20-week implementation plan</p>
+
+<div class="legend-row">
+  <span class="leg"><span class="leg-sq" style="background:#A32D2D"></span>Critical</span>
+  <span class="leg"><span class="leg-sq" style="background:#BA7517"></span>High</span>
+  <span class="leg"><span class="leg-sq" style="background:#185FA5"></span>Medium</span>
+  <span class="leg"><span class="leg-sq" style="background:#1D9E75"></span>Quick win</span>
+  <span class="leg" style="margin-left:8px">
+    <span style="display:inline-block;width:16px;border-top:1.5px dashed #378ADD;vertical-align:middle"></span>
+    <span style="margin-left:4px">Today (Wk 1)</span>
+  </span>
+</div>
+
+<div class="posture-section">
+  <div class="posture-title">Projected posture score improvement by phase</div>
+  <div class="posture-phase">
+    <span class="phase-lbl">Baseline</span>
+    <div class="score-track"><div class="score-fill" style="width:56%"></div></div>
+    <span class="score-val" style="color:#A32D2D">56%</span>
+  </div>
+  <div class="posture-phase">
+    <span class="phase-lbl">Phase 1</span>
+    <div class="score-track"><div class="score-fill" style="width:66%"></div></div>
+    <span class="score-val" style="color:#1D9E75">66% <span style="font-size:10px;color:#888780">+10</span></span>
+  </div>
+  <div class="posture-phase">
+    <span class="phase-lbl">Phase 2</span>
+    <div class="score-track"><div class="score-fill" style="width:77%"></div></div>
+    <span class="score-val" style="color:#1D9E75">77% <span style="font-size:10px;color:#888780">+11</span></span>
+  </div>
+  <div class="posture-phase">
+    <span class="phase-lbl">Phase 3</span>
+    <div class="score-track"><div class="score-fill" style="width:87%"></div></div>
+    <span class="score-val" style="color:#1D9E75">87% <span style="font-size:10px;color:#888780">+10</span></span>
+  </div>
+</div>
+
+<div class="gantt-wrap">
+  <table class="gantt-table" id="gantt"></table>
+</div>
+
+<div class="detail-panel" id="detail-panel">
+  <div class="dp-header">
+    <span class="dp-num" id="dp-num"></span>
+    <span class="dp-title" id="dp-title"></span>
+    <span class="tag" id="dp-tag"></span>
+    <span class="tag tag-qw" id="dp-qw" style="display:none">Quick win</span>
+  </div>
+  <div class="dp-grid">
+    <div class="dp-cell"><p class="dp-lbl">Domain</p><p class="dp-val" id="dp-domain"></p></div>
+    <div class="dp-cell"><p class="dp-lbl">Owner</p><p class="dp-val" id="dp-owner"></p></div>
+    <div class="dp-cell"><p class="dp-lbl">Timeline</p><p class="dp-val" id="dp-timeline"></p></div>
+    <div class="dp-cell"><p class="dp-lbl">Regulations</p><p class="dp-val" id="dp-regs" style="font-weight:400;font-size:11px"></p></div>
+  </div>
+  <div class="dp-risk"><strong style="color:#2C2C2A">Recommended action: </strong><span id="dp-action"></span></div>
+  <div class="dp-risk" style="margin-bottom:0"><strong style="color:#2C2C2A">Risk if unaddressed: </strong><span id="dp-risk"></span></div>
+</div>
+
+<p class="watermark">Generated April 2026 — Privacy Posture Management program</p>
+
+<script>
+const TOTAL_WEEKS = 20;
+
+const items = [
+  { id:4,  priority:'High',     quick:true,  domain:'Consent mgmt',        title:'Granular purpose toggles',           owner:'Privacy + Product',       start:1,  end:3,  color:'#1D9E75', textColor:'#085041', phase:1, regs:'GDPR Art. 7, PDPA Sec. 19',            action:'Update consent banner; log granular consent records',                       risk:'Invalid consent, regulator enforcement' },
+  { id:6,  priority:'High',     quick:true,  domain:'Privacy impact',       title:'PIA trigger for sensitive data',     owner:'Privacy team',            start:1,  end:2,  color:'#1D9E75', textColor:'#085041', phase:1, regs:'CCPA sensitive data, HIPAA risk analysis', action:'Auto-trigger PIA for sensitive data categories',                          risk:'Unreviewed high-risk processing, audit finding' },
+  { id:7,  priority:'High',     quick:true,  domain:'Third-party risk',     title:'AI vendor DPA/BAA template',         owner:'Legal + Privacy',         start:1,  end:3,  color:'#1D9E75', textColor:'#085041', phase:1, regs:'HIPAA BAA rules, GDPR Art. 28(3)',       action:'Update DPA/BAA template for AI sub-processors',                            risk:'Contractual gap, processor accountability' },
+  { id:2,  priority:'Critical', quick:false, domain:'Third-party risk',     title:'24 vendor assessments',              owner:'Privacy + Procurement',   start:3,  end:10, color:'#A32D2D', textColor:'#FCEBEB', phase:1, regs:'GDPR Art. 28, LGPD Art. 37',            action:'Triage & send assessments to 24 vendors by data volume',                   risk:'Processor liability, cross-border transfer exposure' },
+  { id:5,  priority:'High',     quick:false, domain:'DSR handling',         title:'LGPD + PDPA DSR automation',         owner:'Privacy + Engineering',   start:4,  end:10, color:'#BA7517', textColor:'#FAEEDA', phase:1, regs:'LGPD Arts. 17–22, PDPA Sec. 30–32',    action:'Extend DSR workflow to LGPD/PDPA jurisdictions',                           risk:'Non-compliance with response deadlines' },
+  { id:1,  priority:'Critical', quick:false, domain:'Retention & deletion', title:'Retention schedules in systems',     owner:'Privacy + Engineering',   start:5,  end:14, color:'#A32D2D', textColor:'#FCEBEB', phase:2, regs:'GDPR Art. 5(1)(e), LGPD Art. 15, PDPA Sec. 26', action:'Integrate retention engine with top 5 data systems; automate purge jobs', risk:'Regulatory fine, data subject complaint' },
+  { id:8,  priority:'High',     quick:false, domain:'Breach notification',  title:'LGPD/PDPA incident response test',   owner:'Privacy + InfoSec',       start:8,  end:12, color:'#BA7517', textColor:'#FAEEDA', phase:2, regs:'LGPD Art. 48, PDPA Sec. 40',           action:'Run tabletop exercise; update runbook with local DPA contacts',            risk:'Delayed notification, regulatory penalty' },
+  { id:9,  priority:'Medium',   quick:false, domain:'Data inventory',       title:'CCPA sensitive category tagging',    owner:'Privacy team',            start:9,  end:11, color:'#185FA5', textColor:'#E6F1FB', phase:2, regs:'CCPA/CPRA sensitive personal information', action:'Apply CPRA sensitive category tags in data inventory',                  risk:'Missed opt-out obligations for sensitive categories' },
+  { id:3,  priority:'Critical', quick:false, domain:'Data inventory',       title:'Shadow IT discovery & mapping',      owner:'Privacy + IT Security',   start:10, end:18, color:'#A32D2D', textColor:'#FCEBEB', phase:3, regs:'GDPR Art. 30, HIPAA §164.310',          action:'Deploy automated data discovery scan; integrate with CMDB',                risk:'Unknown data exposure, incomplete DSAR fulfillment' },
+  { id:10, priority:'Medium',   quick:false, domain:'Consent mgmt',         title:'Digital auth audit trail (EHR)',     owner:'Engineering + Compliance',start:12, end:20, color:'#185FA5', textColor:'#E6F1FB', phase:3, regs:'HIPAA §164.508 authorization requirements', action:'Implement timestamped consent log in EHR integration layer',             risk:'Audit finding, authorization validity challenge' },
+];
+
+const phases = [
+  { label:'Phase 1 — Quick wins + critical triage', start:1,  end:10, color:'#EF9F27' },
+  { label:'Phase 2 — Core controls',                start:10, end:15, color:'#5DCAA5' },
+  { label:'Phase 3 — Deep infrastructure',          start:15, end:20, color:'#7F77DD' },
+];
+
+const tagClass = { Critical:'tag-c', High:'tag-h', Medium:'tag-m' };
+const monthBoundaries = [4, 8, 12, 16, 20];
+
+function buildGantt() {
+  const table = document.getElementById('gantt');
+  table.innerHTML = '';
+
+  const metaW = 190;
+  const colPct = ((100) - 0) / TOTAL_WEEKS;
+
+  let headerHTML = `<thead><tr><th style="width:${metaW}px;text-align:left;padding-left:0;font-size:11px;color:#888780">Item</th>`;
+  for (let w = 1; w <= TOTAL_WEEKS; w++) {
+    const isMo = monthBoundaries.includes(w);
+    headerHTML += `<th style="font-size:10px;${isMo ? 'border-left:0.5px solid #D3D1C7;' : ''}${w===1 ? 'border-left:1.5px dashed #378ADD;' : ''}">${isMo || w===1 ? 'Wk'+w : ''}</th>`;
+  }
+  headerHTML += '</tr>';
+
+  let phaseRow = `<tr><td style="padding:2px 0"></td>`;
+  phases.forEach(ph => {
+    phaseRow += `<td colspan="${ph.end - ph.start}" style="padding:2px 2px"><div style="background:${ph.color}33;border-top:2px solid ${ph.color};border-radius:2px;height:5px"></div></td>`;
+  });
+  phaseRow += '</tr></thead>';
+  headerHTML += phaseRow;
+  table.innerHTML = headerHTML;
+
+  const tbody = document.createElement('tbody');
+  items.forEach(item => {
+    const tr = document.createElement('tr');
+    tr.style.borderBottom = '0.5px solid #F1EFE8';
+
+    let rowHTML = `<td class="row-meta" onclick="showDetail(${item.id})">
+      <span class="row-num">${item.id}.</span>
+      <span class="row-title">${item.title}</span><br>
+      <span class="row-owner">${item.owner}</span>
+    </td>`;
+
+    for (let w = 1; w <= TOTAL_WEEKS; w++) {
+      const inBar  = w >= item.start && w < item.end;
+      const isStart = w === item.start;
+      const isEnd   = w === item.end - 1;
+      const isMo   = monthBoundaries.includes(w);
+      const isToday = w === 1;
+
+      const borderL = isToday ? 'border-left:1.5px dashed #378ADD;' : isMo ? 'border-left:0.5px solid #D3D1C7;' : '';
+      const br = `border-radius:${isStart?'3px':'0'} ${isEnd?'3px':'0'} ${isEnd?'3px':'0'} ${isStart?'3px':'0'}`;
+
+      if (inBar) {
+        const lbl = isStart ? (item.title.length > 13 ? item.title.slice(0,12)+'…' : item.title) : '';
+        rowHTML += `<td class="bar-cell" style="${borderL}">
+          <div class="gantt-bar" style="background:${item.color};${br};color:${item.textColor}" onclick="showDetail(${item.id})">${lbl}</div>
+        </td>`;
+      } else {
+        rowHTML += `<td class="bar-cell" style="${borderL}"><div style="height:22px"></div></td>`;
+      }
+    }
+
+    tr.innerHTML = rowHTML;
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+}
+
+function showDetail(id) {
+  const item = items.find(i => i.id === id);
+  if (!item) return;
+  const panel = document.getElementById('detail-panel');
+  const tagEl  = document.getElementById('dp-tag');
+  tagEl.textContent = item.priority;
+  tagEl.className   = 'tag ' + tagClass[item.priority];
+  document.getElementById('dp-num').textContent     = '#' + item.id;
+  document.getElementById('dp-title').textContent   = item.title;
+  document.getElementById('dp-domain').textContent  = item.domain;
+  document.getElementById('dp-owner').textContent   = item.owner;
+  document.getElementById('dp-timeline').textContent = 'Weeks ' + item.start + '–' + item.end;
+  document.getElementById('dp-regs').textContent    = item.regs;
+  document.getElementById('dp-action').textContent  = item.action;
+  document.getElementById('dp-risk').textContent    = item.risk;
+  document.getElementById('dp-qw').style.display    = item.quick ? 'inline-block' : 'none';
+  panel.classList.add('open');
+  panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+buildGantt();
+</script>
+</body>
+</html>

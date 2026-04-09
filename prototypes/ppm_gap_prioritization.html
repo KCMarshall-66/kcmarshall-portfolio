@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPM Gap Prioritization — Privacy Posture Management</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; background: #f9f9f7; color: #2C2C2A; margin: 0; padding: 24px; }
+  h1 { font-size: 18px; font-weight: 500; color: #1D5BA6; margin: 0 0 4px; }
+  .subtitle { font-size: 13px; color: #888780; margin: 0 0 20px; }
+
+  .summary-row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 16px; }
+  .sum-card { background: #F1EFE8; border-radius: 8px; padding: 12px 14px; }
+  .sum-val { font-size: 22px; font-weight: 500; color: #2C2C2A; margin: 0; }
+  .sum-lbl { font-size: 11px; color: #5F5E5A; margin: 2px 0 0; }
+
+  .matrix-wrap { background: #F1EFE8; border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+  .matrix-title { font-size: 12px; font-weight: 500; color: #5F5E5A; margin-bottom: 10px; }
+  .matrix-grid { display: grid; grid-template-columns: 28px 1fr 1fr; grid-template-rows: 1fr 1fr 28px; gap: 6px; height: 220px; }
+  .quad { border-radius: 8px; padding: 8px; display: flex; flex-direction: column; gap: 4px; overflow: hidden; }
+  .quad-label { font-size: 10px; font-weight: 500; margin-bottom: 2px; }
+  .quad-dot { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: #fff; color: #2C2C2A; border: 0.5px solid #D3D1C7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+  .quad-dot:hover { background: #F1EFE8; }
+  .axis-label { font-size: 10px; color: #888780; display: flex; align-items: center; justify-content: center; }
+  .y-axis { writing-mode: vertical-rl; transform: rotate(180deg); }
+
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+  .ctl-label { font-size: 12px; color: #5F5E5A; }
+  .filter-btn { font-size: 12px; padding: 4px 12px; border-radius: 20px; border: 0.5px solid #B4B2A9; background: transparent; color: #5F5E5A; cursor: pointer; font-family: Arial, sans-serif; transition: background 0.1s; }
+  .filter-btn.active { background: #F1EFE8; color: #2C2C2A; border-color: #888780; }
+  .filter-btn:hover { background: #F1EFE8; }
+
+  .pri-card { background: #fff; border: 0.5px solid #D3D1C7; border-radius: 12px; padding: 14px 16px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.15s; }
+  .pri-card:hover { border-color: #888780; }
+  .pri-card.expanded { border-color: #B4B2A9; }
+  .rank-badge { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; }
+  .tag { font-size: 10px; padding: 1px 7px; border-radius: 8px; font-weight: 500; }
+  .tag-c  { background: #FCEBEB; color: #791F1F; }
+  .tag-h  { background: #FAEEDA; color: #633806; }
+  .tag-m  { background: #E6F1FB; color: #0C447C; }
+  .tag-qw { background: #E1F5EE; color: #085041; }
+  .bar-bg { background: #D3D1C7; border-radius: 3px; height: 6px; flex: 1; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .detail { display: none; margin-top: 12px; padding-top: 12px; border-top: 0.5px solid #D3D1C7; }
+  .detail.open { display: block; }
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .detail-cell { background: #F1EFE8; border-radius: 8px; padding: 9px 12px; }
+  .detail-cell-label { font-size: 10px; color: #888780; margin: 0 0 2px; }
+  .detail-cell-val { font-size: 12px; color: #2C2C2A; font-weight: 500; margin: 0; }
+  .risk-box { background: #F1EFE8; border-radius: 8px; padding: 8px 12px; font-size: 12px; color: #5F5E5A; }
+  .action-btn { font-size: 12px; padding: 6px 14px; border-radius: 8px; border: 0.5px solid #B4B2A9; background: transparent; color: #2C2C2A; cursor: pointer; font-family: Arial, sans-serif; margin-top: 10px; }
+  .action-btn:hover { background: #F1EFE8; }
+  .watermark { font-size: 11px; color: #B4B2A9; margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<h1>Gap prioritization view</h1>
+<p class="subtitle">Privacy Posture Management — ranked by impact and effort</p>
+
+<div class="summary-row">
+  <div class="sum-card">
+    <p class="sum-val" style="color:#A32D2D">8</p>
+    <p class="sum-lbl">Critical / high gaps</p>
+  </div>
+  <div class="sum-card">
+    <p class="sum-val">4</p>
+    <p class="sum-lbl">Regulations affected</p>
+  </div>
+  <div class="sum-card">
+    <p class="sum-val" style="color:#1D9E75">3</p>
+    <p class="sum-lbl">Quick wins available</p>
+  </div>
+</div>
+
+<div class="matrix-wrap">
+  <div class="matrix-title">Impact vs effort matrix — click any item to jump to it</div>
+  <div class="matrix-grid">
+    <div class="axis-label y-axis" style="grid-column:1;grid-row:1/3">Impact →</div>
+    <div class="quad" style="grid-column:2;grid-row:1;background:#FEF3E2" id="q-hi-lo">
+      <div class="quad-label" style="color:#633806">High impact · Low effort — Do first</div>
+    </div>
+    <div class="quad" style="grid-column:3;grid-row:1;background:#E3F5EE" id="q-hi-hi">
+      <div class="quad-label" style="color:#085041">High impact · High effort — Plan</div>
+    </div>
+    <div class="quad" style="grid-column:2;grid-row:2;background:#fff;border:0.5px solid #D3D1C7" id="q-lo-lo">
+      <div class="quad-label" style="color:#5F5E5A">Low impact · Low effort — Fill gaps</div>
+    </div>
+    <div class="quad" style="grid-column:3;grid-row:2;background:#fff;border:0.5px solid #D3D1C7" id="q-lo-hi">
+      <div class="quad-label" style="color:#5F5E5A">Low impact · High effort — Defer</div>
+    </div>
+    <div class="axis-label" style="grid-column:2;grid-row:3">Low effort</div>
+    <div class="axis-label" style="grid-column:3;grid-row:3">High effort</div>
+  </div>
+</div>
+
+<div class="controls">
+  <span class="ctl-label">Filter:</span>
+  <button class="filter-btn active" data-f="all">All</button>
+  <button class="filter-btn" data-f="Critical">Critical</button>
+  <button class="filter-btn" data-f="High">High</button>
+  <button class="filter-btn" data-f="Medium">Medium</button>
+  <button class="filter-btn" data-f="quick">Quick wins</button>
+</div>
+
+<div id="gap-list"></div>
+
+<p class="watermark">Generated April 2026 — Privacy Posture Management program</p>
+
+<script>
+const gaps = [
+  { id:1,  priority:'Critical', quick:false, domain:'Retention & deletion', regulation:'GDPR, LGPD, PDPA',
+    title:'Retention schedules not technically enforced',
+    current:46, target:90, effort:'Medium', impact:'High', effort_weeks:'8–12 wks', owner:'Privacy + Engineering',
+    risk:'Regulatory fine, data subject complaint', quad:'hi-lo',
+    action:'Integrate retention engine with top 5 data systems; automate purge jobs',
+    regs_affected:'GDPR Art. 5(1)(e), LGPD Art. 15, PDPA Sec. 26' },
+  { id:2,  priority:'Critical', quick:false, domain:'Third-party risk', regulation:'GDPR, LGPD',
+    title:'24 vendors lack current privacy assessments',
+    current:55, target:90, effort:'Medium', impact:'High', effort_weeks:'6–10 wks', owner:'Privacy + Procurement',
+    risk:'Processor liability, cross-border transfer exposure', quad:'hi-lo',
+    action:'Triage 24 vendors by data volume; send standardized assessment questionnaire',
+    regs_affected:'GDPR Art. 28, LGPD Art. 37' },
+  { id:3,  priority:'Critical', quick:false, domain:'Data inventory', regulation:'GDPR, HIPAA',
+    title:'Shadow IT systems missing from data map',
+    current:68, target:95, effort:'High', impact:'High', effort_weeks:'12–16 wks', owner:'Privacy + IT Security',
+    risk:'Unknown data exposure, incomplete DSAR fulfillment', quad:'hi-hi',
+    action:'Deploy automated data discovery scan; integrate with CMDB',
+    regs_affected:'GDPR Art. 30, HIPAA §164.310' },
+  { id:4,  priority:'High',     quick:true,  domain:'Consent management', regulation:'GDPR, PDPA',
+    title:'Missing granular purpose toggles for EU/TH users',
+    current:60, target:88, effort:'Low', impact:'High', effort_weeks:'2–3 wks', owner:'Privacy + Product',
+    risk:'Invalid consent, regulator enforcement', quad:'hi-lo',
+    action:'Update consent banner to expose per-purpose toggles; log granular consent records',
+    regs_affected:'GDPR Art. 7, PDPA Sec. 19' },
+  { id:5,  priority:'High',     quick:false, domain:'DSR handling', regulation:'LGPD, PDPA',
+    title:'Rights requests manual for LGPD and PDPA in-scope users',
+    current:55, target:85, effort:'Medium', impact:'High', effort_weeks:'6–8 wks', owner:'Privacy + Engineering',
+    risk:'Non-compliance with response deadlines', quad:'hi-lo',
+    action:'Extend DSR workflow to cover LGPD/PDPA jurisdictions; configure routing rules',
+    regs_affected:'LGPD Arts. 17–22, PDPA Sec. 30–32' },
+  { id:6,  priority:'High',     quick:true,  domain:'Privacy impact assessments', regulation:'CCPA, HIPAA',
+    title:'PIA not triggered for sensitive data use cases',
+    current:58, target:85, effort:'Low', impact:'High', effort_weeks:'1–2 wks', owner:'Privacy team',
+    risk:'Unreviewed high-risk processing, audit finding', quad:'hi-lo',
+    action:'Update intake questionnaire to auto-trigger PIA for sensitive data categories',
+    regs_affected:'CCPA sensitive data provisions, HIPAA risk analysis' },
+  { id:7,  priority:'High',     quick:true,  domain:'Third-party risk', regulation:'PDPA, HIPAA',
+    title:'BAA / DPA template not updated for AI vendors',
+    current:50, target:80, effort:'Low', impact:'Medium', effort_weeks:'2–3 wks', owner:'Legal + Privacy',
+    risk:'Contractual gap, processor accountability', quad:'hi-lo',
+    action:'Update standard DPA/BAA template to include AI sub-processor provisions',
+    regs_affected:'HIPAA BAA rules, GDPR Art. 28(3)' },
+  { id:8,  priority:'High',     quick:false, domain:'Breach notification', regulation:'LGPD, PDPA',
+    title:'Incident response plan untested for LGPD/PDPA scope',
+    current:62, target:88, effort:'Medium', impact:'Medium', effort_weeks:'4–6 wks', owner:'Privacy + InfoSec',
+    risk:'Delayed notification, regulatory penalty', quad:'hi-hi',
+    action:'Run tabletop exercise scoped to LGPD/PDPA; update runbook with local DPA contacts',
+    regs_affected:'LGPD Art. 48, PDPA Sec. 40' },
+  { id:9,  priority:'Medium',   quick:false, domain:'Data inventory', regulation:'CCPA',
+    title:'Data categories not tagged for CCPA sensitive classification',
+    current:72, target:90, effort:'Low', impact:'Medium', effort_weeks:'1–2 wks', owner:'Privacy team',
+    risk:'Missed opt-out obligations for sensitive categories', quad:'lo-lo',
+    action:'Apply CPRA sensitive category tags in data inventory for CA-scoped systems',
+    regs_affected:'CCPA/CPRA sensitive personal information rules' },
+  { id:10, priority:'Medium',   quick:false, domain:'Consent management', regulation:'HIPAA',
+    title:'Digital authorization forms lack audit trail',
+    current:55, target:80, effort:'High', impact:'Medium', effort_weeks:'10–14 wks', owner:'Engineering + Compliance',
+    risk:'Audit finding, authorization validity challenge', quad:'lo-hi',
+    action:'Implement timestamped consent log in EHR integration layer',
+    regs_affected:'HIPAA §164.508 authorization requirements' },
+];
+
+const priorityColor = { Critical:'#A32D2D', High:'#854F0B', Medium:'#185FA5' };
+const tagClass      = { Critical:'tag-c',   High:'tag-h',   Medium:'tag-m'   };
+
+let activeFilter = 'all';
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeFilter = btn.dataset.f;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderList();
+  });
+});
+
+function buildMatrix() {
+  const quadMap = { 'hi-lo':'q-hi-lo', 'hi-hi':'q-hi-hi', 'lo-lo':'q-lo-lo', 'lo-hi':'q-lo-hi' };
+  Object.values(quadMap).forEach(qid => {
+    const q = document.getElementById(qid);
+    const lbl = q.querySelector('.quad-label');
+    q.innerHTML = '';
+    q.appendChild(lbl);
+  });
+  gaps.forEach(g => {
+    const qid = quadMap[g.quad];
+    if (!qid) return;
+    const q = document.getElementById(qid);
+    const dot = document.createElement('div');
+    dot.className = 'quad-dot';
+    dot.textContent = g.id + '. ' + g.domain;
+    dot.onclick = () => {
+      activeFilter = 'all';
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('.filter-btn[data-f="all"]').classList.add('active');
+      renderList();
+      setTimeout(() => {
+        const card = document.getElementById('card-' + g.id);
+        if (card) {
+          card.scrollIntoView({ behavior:'smooth', block:'center' });
+          card.classList.add('expanded');
+          card.querySelector('.detail').classList.add('open');
+        }
+      }, 50);
+    };
+    q.appendChild(dot);
+  });
+}
+
+function renderList() {
+  const list = document.getElementById('gap-list');
+  list.innerHTML = '';
+  const filtered = gaps.filter(g => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'quick') return g.quick;
+    return g.priority === activeFilter;
+  });
+
+  filtered.forEach(g => {
+    const pct = Math.round(((g.target - g.current) / g.target) * 100);
+    const card = document.createElement('div');
+    card.className = 'pri-card';
+    card.id = 'card-' + g.id;
+
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="rank-badge" style="background:${priorityColor[g.priority]}22;color:${priorityColor[g.priority]}">${g.id}</div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+            <span style="font-size:13px;font-weight:500;color:#2C2C2A">${g.title}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span class="tag ${tagClass[g.priority]}">${g.priority}</span>
+            <span style="font-size:11px;color:#5F5E5A">${g.domain}</span>
+            <span style="font-size:11px;color:#888780">${g.regulation}</span>
+            ${g.quick ? '<span class="tag tag-qw">Quick win</span>' : ''}
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;min-width:88px">
+          <div style="font-size:11px;color:#888780;margin-bottom:4px">Gap to close</div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${priorityColor[g.priority]}"></div></div>
+            <span style="font-size:12px;font-weight:500;color:${priorityColor[g.priority]};min-width:30px">${g.current}%</span>
+          </div>
+          <div style="font-size:10px;color:#888780;margin-top:2px">→ ${g.target}% target</div>
+        </div>
+      </div>
+      <div class="detail" id="detail-${g.id}">
+        <div class="detail-grid">
+          <div class="detail-cell"><p class="detail-cell-label">Recommended action</p><p class="detail-cell-val" style="font-weight:400;font-size:12px">${g.action}</p></div>
+          <div class="detail-cell"><p class="detail-cell-label">Regulations addressed</p><p class="detail-cell-val" style="font-weight:400;font-size:12px">${g.regs_affected}</p></div>
+          <div class="detail-cell"><p class="detail-cell-label">Owner</p><p class="detail-cell-val">${g.owner}</p></div>
+          <div class="detail-cell"><p class="detail-cell-label">Estimated effort</p><p class="detail-cell-val">${g.effort_weeks}</p></div>
+        </div>
+        <div class="risk-box"><span style="font-weight:500;color:#2C2C2A">Risk if unaddressed: </span>${g.risk}</div>
+      </div>
+    `;
+
+    card.addEventListener('click', () => {
+      const detail = card.querySelector('.detail');
+      detail.classList.toggle('open');
+      card.classList.toggle('expanded');
+    });
+
+    list.appendChild(card);
+  });
+}
+
+buildMatrix();
+renderList();
+</script>
+</body>
+</html>
