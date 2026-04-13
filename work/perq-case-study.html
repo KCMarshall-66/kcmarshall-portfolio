@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PERQ: Scaling to 1M+ Consumers — KC Marshall</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --bg:        #0b0c0e;
+    --bg-2:      #111317;
+    --bg-3:      #16191f;
+    --border:    rgba(255,255,255,0.07);
+    --border-m:  rgba(255,255,255,0.12);
+    --accent:    #5de8b8;
+    --text:      #f0f0ee;
+    --text-mid:  rgba(240,240,238,0.55);
+    --text-low:  rgba(240,240,238,0.28);
+    --sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ─────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 56px; height: 60px;
+    background: rgba(11,12,14,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-left { display: flex; align-items: center; gap: 20px; }
+  .nav-logo {
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; gap: 9px;
+    color: var(--text);
+  }
+  .nav-logo-mark {
+    width: 26px; height: 26px; border-radius: 5px;
+    background: var(--accent); color: var(--bg);
+    font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-back {
+    font-size: 13px; color: var(--text-low);
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .nav-back::before { content: '←'; margin-right: 2px; }
+  .breadcrumb {
+    font-size: 12px; color: var(--text-low);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .breadcrumb span { color: var(--text-mid); }
+  .breadcrumb::before { content: '/'; color: var(--border-m); }
+
+  /* ── HERO ────────────────────────────── */
+  .cs-hero {
+    background: linear-gradient(170deg, #0d1520 0%, #080e18 60%, var(--bg) 100%);
+    padding: 80px 56px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .cs-hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(93,232,184,0.06) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+
+  .cs-company-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .cs-company-tag::before {
+    content: '';
+    width: 16px; height: 1.5px; background: var(--accent);
+  }
+
+  .cs-title {
+    font-size: 52px; font-weight: 800; line-height: 1.08;
+    letter-spacing: -2px; color: var(--text);
+    max-width: 760px; margin-bottom: 20px;
+  }
+
+  .cs-subtitle {
+    font-size: 18px; color: var(--text-mid);
+    max-width: 640px; line-height: 1.7;
+    margin-bottom: 56px;
+  }
+
+  .outcome-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 14px; max-width: 680px;
+    margin-bottom: 56px;
+    position: relative; z-index: 1;
+  }
+  .outcome-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-m);
+    border-radius: 12px; padding: 24px 22px;
+    position: relative; overflow: hidden;
+  }
+  .outcome-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .o-num {
+    font-size: 42px; font-weight: 800; color: var(--accent);
+    letter-spacing: -2px; line-height: 1; margin-bottom: 8px;
+  }
+  .o-label {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* META ROW */
+  .meta-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.3);
+  }
+  .meta-cell {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .meta-cell:last-child { border-right: none; }
+  .meta-key {
+    font-size: 10px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase; margin-bottom: 7px;
+  }
+  .meta-val {
+    font-size: 13px; font-weight: 600; color: var(--text);
+    line-height: 1.4;
+  }
+
+  /* ── BODY ────────────────────────────── */
+  .cs-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .cs-section { margin-bottom: 72px; }
+
+  .section-eyebrow {
+    font-size: 10px; letter-spacing: 3px; font-weight: 700;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 12px; opacity: 0.8;
+  }
+  .section-h2 {
+    font-size: 30px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.8px; margin-bottom: 18px; line-height: 1.2;
+  }
+  .section-body {
+    font-size: 16px; color: var(--text-mid);
+    line-height: 1.8; margin-bottom: 28px;
+  }
+  .section-body + .section-body { margin-top: -12px; }
+
+  /* Callout block */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: rgba(93,232,184,0.06);
+    padding: 20px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 28px 0;
+  }
+  .callout p {
+    font-size: 16px; color: rgba(240,240,238,0.75);
+    line-height: 1.7; font-style: italic;
+  }
+
+  /* Problem cards */
+  .problem-grid {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .problem-card {
+    display: grid; grid-template-columns: 44px 1fr;
+    align-items: start; gap: 20px;
+    padding: 24px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+  }
+  .problem-card:last-child { border-bottom: none; }
+  .problem-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: rgba(93,232,184,0.08);
+    border: 1px solid rgba(93,232,184,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .problem-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 6px; letter-spacing: -0.2px;
+  }
+  .problem-desc {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* Artifact grid */
+  .artifact-grid {
+    display: grid; gap: 14px;
+    margin: 28px 0;
+  }
+  .artifact-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .artifact-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .artifact-card {
+    border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    background: var(--bg-2);
+  }
+  .artifact-img {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--text-low);
+    position: relative; overflow: hidden;
+  }
+  .artifact-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .artifact-img video {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .artifact-caption {
+    padding: 11px 15px;
+    font-size: 12px; color: var(--text-low);
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.2);
+    line-height: 1.4;
+  }
+
+  /* Insight cards */
+  .insight-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin: 28px 0;
+  }
+  .insight-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 22px 20px;
+  }
+  .insight-num {
+    font-size: 32px; font-weight: 800;
+    color: var(--accent); letter-spacing: -1.5px;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .insight-label {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* Process steps */
+  .process-steps {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 28px 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .process-step {
+    display: grid; grid-template-columns: 48px 1fr;
+    align-items: start; gap: 20px;
+    padding: 24px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-2);
+  }
+  .process-step:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(93,232,184,0.1);
+    border: 1px solid rgba(93,232,184,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .step-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 5px; letter-spacing: -0.2px;
+  }
+  .step-desc {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* Tool chips */
+  .tool-chips {
+    display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0;
+  }
+  .tool-chip {
+    font-size: 12px; font-weight: 600;
+    padding: 5px 13px; border-radius: 100px;
+    background: rgba(93,232,184,0.08);
+    border: 1px solid rgba(93,232,184,0.18);
+    color: var(--accent);
+  }
+
+  /* Capability grid */
+  .capability-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin: 28px 0;
+  }
+  .capability-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px;
+  }
+  .cap-icon {
+    font-size: 18px; flex-shrink: 0; margin-top: 2px;
+  }
+  .cap-title {
+    font-size: 13px; font-weight: 700; color: var(--text);
+    margin-bottom: 4px; letter-spacing: -0.1px;
+  }
+  .cap-desc {
+    font-size: 12px; color: var(--text-mid); line-height: 1.5;
+  }
+
+  /* Divider */
+  .section-divider {
+    height: 1px; background: var(--border);
+    margin: 0 0 72px;
+  }
+
+  /* Outcome summary */
+  .outcome-summary {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 40px;
+    margin: 28px 0;
+  }
+  .os-heading {
+    font-size: 18px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.3px; margin-bottom: 24px;
+  }
+  .os-items {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .os-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .os-item:last-child { border-bottom: none; }
+  .os-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(93,232,184,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--accent);
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .os-text { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+  .os-text strong { color: var(--text); font-weight: 600; }
+
+  /* Reflection */
+  .reflection {
+    background: rgba(93,232,184,0.04);
+    border: 1px solid rgba(93,232,184,0.1);
+    border-radius: 14px; padding: 36px 40px;
+    margin: 28px 0;
+  }
+  .reflection-label {
+    font-size: 10px; letter-spacing: 3px; font-weight: 700;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 14px;
+  }
+  .reflection-body {
+    font-size: 15px; color: var(--text-mid); line-height: 1.8;
+  }
+  .reflection-body + .reflection-body { margin-top: 14px; }
+
+  /* ── PAGINATION ──────────────────────── */
+  .cs-pagination {
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .page-link {
+    padding: 32px 56px;
+    display: flex; flex-direction: column; gap: 8px;
+    border-right: 1px solid var(--border);
+  }
+  .page-link.next {
+    border-right: none; text-align: right;
+    align-items: flex-end;
+  }
+  .page-direction {
+    font-size: 11px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase;
+  }
+  .page-title {
+    font-size: 16px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.2px;
+  }
+  .page-co { font-size: 12px; color: var(--text-low); }
+
+  /* ── FOOTER ──────────────────────────── */
+  .footer {
+    padding: 28px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-left { font-size: 13px; color: var(--text-low); }
+  .footer-right { display: flex; gap: 24px; }
+  .footer-right a { font-size: 12px; color: var(--text-low); }
+
+  /* ── MOBILE RESPONSIVE ───────────────── */
+  @media (max-width: 768px) {
+
+    /* Nav */
+    .nav { padding: 0 20px; }
+    .nav-logo { white-space: nowrap; }
+    .breadcrumb { display: none; }
+
+    /* Hero */
+    .cs-hero { padding: 40px 24px 0; }
+    .cs-company-tag { font-size: 10px; letter-spacing: 1.5px; }
+    .cs-title { font-size: 32px; letter-spacing: -1px; margin-bottom: 16px; }
+    .cs-subtitle { font-size: 15px; margin-bottom: 36px; }
+
+    /* Outcome strip */
+    .outcome-strip {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      margin-bottom: 36px;
+    }
+
+    /* Meta row */
+    .meta-row { grid-template-columns: 1fr 1fr; }
+    .meta-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .meta-cell:nth-child(odd) { border-right: 1px solid var(--border); }
+    .meta-cell:last-child { border-bottom: none; }
+
+    /* Body */
+    .cs-body { padding: 48px 20px; }
+    .section-h2 { font-size: 24px; }
+
+    /* Artifact grids */
+    .artifact-grid.cols-2,
+    .artifact-grid.cols-3 { grid-template-columns: 1fr; }
+
+    /* Insight row */
+    .insight-row { grid-template-columns: 1fr; }
+
+    /* Capability grid */
+    .capability-grid { grid-template-columns: 1fr; }
+
+    /* Pagination */
+    .cs-pagination { grid-template-columns: 1fr; }
+    .page-link { padding: 24px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+    .page-link.next { text-align: left; align-items: flex-start; border-bottom: none; }
+
+    /* Footer */
+    .footer {
+      padding: 24px 20px;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="/" class="nav-logo" style="text-decoration:none;color:inherit">
+      <div class="nav-logo-mark">KC</div>
+      KC Marshall
+    </a>
+    <a href="/" class="nav-back">All Work</a>
+    <div class="breadcrumb"><span>PERQ: Scaling to 1M+ Consumers</span></div>
+  </div>
+  <div class="nav-right" style="display:flex;align-items:center;gap:24px;font-size:13px;color:rgba(240,240,238,0.55);">
+    <a href="/#about" style="color:inherit;text-decoration:none;">About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-company-tag">PERQ Software &nbsp;·&nbsp; 2015–2019</div>
+  <h1 class="cs-title">Scaling to 1M+ Consumers</h1>
+  <p class="cs-subtitle">How a SaaS lead-engagement platform grew from a library of templates into a fully custom, data-driven consumer experience product — and how I built and led the UX team to make it happen at scale.</p>
+
+  <div class="outcome-strip">
+    <div class="outcome-card">
+      <div class="o-num">1M+</div>
+      <div class="o-label">Consumers reached across three market verticals</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">3</div>
+      <div class="o-label">Key markets: Multi-Family, Automotive, Furniture Retail</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">6</div>
+      <div class="o-label">UX designers hired, onboarded, and developed</div>
+    </div>
+  </div>
+
+  <div class="meta-row">
+    <div class="meta-cell">
+      <div class="meta-key">Company</div>
+      <div class="meta-val">PERQ Software</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Role</div>
+      <div class="meta-val">UX Architect → UX Manager / Director</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Years</div>
+      <div class="meta-val">2015–2019</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Team Size</div>
+      <div class="meta-val">6 Designers / Researchers</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Markets</div>
+      <div class="meta-val">Multi-Family · Automotive · Furniture Retail</div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="cs-body">
+
+  <!-- 01: CONTEXT -->
+  <div class="cs-section">
+    <div class="section-eyebrow">01 — Context</div>
+    <h2 class="section-h2">A platform built to convert</h2>
+    <p class="section-body">When I joined PERQ Software in 2015 as Lead UX Architect, the product was conceived as an additive technology layer — a set of branded, interactive experiences a customer could deploy directly on top of their existing web platform to drive lead generation and conversion. The three core business verticals were multi-family dwelling communities, automotive dealerships, and furniture retailers.</p>
+    <p class="section-body">My initial mandate was to design a wide array of templates that powered PERQ's lead engagement and conversion platform. These experiences ranged from credit pre-approvals and shopping guides to purchasing quizzes and reward-based interactions — each one engineered to attract and educate buyers while producing higher-quality, more qualified leads for sales teams.</p>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:240px;">
+          <img src="/assets/images/perq-shopping-assistant.png" alt="PERQ Shopping Assistant experience" />
+        </div>
+        <div class="artifact-caption">Shopping assistant experience — an interactive buying guide that educated consumers and surfaced qualified purchase intent for sales teams.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:240px;">
+          <img src="/assets/images/perq-animation.gif" alt="PERQ lead engagement platform animation" />
+        </div>
+        <div class="artifact-caption">PERQ's lead engagement platform in action — interactive consumer experiences deployed as an additive layer on customer websites.</div>
+      </div>
+    </div>
+
+    <div class="tool-chips">
+      <span class="tool-chip">Lead Generation</span>
+      <span class="tool-chip">Conversion Optimization</span>
+      <span class="tool-chip">Multi-Vertical SaaS</span>
+      <span class="tool-chip">Template Design</span>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 02: THE SHIFT -->
+  <div class="cs-section">
+    <div class="section-eyebrow">02 — The Shift</div>
+    <h2 class="section-h2">Customers didn't want to do it themselves</h2>
+    <p class="section-body">The templates proved highly effective — attracting buyers, educating them through the funnel, and converting to stronger leads. But testing the platform in the hands of real customers revealed a critical insight that would reshape the entire business model: PERQ's customers had no interest in setting up and managing their own experiences. They wanted PERQ to do it for them.</p>
+
+    <div class="callout">
+      <p>"Customers weren't buying a toolkit — they were buying an outcome. They wanted PERQ to create bespoke, data-driven consumer journeys within their own business context. That changed everything."</p>
+    </div>
+
+    <p class="section-body">This pivot — from self-serve templates to fully custom, data-driven consumer experiences — meant that the product's value proposition fundamentally shifted. Instead of giving customers a platform to build on, PERQ would become the designer and operator of unique experiences tailored to each client's brand, audience, and conversion goals. The demand quickly outpaced what a single UX architect could deliver.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">🔁</div>
+        <div>
+          <div class="problem-title">Business model pivot</div>
+          <div class="problem-desc">Moving from a self-serve template model to a fully managed, custom-experience service required a fundamentally different delivery capability — one that didn't yet exist.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📈</div>
+        <div>
+          <div class="problem-title">Demand exceeded single-person capacity</div>
+          <div class="problem-desc">As client engagements multiplied across three verticals, the volume and complexity of custom UX work made it impossible for one designer to maintain quality and consistency at scale.</div>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🏗️</div>
+        <div>
+          <div class="problem-title">No UX infrastructure existed</div>
+          <div class="problem-desc">There was no design system, no shared component library, no established research process, and no formal methodology for how UX work should be approached across the growing team.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 03: BUILDING THE TEAM -->
+  <div class="cs-section">
+    <div class="section-eyebrow">03 — Building the Team</div>
+    <h2 class="section-h2">From sole architect to department lead</h2>
+    <p class="section-body">The pivot required me to transition quickly from being the sole UX practitioner to building and leading an entire UX department. I hired, onboarded, and developed a team of six UX designers and researchers who could execute custom experiences at the same quality level I had established — but across a much larger volume of client engagements and at a pace the business demanded.</p>
+    <p class="section-body">Building the team meant more than filling seats. I developed career path rubrics that gave each designer a clear understanding of where they were and where they could grow. I ran regular one-on-ones, provided structured feedback to both new hires and existing team members, and evaluated performance against meaningful UX craft standards. As the team grew, I also took on an elevated stakeholder role — representing UX strategy and priorities directly to PERQ's leadership.</p>
+
+    <div class="capability-grid">
+      <div class="capability-item">
+        <div class="cap-icon">👥</div>
+        <div>
+          <div class="cap-title">Team Building</div>
+          <div class="cap-desc">Recruited, interviewed, and hired six UX designers and researchers from scratch, building the department's foundational talent layer</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">🗺️</div>
+        <div>
+          <div class="cap-title">Career Rubrics</div>
+          <div class="cap-desc">Developed role-level rubrics defining competencies, growth milestones, and expectations across junior, mid, and senior designer tracks</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">💬</div>
+        <div>
+          <div class="cap-title">1:1s &amp; Feedback</div>
+          <div class="cap-desc">Ran regular structured one-on-ones, delivering honest developmental feedback and coaching designers toward increasing craft and ownership</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">🎓</div>
+        <div>
+          <div class="cap-title">Lunch &amp; Learn Sessions</div>
+          <div class="cap-desc">Launched recurring internal learning sessions for junior designers, covering UX craft, industry trends, research methods, and professional development</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">📊</div>
+        <div>
+          <div class="cap-title">Performance Evaluation</div>
+          <div class="cap-desc">Established a formal review cycle with clear evaluation criteria, ensuring consistent standards across the team and a fair basis for growth conversations</div>
+        </div>
+      </div>
+      <div class="capability-item">
+        <div class="cap-icon">🤝</div>
+        <div>
+          <div class="cap-title">Stakeholder Partnership</div>
+          <div class="cap-desc">Represented UX strategy and team priorities in executive stakeholder sessions, advocating for user-centered decisions at the business level</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 04: PROCESS & INFRASTRUCTURE -->
+  <div class="cs-section">
+    <div class="section-eyebrow">04 — Research, Process &amp; Infrastructure</div>
+    <h2 class="section-h2">Building the foundation that made scale possible</h2>
+    <p class="section-body">A team of six designers producing custom experiences across three verticals can only maintain consistency and quality if it's supported by strong infrastructure. I developed a research and development strategy for the team, established best practices for approaching projects, and built the design systems and tooling that kept work aligned and accelerated delivery.</p>
+
+    <div class="artifact-grid cols-2" style="margin-bottom: 14px;">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/perq-ux-process.png" alt="PERQ UX process framework" />
+        </div>
+        <div class="artifact-caption">PERQ UX process framework — the documented approach adopted across the team to ensure consistency from discovery through delivery.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px; background: linear-gradient(135deg, #0d1a2a 0%, #06101a 100%); display:flex; align-items:center; justify-content:center;">
+          <div style="text-align:center; padding: 24px;">
+            <div style="font-size:11px; letter-spacing:3px; color:var(--accent); opacity:0.7; margin-bottom:16px;">DESIGN SYSTEM</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;">
+              <span style="font-size:11px; padding:4px 10px; border-radius:6px; background:rgba(93,232,184,0.1); border:1px solid rgba(93,232,184,0.2); color:var(--accent);">Colors</span>
+              <span style="font-size:11px; padding:4px 10px; border-radius:6px; background:rgba(93,232,184,0.1); border:1px solid rgba(93,232,184,0.2); color:var(--accent);">Typography</span>
+              <span style="font-size:11px; padding:4px 10px; border-radius:6px; background:rgba(93,232,184,0.1); border:1px solid rgba(93,232,184,0.2); color:var(--accent);">Components</span>
+              <span style="font-size:11px; padding:4px 10px; border-radius:6px; background:rgba(93,232,184,0.1); border:1px solid rgba(93,232,184,0.2); color:var(--accent);">Patterns</span>
+              <span style="font-size:11px; padding:4px 10px; border-radius:6px; background:rgba(93,232,184,0.1); border:1px solid rgba(93,232,184,0.2); color:var(--accent);">Interactions</span>
+              <span style="font-size:11px; padding:4px 10px; border-radius:6px; background:rgba(93,232,184,0.1); border:1px solid rgba(93,232,184,0.2); color:var(--accent);">Templates</span>
+            </div>
+          </div>
+        </div>
+        <div class="artifact-caption">PERQ design system — a shared atomic library covering colors, type, components, patterns, and templates used across all three verticals.</div>
+      </div>
+    </div>
+
+    <p class="section-body">Alongside the design system, I adopted agile delivery methodologies to bring structure and rhythm to the team's workflow. Scrums, story pointing, backlog grooming, sprint planning, sprint reviews, and retrospectives became the operational backbone — giving the team a shared language, predictable cadence, and a built-in feedback loop for continuous improvement.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-title">R&amp;D Strategy</div>
+          <div class="step-desc">Developed a structured research and development strategy for the team — defining how discovery, user testing, and insight synthesis would be approached consistently across all client engagements.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-title">Design System &amp; Component Library</div>
+          <div class="step-desc">Built a robust design system and shared component library to ensure visual and interaction consistency across experiences, accelerate production speed, and reduce rework across the team.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-title">Agile UX Methodology</div>
+          <div class="step-desc">Established agile best practices including scrums, story pointing, backlog grooming, sprint planning, reviews, and retrospectives — integrating UX work smoothly into the engineering delivery cycle.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div>
+          <div class="step-title">Best Practices &amp; Standards</div>
+          <div class="step-desc">Defined and documented UX best practices — from research methods and artifact standards to handoff protocols — creating a shared foundation that new hires could onboard into quickly.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-chips">
+      <span class="tool-chip">Adobe XD</span>
+      <span class="tool-chip">Sketch</span>
+      <span class="tool-chip">Axure RP</span>
+      <span class="tool-chip">Principle</span>
+      <span class="tool-chip">UserTesting</span>
+      <span class="tool-chip">Zeplin</span>
+      <span class="tool-chip">Confluence</span>
+      <span class="tool-chip">JIRA</span>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 05: THE EXPERIENCES -->
+  <div class="cs-section">
+    <div class="section-eyebrow">05 — The Experiences</div>
+    <h2 class="section-h2">Custom, data-driven journeys across three verticals</h2>
+    <p class="section-body">With the team, infrastructure, and process in place, PERQ's product could deliver fully bespoke consumer experiences at scale. Each vertical required a distinct UX approach — automotive buyers needed credit pre-qualification flows and inventory-driven shopping assistants; multi-family prospects needed floor plan explorers and community comparison tools; furniture shoppers needed style quizzes and purchase configurators.</p>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/perq-automotive-banner.gif" alt="PERQ Automotive banner experience" />
+        </div>
+        <div class="artifact-caption">Automotive banner experience — an animated engagement layer deployed across dealership websites to initiate the consumer journey and capture lead intent.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/perq-automtive-sample-pre-qualifies.png" alt="PERQ automotive pre-qualification experience" />
+        </div>
+        <div class="artifact-caption">Automotive credit pre-qualification experience — guiding buyers through a streamlined flow that surfaced financing eligibility and produced higher-quality dealer leads.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/perq-multi-dwelling-example.gif" alt="PERQ multi-family dwelling experience" />
+        </div>
+        <div class="artifact-caption">Multi-family dwelling experience — an interactive apartment discovery and comparison journey helping prospects evaluate communities and driving lease conversions.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/perq-shopping-assistant.png" alt="PERQ furniture retail shopping assistant" />
+        </div>
+        <div class="artifact-caption">Furniture retail shopping assistant — a style-and-needs quiz that matched buyers to relevant products, increasing average session value and reducing time-to-purchase.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 06: MOBILE & MOTION -->
+  <div class="cs-section">
+    <div class="section-eyebrow">06 — Mobile &amp; Motion</div>
+    <h2 class="section-h2">Designing for how consumers actually engage</h2>
+    <p class="section-body">As mobile usage across PERQ's three verticals grew, ensuring that every experience translated seamlessly to smaller screens became a core design priority. Rigorous mobile UX reviews were conducted to audit interaction models, evaluate touch target sizing, assess reading legibility, and identify friction points unique to the mobile context.</p>
+    <p class="section-body">Motion design played an equally important role. Static screens couldn't fully communicate complex interaction models — especially for multi-step flows involving floor plan exploration, product configuration, and guided quiz experiences. Motion studies were developed to document and validate key interaction sequences before they reached engineering.</p>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:300px;">
+          <img src="/assets/images/perq-tap-mobile-ux-review-ver01_Page_1.jpg" alt="PERQ mobile UX review page 1" />
+        </div>
+        <div class="artifact-caption">Mobile UX review — page 1. Systematic audit of interaction models, touch target sizing, and flow legibility across key consumer-facing screens.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:300px;">
+          <img src="/assets/images/perq-tap-mobile-ux-review-ver01_Page_2.jpg" alt="PERQ mobile UX review page 2" />
+        </div>
+        <div class="artifact-caption">Mobile UX review — page 2. Continuation of the review documenting recommended improvements, annotated friction points, and revised interaction patterns.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2" style="margin-bottom:0;">
+      <div class="artifact-card" style="grid-column: 1 / -1;">
+        <div class="artifact-img" style="height:320px;">
+          <video autoplay loop muted playsinline>
+            <source src="/assets/images/perq-motion-study-floor-plan0ver01.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="artifact-caption">Floor plan motion study — an animated interaction prototype demonstrating the multi-family floor plan exploration experience, developed for stakeholder review and developer handoff.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 07: OUTCOMES -->
+  <div class="cs-section">
+    <div class="section-eyebrow">07 — Outcomes &amp; Impact</div>
+    <h2 class="section-h2">From one designer to a scaled UX operation</h2>
+
+    <div class="insight-row">
+      <div class="insight-card">
+        <div class="insight-num">1M+</div>
+        <div class="insight-label">Consumers reached across Automotive, Multi-Family, and Furniture Retail markets</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">6</div>
+        <div class="insight-label">UX designers hired, developed, and delivering custom experiences at scale</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">3</div>
+        <div class="insight-label">Distinct market verticals served with purpose-built consumer experience frameworks</div>
+      </div>
+    </div>
+
+    <div class="outcome-summary">
+      <div class="os-heading">What was built and delivered</div>
+      <div class="os-items">
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>A fully operational UX department</strong> — six designers and researchers hired, onboarded, and delivering custom consumer experiences across all three business verticals.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>A shared design system and component library</strong> — giving the team a consistent visual and interaction language that accelerated delivery and maintained quality at scale.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>An agile UX workflow</strong> — scrums, story pointing, sprint planning, reviews, and retrospectives integrated seamlessly with engineering delivery cycles.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Career infrastructure for the team</strong> — rubrics, evaluation frameworks, and regular 1:1s that supported designer growth and built a culture of craft and continuous improvement.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Bespoke consumer journeys at scale</strong> — custom, data-driven experiences across Automotive, Multi-Family, and Furniture Retail that collectively reached over one million consumers.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reflection">
+      <div class="reflection-label">Reflection</div>
+      <p class="reflection-body">PERQ was where I made the transition from individual contributor to people leader — and where I learned that the hardest design challenge isn't the interface, it's the organization. Building a team that can consistently produce excellent, custom work requires the same human-centered thinking as designing the products themselves: understanding what people need to do their best work, removing the friction that blocks them, and creating the conditions for growth.</p>
+      <p class="reflection-body">The design system, the agile process, the lunch-and-learns — none of these were overhead. They were the product. They were how six designers could operate as one cohesive team and reach one million consumers without compromising on quality or speed.</p>
+    </div>
+  </div>
+
+</div><!-- /cs-body -->
+
+<!-- PAGINATION -->
+<div class="cs-pagination">
+  <a href="/work/dmi-call-time-case-study" class="page-link">
+    <div class="page-direction">← Previous</div>
+    <div class="page-title">50% Call Time Reduction via Service Design</div>
+    <div class="page-co">DMI Consulting</div>
+  </a>
+  <a href="/work/schlage-ecommerce-case-study" class="page-link next">
+    <div class="page-direction">Next →</div>
+    <div class="page-title">Schlage.com End-to-End Redesign</div>
+    <div class="page-co">The Basement</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">© 2026 KC Marshall. All rights reserved.</div>
+  <div class="footer-right">
+    <a href="/">Home</a>
+    <a href="/#about">About</a>
+    <a href="mailto:kevin@kcmarshall.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
