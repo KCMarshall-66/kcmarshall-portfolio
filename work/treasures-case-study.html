@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Treasures of the Earth — KC Marshall</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --bg:        #0b0c0e;
+    --bg-2:      #111317;
+    --bg-3:      #16191f;
+    --border:    rgba(255,255,255,0.07);
+    --border-m:  rgba(255,255,255,0.12);
+    --accent:    #5de8b8;
+    --text:      #f0f0ee;
+    --text-mid:  rgba(240,240,238,0.55);
+    --text-low:  rgba(240,240,238,0.28);
+    --sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ─────────────────────────────── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 56px; height: 60px;
+    background: rgba(11,12,14,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-left { display: flex; align-items: center; gap: 20px; }
+  .nav-logo {
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; gap: 9px;
+    color: var(--text);
+  }
+  .nav-logo-mark {
+    width: 26px; height: 26px; border-radius: 5px;
+    background: var(--accent); color: var(--bg);
+    font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-back {
+    font-size: 13px; color: var(--text-low);
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .nav-back::before { content: '←'; margin-right: 2px; }
+  .breadcrumb {
+    font-size: 12px; color: var(--text-low);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .breadcrumb span { color: var(--text-mid); }
+  .breadcrumb::before { content: '/'; color: var(--border-m); }
+
+  /* ── HERO ────────────────────────────── */
+  .cs-hero {
+    background: linear-gradient(170deg, #160f05 0%, #0e0a05 60%, var(--bg) 100%);
+    padding: 80px 56px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .cs-hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,155,70,0.07) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    pointer-events: none;
+  }
+
+  .cs-company-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .cs-company-tag::before {
+    content: '';
+    width: 16px; height: 1.5px; background: var(--accent);
+  }
+
+  .cs-title {
+    font-size: 52px; font-weight: 800; line-height: 1.08;
+    letter-spacing: -2px; color: var(--text);
+    margin-bottom: 20px; max-width: 780px;
+  }
+
+  .cs-subtitle {
+    font-size: 17px; color: var(--text-mid); line-height: 1.7;
+    max-width: 680px; margin-bottom: 52px;
+  }
+
+  /* Outcome strip */
+  .outcome-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--border); border-radius: 14px 14px 0 0;
+    overflow: hidden; max-width: 720px;
+  }
+  .outcome-card {
+    padding: 28px 32px;
+    border-right: 1px solid var(--border);
+  }
+  .outcome-card:last-child { border-right: none; }
+  .o-num {
+    font-size: 36px; font-weight: 800; letter-spacing: -1.5px;
+    color: var(--accent); line-height: 1;
+    margin-bottom: 8px;
+  }
+  .o-label { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
+
+  /* Meta row */
+  .meta-row {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    border: 1px solid var(--border); border-top: none;
+    border-radius: 0 0 14px 14px;
+    overflow: hidden; max-width: 720px;
+    margin-bottom: 0;
+  }
+  .meta-cell {
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+  }
+  .meta-cell:last-child { border-right: none; }
+  .meta-key { font-size: 10px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase; margin-bottom: 6px; }
+  .meta-val { font-size: 13px; color: var(--text); font-weight: 600; }
+
+  /* ── BODY ────────────────────────────── */
+  .cs-body { padding: 80px 56px; max-width: 1160px; margin: 0 auto; }
+
+  .cs-section { margin-bottom: 72px; }
+
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 3px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .section-h2 {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.8px;
+    color: var(--text); margin-bottom: 20px; line-height: 1.18;
+  }
+
+  .section-body {
+    font-size: 15px; color: var(--text-mid); line-height: 1.8;
+    max-width: 720px; margin-bottom: 20px;
+  }
+
+  /* Artifact cards */
+  .artifact-grid {
+    display: grid; gap: 16px; margin: 28px 0;
+  }
+  .artifact-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .artifact-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .artifact-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+  }
+  .artifact-img {
+    width: 100%; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    background: #0d0f13;
+  }
+  .artifact-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .artifact-img.contain img { object-fit: contain; }
+  .artifact-caption {
+    padding: 14px 18px;
+    font-size: 12px; color: var(--text-low); line-height: 1.6;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Full-width image card */
+  .full-img-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    margin: 28px 0;
+  }
+  .full-img-card img { width: 100%; display: block; }
+  .full-img-caption {
+    padding: 14px 18px;
+    font-size: 12px; color: var(--text-low); line-height: 1.6;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Video embed */
+  .video-wrap {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    margin: 28px 0;
+  }
+  .video-wrap iframe {
+    width: 100%; aspect-ratio: 16/9;
+    display: block; border: none;
+  }
+  .video-caption {
+    padding: 14px 18px;
+    font-size: 12px; color: var(--text-low); line-height: 1.6;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Callout */
+  .callout {
+    background: rgba(93,232,184,0.04);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 28px; margin: 28px 0;
+    font-size: 15px; color: var(--text-mid); line-height: 1.8;
+    font-style: italic; max-width: 720px;
+  }
+
+  /* Process step list */
+  .process-list {
+    display: flex; flex-direction: column; gap: 0;
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    margin: 28px 0;
+  }
+  .process-step {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .process-step:last-child { border-bottom: none; }
+  .step-num {
+    font-size: 11px; font-weight: 800; letter-spacing: 1px;
+    color: var(--accent); width: 28px; flex-shrink: 0; margin-top: 1px;
+  }
+  .step-title {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 5px; letter-spacing: -0.2px;
+  }
+  .step-desc {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+
+  /* Tool chips */
+  .tool-chips {
+    display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0;
+  }
+  .tool-chip {
+    font-size: 12px; font-weight: 600;
+    padding: 5px 13px; border-radius: 100px;
+    background: rgba(93,232,184,0.08);
+    border: 1px solid rgba(93,232,184,0.18);
+    color: var(--accent);
+  }
+
+  /* Insight row */
+  .insight-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px; margin: 28px 0;
+  }
+  .insight-card {
+    background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+  }
+  .insight-label {
+    font-size: 10px; letter-spacing: 2.5px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .insight-body {
+    font-size: 13px; color: var(--text-mid); line-height: 1.6;
+  }
+  .insight-body strong { color: var(--text); font-weight: 600; }
+
+  /* Divider */
+  .section-divider {
+    height: 1px; background: var(--border);
+    margin: 0 0 72px;
+  }
+
+  /* Outcome summary */
+  .outcome-summary {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 40px;
+    margin: 28px 0;
+  }
+  .os-heading {
+    font-size: 18px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.3px; margin-bottom: 24px;
+  }
+  .os-items {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .os-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .os-item:last-child { border-bottom: none; }
+  .os-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(93,232,184,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--accent);
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .os-text { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+  .os-text strong { color: var(--text); font-weight: 600; }
+
+  /* Reflection */
+  .reflection {
+    background: rgba(93,232,184,0.04);
+    border: 1px solid rgba(93,232,184,0.1);
+    border-radius: 14px; padding: 36px 40px;
+    margin: 28px 0;
+  }
+  .reflection-label {
+    font-size: 10px; letter-spacing: 3px; font-weight: 700;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 14px;
+  }
+  .reflection-body {
+    font-size: 15px; color: var(--text-mid); line-height: 1.8;
+  }
+  .reflection-body + .reflection-body { margin-top: 14px; }
+
+  /* ── PAGINATION ──────────────────────── */
+  .cs-pagination {
+    border-top: 1px solid var(--border);
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .page-link {
+    padding: 32px 56px;
+    display: flex; flex-direction: column; gap: 8px;
+    border-right: 1px solid var(--border);
+  }
+  .page-link.next {
+    border-right: none; text-align: right;
+    align-items: flex-end;
+  }
+  .page-direction {
+    font-size: 11px; letter-spacing: 2px; font-weight: 700;
+    color: var(--text-low); text-transform: uppercase;
+  }
+  .page-title {
+    font-size: 16px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.2px;
+  }
+  .page-co { font-size: 12px; color: var(--text-low); }
+
+  /* ── FOOTER ──────────────────────────── */
+  .footer {
+    padding: 28px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-left { font-size: 13px; color: var(--text-low); }
+  .footer-right { display: flex; gap: 24px; }
+  .footer-right a { font-size: 12px; color: var(--text-low); }
+
+  /* ── MOBILE RESPONSIVE ───────────────── */
+  @media (max-width: 768px) {
+    .nav { padding: 0 20px; }
+    .nav-logo { white-space: nowrap; }
+    .breadcrumb { display: none; }
+
+    .cs-hero { padding: 40px 24px 0; }
+    .cs-company-tag { font-size: 10px; letter-spacing: 1.5px; }
+    .cs-title { font-size: 32px; letter-spacing: -1px; margin-bottom: 16px; }
+    .cs-subtitle { font-size: 15px; margin-bottom: 36px; }
+
+    .outcome-strip {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      margin-bottom: 36px;
+    }
+
+    .meta-row { grid-template-columns: 1fr 1fr; }
+    .meta-cell { border-right: none; border-bottom: 1px solid var(--border); }
+    .meta-cell:nth-child(odd) { border-right: 1px solid var(--border); }
+    .meta-cell:last-child { border-bottom: none; }
+
+    .cs-body { padding: 48px 20px; }
+    .section-h2 { font-size: 24px; }
+
+    .artifact-grid.cols-2,
+    .artifact-grid.cols-3 { grid-template-columns: 1fr; }
+
+    .insight-row { grid-template-columns: 1fr; }
+
+    .cs-pagination { grid-template-columns: 1fr; }
+    .page-link { padding: 24px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+    .page-link.next { text-align: left; align-items: flex-start; border-bottom: none; }
+
+    .footer {
+      padding: 24px 20px;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="/" class="nav-logo" style="text-decoration:none;color:inherit">
+      <div class="nav-logo-mark">KC</div>
+      KC Marshall
+    </a>
+    <a href="/" class="nav-back">All Work</a>
+    <div class="breadcrumb"><span>Treasures of the Earth</span></div>
+  </div>
+  <div class="nav-right" style="display:flex;align-items:center;gap:24px;font-size:13px;color:rgba(240,240,238,0.55);">
+    <a href="/#about" style="color:inherit;text-decoration:none;">About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-company-tag">Children's Museum of Indianapolis &nbsp;·&nbsp; 2014–2015</div>
+  <h1 class="cs-title">Treasures of the Earth</h1>
+  <p class="cs-subtitle">Designing a first-of-its-kind RFID-powered interactive kiosk and a widescreen 3D visualization film for National Geographic's Terra Cotta Warriors exhibit — covering every phase of UX from discovery through delivery.</p>
+
+  <div class="outcome-strip">
+    <div class="outcome-card">
+      <div class="o-num">1st</div>
+      <div class="o-label">RFID interactive experience at the Children's Museum of Indianapolis</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">2</div>
+      <div class="o-label">Deliverables: touchscreen kiosk + widescreen 3D visualization film</div>
+    </div>
+    <div class="outcome-card">
+      <div class="o-num">Award</div>
+      <div class="o-label">Winning interactive produced within 6 months of rejoining a dissolved department</div>
+    </div>
+  </div>
+
+  <div class="meta-row">
+    <div class="meta-cell">
+      <div class="meta-key">Client</div>
+      <div class="meta-val">Children's Museum of Indianapolis</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Partner</div>
+      <div class="meta-val">National Geographic</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Role</div>
+      <div class="meta-val">Interactive Product Designer / UX Architect</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Year</div>
+      <div class="meta-val">2014–2015</div>
+    </div>
+    <div class="meta-cell">
+      <div class="meta-key">Medium</div>
+      <div class="meta-val">Touchscreen Kiosk · 3D Film</div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="cs-body">
+
+  <!-- 01: THE EXHIBIT -->
+  <div class="cs-section">
+    <div class="section-eyebrow">01 — The Exhibit</div>
+    <h2 class="section-h2">National Geographic meets children's education</h2>
+    <p class="section-body">This project hit all the aspects of UX: discovery, testing, ideation, concept, wireframes, prototypes, heuristic evaluation, usability, and delivery. For the Children's Museum of Indianapolis's large "Treasures of the Earth" exhibit, I had to pull out all the stops and start at the beginning.</p>
+    <p class="section-body">The central ask from National Geographic was to educate children about the Terra Cotta Warriors and how they were originally brightly colored — not the dull tan that we see today. Most of the painted pigmentation has worn off over the centuries, but archaeologists and scientists can still recreate the original look based on chemical scans of surviving fragments to identify the pigments once used.</p>
+
+    <div class="full-img-card">
+      <img src="/assets/images/ExhibitsIconsPlaces_Treasures_Large_012.jpg" alt="Treasures of the Earth exhibit branding" />
+      <div class="full-img-caption">National Geographic's "Treasures of the Earth" exhibit at the Children's Museum of Indianapolis — the backdrop for both deliverables in this project.</div>
+    </div>
+
+    <div class="insight-row">
+      <div class="insight-card">
+        <div class="insight-label">The Challenge</div>
+        <div class="insight-body">Translate complex archaeological science into an engaging, age-inclusive experience that all visitors — from young children to adults — could participate in and enjoy.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">The Audience</div>
+        <div class="insight-body">All age groups visiting the exhibit, from elementary school children on field trips to curious adult visitors — requiring an experience that worked across a wide range of technical familiarity.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">The Scope</div>
+        <div class="insight-body">Two standalone deliverables: a physical touchscreen kiosk with custom RFID interaction and a large-format widescreen 3D visualization film running continuously in the exhibit space.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 02: THE RFID CONCEPT -->
+  <div class="cs-section">
+    <div class="section-eyebrow">02 — The Concept</div>
+    <h2 class="section-h2">An RFID-powered "Paint a Warrior" experience</h2>
+    <p class="section-body">Earlier that year I had created an interactive game for the museum using RFID chips implanted in stuffed animals — for the Nickelodeon Studios "Dora and Diego" exhibit, and it was a huge hit with visitors. That experience sparked an idea: what if I implanted coded RFID chips into physical replica fragments (shards) of the warrior figurines?</p>
+    <p class="section-body">Visitors would scan a shard and the kiosk would identify which warrior type was associated with that specific fragment — along with what pigments were originally present. They could then use a touchscreen interface to "paint" the selected warrior back to its original colors, and send themselves a digital copy as a keepsake.</p>
+
+    <div class="callout">
+      "The experience had to be compelling enough to work on a child's level while being credible enough to deliver real archaeological science. That tension was the design challenge."
+    </div>
+
+    <div class="full-img-card">
+      <img src="/assets/images/warrior_types_and_shards.jpg" alt="The various painted warrior types alongside their matching RFID fragments" style="object-fit:contain; background:#0d0f13;" />
+      <div class="full-img-caption">The various warrior types and their associated physical shard fragments — each embedded with a unique RFID chip that triggered the corresponding warrior content on the kiosk.</div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/ShardTexture_footsoldier.jpg" alt="3D wireframe of warrior foot soldier shard" />
+        </div>
+        <div class="artifact-caption">Wireframe model of the foot soldier shard — each fragment 3D-modeled to match the physical RFID prop visitors would hold in their hands.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/shard_color_footsoldier.jpg" alt="Final color render of warrior foot soldier shard" />
+        </div>
+        <div class="artifact-caption">Final color render of the foot soldier shard — showing the reconstructed original pigmentation based on chemical analysis of actual archaeological fragments.</div>
+      </div>
+    </div>
+
+    <div class="tool-chips">
+      <span class="tool-chip">RFID Technology</span>
+      <span class="tool-chip">Interaction Design</span>
+      <span class="tool-chip">3ds Max</span>
+      <span class="tool-chip">Sketch</span>
+      <span class="tool-chip">Balsamiq</span>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 03: RESEARCH & PROCESS -->
+  <div class="cs-section">
+    <div class="section-eyebrow">03 — Research & Process</div>
+    <h2 class="section-h2">Discovery, wireframes, and stakeholder alignment</h2>
+    <p class="section-body">My task was to deliver educational and scientific information in an entertaining manner that worked for all age groups. That meant deploying nearly every software package and media skill in my toolkit: Photoshop, Illustrator, Sketch, Balsamiq, After Effects, 3ds Max, Audition, custom programming, and extensive research into the original painting schemes of the warriors.</p>
+    <p class="section-body">The process started with process flows, wireframes, and storyboards. I developed several iterations while collaborating with the educational staff at the museum to ensure the correct learning outcomes were embedded into the experience. Each iteration was walked through with stakeholders for feedback before advancing to the next stage.</p>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:340px;">
+          <img src="/assets/images/paint-a-warrior-logic-flow-v02.jpg" alt="Paint a Warrior process flow diagram" style="object-fit:contain; background:#0d0f13;" />
+        </div>
+        <div class="artifact-caption">Process flow — mapping the full interaction logic from RFID scan through warrior selection, painting, and email delivery.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:340px;">
+          <img src="/assets/images/storyboards.jpg" alt="Storyboards for the Paint a Warrior kiosk experience" />
+        </div>
+        <div class="artifact-caption">Storyboards — visualizing the narrative arc and key interaction beats of the kiosk experience before a single screen was designed.</div>
+      </div>
+    </div>
+
+    <div class="process-list">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Archaeological Research</div>
+          <div class="step-desc">Reviewed National Geographic documentation and scientific literature on original warrior pigmentation, chemical analysis methods, and the excavation history — ensuring the educational content was factually grounded.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Process Flow & Storyboarding</div>
+          <div class="step-desc">Mapped the full interaction logic including RFID trigger events, warrior selection, the painting interface, and the email delivery flow. Storyboards walked stakeholders through the experience before any screens were built.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Stakeholder Collaboration</div>
+          <div class="step-desc">Worked closely with the museum's educational staff to validate learning outcomes at each stage. Multiple iteration rounds refined both the content accuracy and the appropriateness of the interaction model for young visitors.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Wireframes & Prototype</div>
+          <div class="step-desc">Developed low-fidelity wireframes in Balsamiq and Sketch, progressing to interactive prototypes used for heuristic evaluation and usability testing before final interface production.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 04: INTERFACE DESIGN -->
+  <div class="cs-section">
+    <div class="section-eyebrow">04 — Interface Design</div>
+    <h2 class="section-h2">From notebook animation to the installed kiosk</h2>
+    <p class="section-body">The experience needed an opening intro sequence that walked visitors through the discovery of the painted figures and explained how scientists determine which pigments were originally present. I designed and animated a hand-drawn notebook sequence to guide viewers through this backstory and introduce them to the kiosk interaction before they touched the screen.</p>
+
+    <div class="full-img-card">
+      <img src="/assets/images/page_turn0338.png" alt="Sample frame from the animated notebook intro sequence" />
+      <div class="full-img-caption">A sample frame from the animated intro sequence — a hand-illustrated notebook style animation that taught visitors how the warriors were originally painted and how to use the kiosk.</div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:280px;">
+          <img src="/assets/images/screen_mockup-1.jpg" alt="Early screen concept for the Paint a Warrior interface" />
+        </div>
+        <div class="artifact-caption">Early screen concept — establishing the visual tone and layout of the painting interface before full visual design.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:280px;">
+          <img src="/assets/images/interface_design02_cork.jpg" alt="Refined interface design with cork texture" />
+        </div>
+        <div class="artifact-caption">Refined interface — the final UI direction using a cork-board aesthetic to evoke the archaeological research and discovery theme of the exhibit.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:300px;">
+          <img src="/assets/images/kiosl-design.jpeg" alt="The physical kiosk design" />
+        </div>
+        <div class="artifact-caption">The kiosk design — a custom enclosure housing the touchscreen, RFID reader, and all supporting hardware, designed to complement the exhibit's aesthetic.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:300px;">
+          <img src="/assets/images/img_3524.jpg" alt="The installed Paint a Warrior kiosk inside the Treasures of the Earth exhibit" />
+        </div>
+        <div class="artifact-caption">The installed kiosk — in its final home within the "Treasures of the Earth" exhibit, ready for museum visitors to pick up a shard and begin their painting journey.</div>
+      </div>
+    </div>
+
+    <div class="video-wrap">
+      <iframe src="https://player.vimeo.com/video/424149338" title="Paint a Warrior — Featured on Children's Museum of Indianapolis channel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      <div class="video-caption">Featured project on the Children's Museum of Indianapolis channel — the full "Paint a Warrior" kiosk experience as seen by exhibit visitors.</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 05: 3D VISUALIZATION -->
+  <div class="cs-section">
+    <div class="section-eyebrow">05 — 3D Visualization</div>
+    <h2 class="section-h2">Terra Cotta Warriors — the widescreen film</h2>
+    <p class="section-body">Alongside the interactive kiosk, I was also asked to create a 3D visualization film to run continuously within the exhibit space. The film needed to tell the story of how the warriors ended up in the ground, what they originally looked like, and how they deteriorated to the state we see today.</p>
+    <p class="section-body">This part of the project was an exciting opportunity to collaborate with former co-workers and peers. It involved deep research into original painting schemes, pouring through documentation provided by National Geographic Magazine, and producing hundreds of reference renders before arriving at a finished result. The final widescreen movie represented the output of that extensive modeling and rendering effort.</p>
+
+    <div class="full-img-card">
+      <img src="/assets/images/warriors_wireframe_still01.png" alt="Wireframe still of the terra cotta warriors scene" />
+      <div class="full-img-caption">Wireframe still from the full warrior scene — one of hundreds of renders produced during the production process before reaching final color and texture output.</div>
+    </div>
+
+    <p class="section-body">The warrior head was the most intricate modeling challenge — requiring accurate anatomical structure, historically informed painting schemes, and enough polygon detail to hold up in widescreen playback. The progression from wireframe to finished render took multiple major revision cycles.</p>
+
+    <div class="artifact-grid cols-3">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:200px;" class="contain">
+          <img src="/assets/images/hero_head01-wireframe.png" alt="Warrior head — initial wireframe" />
+        </div>
+        <div class="artifact-caption">Step 1 — Initial wireframe mesh of the warrior head, establishing proportions and polygon structure.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:200px;" class="contain">
+          <img src="/assets/images/hero_head01-wireframe02.png" alt="Warrior head — refined wireframe" />
+        </div>
+        <div class="artifact-caption">Step 2 — Refined wireframe with added surface detail and texturing guides applied over the base mesh.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:200px;" class="contain">
+          <img src="/assets/images/hero_head01.png" alt="Warrior head — final color render" />
+        </div>
+        <div class="artifact-caption">Step 3 — Final color render with historically accurate pigmentation applied based on scientific analysis of excavated warrior fragments.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:300px;">
+          <img src="/assets/images/hero_head_revised_eyes.jpg" alt="Revised warrior head with eye detail" />
+        </div>
+        <div class="artifact-caption">Revised head model — updated eye anatomy and facial pigmentation detail following stakeholder review of the initial renders.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:300px;">
+          <img src="/assets/images/HERO_head_revised_angle2.jpg" alt="Revised warrior head from alternate angle" />
+        </div>
+        <div class="artifact-caption">Alternate angle showing the revised head's surface texture and secondary paint layer detail used in the final widescreen sequence.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/crossbow_01.jpg" alt="3D model of a warrior crossbow" />
+        </div>
+        <div class="artifact-caption">Crossbow model — one of the weapons and accessories modeled to populate the full warrior scene in the widescreen visualization.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/terra-cotta.jpg" alt="Final terra cotta warrior render" />
+        </div>
+        <div class="artifact-caption">Final warrior render — the fully textured and lit figure as it appeared in the widescreen exhibition film.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/IMG_1745.jpg" alt="Reference photography of terra cotta warrior details" />
+        </div>
+        <div class="artifact-caption">Reference photography — used alongside National Geographic documentation to ensure accurate surface texture and scale in the 3D models.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img" style="height:260px;">
+          <img src="/assets/images/IMG_1744.jpg" alt="Reference photography of terra cotta warrior artifacts" />
+        </div>
+        <div class="artifact-caption">Additional artifact reference — details of excavated warrior components that informed the modeling of armor, weapons, and surface wear patterns.</div>
+      </div>
+    </div>
+
+    <div class="video-wrap">
+      <iframe src="https://player.vimeo.com/video/425475228" title="Terra Cotta Warriors — 3D Visualization Film" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      <div class="video-caption">Terra Cotta Warriors — the final 3D visualization film produced for the Children's Museum of Indianapolis exhibit, telling the story of the warriors' creation, burial, and discovery.</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 06: OUTCOMES -->
+  <div class="cs-section">
+    <div class="section-eyebrow">06 — Outcomes &amp; Impact</div>
+    <h2 class="section-h2">Award-winning interactives in six months</h2>
+    <p class="section-body">Both deliverables were produced and installed within the exhibit timeline, with the interactive kiosk going on to become the first RFID-based interactive in the Children's Museum of Indianapolis's history. The full project was recognized as award-winning work, produced within six months of rejoining and fully rebuilding a previously dissolved creative department.</p>
+
+    <div class="outcome-summary">
+      <div class="os-heading">What was delivered</div>
+      <div class="os-items">
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>First RFID interactive at the Children's Museum of Indianapolis</strong> — a novel interaction model embedding coded chips into physical prop fragments, triggering custom touchscreen content for each warrior type.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>End-to-end UX process</strong> — covering the full spectrum from discovery research and educational stakeholder collaboration through wireframes, prototyping, heuristic evaluation, usability testing, and final delivery.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Custom animated intro sequence</strong> — a hand-illustrated, animated notebook that taught visitors the science of warrior pigmentation and oriented them to the kiosk interaction model before they touched the screen.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Widescreen 3D visualization film</strong> — an exhibition-quality animated film narrating the warriors' creation, burial, and modern discovery, backed by extensive National Geographic research and hundreds of production renders.</div>
+        </div>
+        <div class="os-item">
+          <div class="os-check">✓</div>
+          <div class="os-text"><strong>Featured by the Children's Museum of Indianapolis</strong> — the "Paint a Warrior" kiosk experience was highlighted on the museum's official channel as a signature exhibit activity.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reflection">
+      <div class="reflection-label">Reflection</div>
+      <p class="reflection-body">What made this project especially meaningful was that it demanded the full range of design and production skills simultaneously — from UX research and educational design to 3D modeling, animation, and hardware integration. There was no playbook for embedding RFID chips into physical props and wiring them into a museum touchscreen experience. Every element had to be invented from scratch, in tight collaboration with the museum's educational team, within a fixed installation deadline.</p>
+      <p class="reflection-body">The discipline required to deliver two production-quality interactives — both the kiosk and the 3D film — within six months shaped how I think about what's possible when you combine rigorous process with genuine creative ambition. This project remains one of the most technically and creatively demanding I've undertaken, and one of the most rewarding to see in the hands of real visitors.</p>
+    </div>
+  </div>
+
+</div><!-- /cs-body -->
+
+<!-- PAGINATION -->
+<div class="cs-pagination">
+  <a href="/" class="page-link">
+    <div class="page-direction">← All Work</div>
+    <div class="page-title">Return to Portfolio</div>
+    <div class="page-co">KC Marshall</div>
+  </a>
+  <a href="/work/perq-case-study" class="page-link next">
+    <div class="page-direction">Next →</div>
+    <div class="page-title">Scaling to 1M+ Consumers</div>
+    <div class="page-co">PERQ Software</div>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">© 2026 KC Marshall. All rights reserved.</div>
+  <div class="footer-right">
+    <a href="/">Home</a>
+    <a href="/#about">About</a>
+    <a href="mailto:kevin@kcmarshall.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
