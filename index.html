@@ -12,1080 +12,1113 @@
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="canonical" href="https://kcmarshall.com" />
 <title>KC Marshall – Senior Principal UX Design Lead</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+/* ── RESET ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-  :root {
-    --bg:        #0b0c0e;
-    --bg-2:      #111317;
-    --bg-3:      #16191f;
-    --border:    rgba(255,255,255,0.07);
-    --border-m:  rgba(255,255,255,0.12);
-    --accent:    #5de8b8;
-    --accent-dim:#2d7a62;
-    --text:      #f0f0ee;
-    --text-mid:  rgba(240,240,238,0.55);
-    --text-low:  rgba(240,240,238,0.28);
-    --red:       #e05a5a;
-    --sans:      'Segoe UI', system-ui, -apple-system, sans-serif;
-  }
+/* ── TOKENS ─────────────────────────────────────────────── */
+:root {
+  /* paper */
+  --paper-0: #FFFFFF;
+  --paper-1: #FBF9F5;
+  --paper-2: #F4F1EA;
+  --paper-3: #ECE7DD;
 
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--text);
-    -webkit-font-smoothing: antialiased;
-    line-height: 1.5;
-  }
+  /* ink */
+  --ink-0:   #15140F;
+  --ink-1:   #1C1B16;
+  --ink-2:   #45433B;
+  --ink-3:   #6B675C;
+  --ink-4:   #928D80;
 
-  a { text-decoration: none; color: inherit; }
+  /* borders */
+  --line-1:         #E7E2D7;
+  --line-2:         #D8D2C4;
+  --line-on-ink:    rgba(255,255,255,.12);
 
-  /* ── NAV ─────────────────────────────── */
-  .nav {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 56px;
-    height: 64px;
-    background: rgba(11,12,14,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-size: 16px; font-weight: 700;
-    letter-spacing: -0.3px; color: var(--text);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .nav-logo-mark {
-    width: 28px; height: 28px;
-    border-radius: 6px;
-    background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 800;
-    color: var(--bg);
-  }
-  .nav-links {
-    display: flex; gap: 6px; align-items: center;
-  }
-  .nav-links a {
-    font-size: 13px; color: var(--text-mid);
-    padding: 7px 14px; border-radius: 6px;
-    transition: color 0.15s;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-cta {
-    background: var(--accent);
-    color: var(--bg) !important;
-    font-weight: 700 !important;
-    font-size: 13px !important;
-    padding: 8px 18px !important;
-    border-radius: 6px !important;
-  }
+  /* clay / terracotta */
+  --clay-1:    #C5532E;
+  --clay-2:    #A8431F;
+  --clay-3:    #E07A52;
+  --clay-soft: #F6E7DF;
+  --clay-line: #EBC9B8;
 
-  /* ── HERO ────────────────────────────── */
-  .hero {
-    padding: 88px 56px 72px;
-    display: grid;
-    grid-template-columns: 1fr 480px;
-    gap: 56px;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-    min-height: 580px;
-  }
+  /* sage */
+  --sage-1:    #3F6B5E;
+  --sage-soft: #E4EBE6;
 
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 24px;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: block; width: 18px; height: 1.5px;
-    background: var(--accent);
-  }
+  /* semantic */
+  --bg-page:             var(--paper-1);
+  --bg-surface:          var(--paper-0);
+  --bg-alt:              var(--paper-2);
+  --bg-well:             var(--paper-3);
+  --bg-inverse:          var(--ink-0);
+  --text-strong:         var(--ink-1);
+  --text-body:           var(--ink-2);
+  --text-muted:          var(--ink-3);
+  --text-faint:          var(--ink-4);
+  --text-on-inverse:     #F3EFE6;
+  --text-muted-on-inv:   rgba(243,239,230,.62);
+  --text-accent:         var(--clay-1);
+  --text-accent-on-inv:  var(--clay-3);
+  --border-subtle:       var(--line-1);
+  --border-strong:       var(--line-2);
+  --border-on-inv:       var(--line-on-ink);
+  --accent:              var(--clay-1);
+  --accent-hover:        var(--clay-2);
+  --focus-ring:          rgba(197,83,46,.45);
 
-  .hero h1 {
-    font-size: 58px; font-weight: 800; line-height: 1.06;
-    letter-spacing: -2.5px; color: var(--text);
-    margin-bottom: 24px;
-  }
-  .hero h1 .accent { color: var(--accent); }
+  /* shadows */
+  --shadow-xs: 0 1px 2px rgba(28,27,22,.05);
+  --shadow-sm: 0 1px 3px rgba(28,27,22,.06), 0 1px 2px rgba(28,27,22,.04);
+  --shadow-md: 0 4px 14px rgba(28,27,22,.07), 0 2px 4px rgba(28,27,22,.04);
+  --shadow-lg: 0 12px 32px rgba(28,27,22,.10), 0 4px 8px rgba(28,27,22,.05);
+  --shadow-accent: 0 6px 20px rgba(197,83,46,.22);
 
-  .hero-body {
-    font-size: 17px; color: var(--text-mid);
-    line-height: 1.7; max-width: 480px;
-    margin-bottom: 40px;
-  }
+  /* radii */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 999px;
 
-  .hero-actions {
-    display: flex; gap: 12px; align-items: center;
-    margin-bottom: 56px;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-    padding: 13px 28px; border-radius: 8px;
-    font-weight: 700; font-size: 14px;
-    letter-spacing: -0.2px;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-primary::after { content: '→'; font-weight: 400; }
-  .btn-ghost {
-    color: var(--text-mid); font-size: 13px;
-    padding: 13px 20px; border-radius: 8px;
-    border: 1px solid var(--border-m);
-    display: inline-flex; align-items: center; gap: 7px;
-  }
-  .btn-ghost::before { content: '↓'; }
+  /* motion */
+  --ease-out:  cubic-bezier(.22,1,.36,1);
+  --ease-soft: cubic-bezier(.4,0,.2,1);
+  --dur-fast:  140ms;
+  --dur-base:  220ms;
+  --dur-slow:  420ms;
 
-  .hero-logos {
-    display: flex; align-items: center; gap: 8px;
-    flex-wrap: wrap;
-  }
-  .hero-logos-label {
-    font-size: 11px; color: var(--text-low);
-    letter-spacing: 1.5px; text-transform: uppercase;
-    margin-right: 4px;
-  }
-  .logo-chip {
-    font-size: 12px; font-weight: 600; color: var(--text-low);
-    padding: 5px 12px;
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    letter-spacing: 0.2px;
-    white-space: nowrap;
-  }
+  /* type */
+  --font-display: 'Schibsted Grotesk', system-ui, sans-serif;
+  --font-sans:    'Hanken Grotesk', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
 
-  /* Stat Grid */
-  .stat-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  .stat-card {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 22px;
-    position: relative;
-    overflow: hidden;
-  }
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
-    opacity: 0;
-  }
-  .stat-card:first-child::before { opacity: 1; }
+  /* spacing */
+  --space-1: 4px;   --space-2: 8px;   --space-3: 12px;  --space-4: 16px;
+  --space-5: 24px;  --space-6: 32px;  --space-7: 40px;  --space-8: 48px;
+  --space-9: 64px;  --space-10: 80px; --space-11: 96px; --space-12: 128px;
 
-  .stat-num {
-    font-size: 40px; font-weight: 800;
-    color: var(--accent); letter-spacing: -2px;
-    line-height: 1; margin-bottom: 8px;
-    font-variant-numeric: tabular-nums;
-  }
-  .stat-num.white { color: var(--text); }
-  .stat-desc {
-    font-size: 12px; color: var(--text-mid);
-    line-height: 1.5;
-  }
-  .stat-source {
-    font-size: 10px; color: var(--text-low);
-    margin-top: 10px; letter-spacing: 0.5px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-  }
+  /* layout */
+  --container: 1200px;
+  --gutter:    clamp(20px, 5vw, 64px);
+  --section-y: clamp(64px, 9vw, 128px);
+}
 
-  /* ── TICKER ──────────────────────────── */
-  .ticker {
-    border-bottom: 1px solid var(--border);
-    padding: 0 0 0 56px;
-    display: flex; align-items: center;
-    height: 48px;
-  }
-  .ticker-label {
-    font-size: 10px; letter-spacing: 2px; font-weight: 700;
-    color: var(--text-low); text-transform: uppercase;
-    white-space: nowrap; padding-right: 28px;
-    border-right: 1px solid var(--border);
-    flex-shrink: 0;
-  }
-  .ticker-items {
-    display: flex; gap: 36px;
-    overflow-x: scroll; scroll-behavior: smooth;
-    padding: 0 28px; flex: 1;
-    cursor: grab; user-select: none;
-    -ms-overflow-style: none; scrollbar-width: none;
-  }
-  .ticker-items.dragging { cursor: grabbing; }
-  .ticker-items::-webkit-scrollbar { display: none; }
-  .ticker-item {
-    font-size: 12px; color: var(--text-low);
-    white-space: nowrap; letter-spacing: 0.3px;
-  }
-  .ticker-item strong { color: rgba(240,240,238,0.5); font-weight: 600; }
-  .ticker-sep { color: var(--border-m); }
+/* ── BASE ───────────────────────────────────────────────── */
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-page);
+  color: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+*:focus-visible { outline: 2px solid var(--clay-1); outline-offset: 2px; }
 
-  /* ── WORK SECTION ────────────────────── */
-  .section {
-    padding: 80px 56px;
-    border-bottom: 1px solid var(--border);
-  }
-  .section-header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 40px;
-  }
-  .section-eyebrow {
-    font-size: 10px; letter-spacing: 3px; font-weight: 700;
-    color: var(--text-low); text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .section-title {
-    font-size: 28px; font-weight: 800; letter-spacing: -0.8px;
-    color: var(--text);
-  }
-  .section-link {
-    font-size: 13px; color: var(--text-mid);
-    display: flex; align-items: center; gap: 6px;
-    padding-bottom: 2px;
-    border-bottom: 1px solid var(--border-m);
-  }
-  .section-link::after { content: '→'; }
+.wrap { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
 
-  /* Work Grid */
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto;
-    gap: 14px;
-  }
-  .work-card {
-    border-radius: 12px; overflow: hidden;
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    display: flex; flex-direction: column;
-    position: relative;
-  }
+/* ── SCROLL REVEAL ──────────────────────────────────────── */
+.reveal {
+  opacity: 1;
+  transform: translateY(14px);
+  transition: transform .6s var(--ease-out);
+}
+.reveal.is-in { transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { transform: none; transition: none; } }
 
-  .work-thumb {
-    flex: 1;
-    min-height: 180px;
-    display: flex; align-items: center; justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
+/* ── NAV ─────────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 200;
+  height: 68px;
+  background: color-mix(in srgb, var(--paper-1) 80%, transparent);
+  backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.nav__inner {
+  max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter);
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  color: var(--text-strong); letter-spacing: -0.01em;
+}
+.nav-logo-mark {
+  width: 34px; height: 34px; border-radius: 9px;
+  background: var(--clay-1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; color: #fff;
+  flex-shrink: 0;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 4px;
+}
+.nav-links a {
+  font-family: var(--font-sans); font-size: 14px; font-weight: 500;
+  color: var(--text-body); padding: 8px 14px; border-radius: var(--radius-sm);
+  transition: color var(--dur-fast);
+}
+.nav-links a:hover { color: var(--text-accent); }
+.nav-cta {
+  background: var(--clay-1) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  padding: 9px 20px !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-accent);
+  transition: background var(--dur-fast) !important;
+}
+.nav-cta:hover { background: var(--clay-2) !important; }
+@media (max-width: 680px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+}
 
-  /* Unique visual treatments per card */
-  .wt-rules {
-    background: linear-gradient(160deg, #0d1a2e 0%, #06090f 100%);
-  }
-  .wt-rules::after {
-    content: '';
-    position: absolute;
-    width: 320px; height: 320px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(93,232,184,0.06) 0%, transparent 70%);
-    top: 50%; left: 50%; transform: translate(-50%,-50%);
-  }
-  /* Rule builder mockup */
-  .wt-rules .thumb-inner {
-    position: relative; z-index: 1;
-    display: flex; flex-direction: column; gap: 8px;
-    padding: 28px 24px; width: 100%;
-  }
-  .rb-row {
-    display: flex; align-items: center; gap: 7px;
-  }
-  .rb-connector {
-    font-size: 9px; font-weight: 700; letter-spacing: 1px;
-    color: rgba(93,232,184,0.5);
-    background: rgba(93,232,184,0.08);
-    border: 1px solid rgba(93,232,184,0.18);
-    border-radius: 4px;
-    padding: 3px 7px;
-    flex-shrink: 0;
-  }
-  .rb-pill {
-    height: 28px; border-radius: 6px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    display: flex; align-items: center;
-    padding: 0 10px;
-    font-size: 10px; color: rgba(240,240,238,0.35); letter-spacing: 0.5px;
-    flex: 1;
-  }
-  .rb-pill.active {
-    background: rgba(93,232,184,0.08);
-    border-color: rgba(93,232,184,0.22);
-    color: rgba(93,232,184,0.65);
-  }
-  .rb-divider {
-    height: 1px; background: rgba(255,255,255,0.05); margin: 2px 0;
-  }
+/* ── BUTTONS ────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-sans); font-weight: 700; font-size: 14px;
+  border-radius: var(--radius-sm); border: none; cursor: pointer;
+  text-decoration: none; transition: background var(--dur-fast), border-color var(--dur-fast), color var(--dur-fast), transform var(--dur-fast);
+  padding: 11px 22px;
+}
+.btn:active { transform: translateY(1px); }
+.btn--primary {
+  background: var(--clay-1); color: #fff;
+  box-shadow: var(--shadow-accent);
+}
+.btn--primary:hover { background: var(--clay-2); }
+.btn--primary .btn-arrow { transition: transform var(--dur-fast); }
+.btn--primary:hover .btn-arrow { transform: translateX(3px); }
+.btn--secondary {
+  background: var(--bg-surface); color: var(--text-body);
+  border: 1px solid var(--border-strong);
+}
+.btn--secondary:hover { border-color: var(--clay-line); color: var(--text-accent); }
+.btn--inv {
+  background: #fff; color: var(--ink-1);
+}
+.btn--inv:hover { background: var(--paper-2); }
 
-  .wt-onetrust {
-    background: linear-gradient(160deg, #0d2235 0%, #06141f 100%);
-  }
-  .wt-onetrust::after {
-    content: '';
-    position: absolute;
-    width: 280px; height: 280px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(93,232,184,0.08) 0%, transparent 70%);
-    top: 50%; left: 50%; transform: translate(-50%,-50%);
-  }
-  /* Mini design system mockup */
-  .wt-onetrust .thumb-inner {
-    position: relative; z-index: 1;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-    padding: 24px; width: 100%;
-  }
-  .ds-chip {
-    height: 32px; border-radius: 6px;
-    background: rgba(93,232,184,0.1);
-    border: 1px solid rgba(93,232,184,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px; color: rgba(93,232,184,0.6); letter-spacing: 1px;
-  }
-  .ds-chip.filled { background: rgba(93,232,184,0.18); }
-  .ds-swatch-row {
-    grid-column: 1 / 3;
-    display: flex; gap: 6px;
-  }
-  .ds-swatch {
-    height: 20px; flex: 1; border-radius: 4px;
-  }
+/* ── EYEBROW ────────────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--clay-1);
+}
+.eyebrow::before {
+  content: ''; display: block; width: 24px; height: 1.5px;
+  background: var(--clay-1); flex-shrink: 0;
+}
+.eyebrow--muted { color: var(--text-faint); }
+.eyebrow--muted::before { background: var(--text-faint); }
+.eyebrow--on-inv { color: var(--clay-3); }
+.eyebrow--on-inv::before { background: var(--clay-3); }
+.eyebrow--no-rule::before { display: none; }
 
-  .wt-schlage {
-    background: linear-gradient(160deg, #1a1410 0%, #0d0b08 100%);
-  }
-  .wt-schlage::after {
-    content: '';
-    position: absolute; inset: 24px;
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
-  }
-  .wt-schlage .thumb-label {
-    position: relative; z-index: 1;
-    font-size: 11px; letter-spacing: 2px;
-    color: rgba(255,255,255,0.2); text-align: center;
-  }
+/* ── HERO ───────────────────────────────────────────────── */
+.hero {
+  padding-top: clamp(56px, 8vw, 96px);
+  padding-bottom: clamp(48px, 7vw, 80px);
+  border-bottom: 1px solid var(--border-subtle);
+  scroll-margin-top: 88px;
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+.hero__eyebrow { margin-bottom: var(--space-5); }
+.hero__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 1.02; letter-spacing: -0.02em;
+  color: var(--text-strong);
+  margin-bottom: var(--space-5);
+}
+.hero__title .accent { color: var(--clay-1); }
+.hero__lede {
+  font-size: 18px; line-height: 1.6; color: var(--text-body);
+  max-width: 480px; margin-bottom: var(--space-7);
+}
+.hero__cta { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-10); }
+.hero__logos { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.hero__logos-label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-faint);
+}
+.logo-chip {
+  font-family: var(--font-sans); font-size: 12px; font-weight: 600;
+  color: var(--text-muted); padding: 5px 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  background: var(--bg-surface);
+}
 
-  .wt-health {
-    background: linear-gradient(160deg, #0d1f1a 0%, #071410 100%);
-  }
-  .wt-health::after {
-    content: '';
-    position: absolute;
-    width: 120px; height: 120px;
-    border-radius: 50%;
-    border: 1px solid rgba(93,232,184,0.12);
-    top: 50%; left: 50%; transform: translate(-50%,-50%);
-  }
-  .wt-health .thumb-label {
-    position: relative; z-index: 1;
-    font-size: 32px; font-weight: 800; color: rgba(93,232,184,0.3);
-    letter-spacing: -1px;
-  }
+/* Stat grid */
+.stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-xs);
+  display: flex; flex-direction: column;
+}
+.stat-card--accent { border-top: 2px solid var(--clay-1); }
+.stat-num {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 56px; line-height: 1; letter-spacing: -0.03em;
+  color: var(--text-strong);
+  margin-bottom: var(--space-3);
+}
+.stat-card--accent .stat-num { color: var(--clay-1); }
+.stat-desc {
+  font-size: 13px; line-height: 1.5; color: var(--text-body);
+  flex: 1;
+}
+.stat-meta {
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);
+  letter-spacing: 0.04em; margin-top: var(--space-4);
+  padding-top: var(--space-4); border-top: 1px solid var(--border-subtle);
+}
 
-  .wt-perq {
-    background: linear-gradient(160deg, #1a1020 0%, #0d0810 100%);
-  }
-  .wt-perq .thumb-label {
-    font-size: 11px; letter-spacing: 2px;
-    color: rgba(255,255,255,0.18);
-  }
+@media (max-width: 900px) {
+  .hero__grid { grid-template-columns: 1fr; }
+}
 
-  .wt-purdue {
-    background: linear-gradient(160deg, #0d1a10 0%, #060e08 100%);
-  }
-  .wt-purdue::after {
-    content: '';
-    position: absolute;
-    width: 100px; height: 100px;
-    border-radius: 50%;
-    border: 1px solid rgba(93,232,184,0.15);
-    top: 50%; left: 50%; transform: translate(-50%,-50%);
-    box-shadow: 0 0 40px rgba(93,232,184,0.06);
-  }
-  .wt-purdue .thumb-label {
-    position: relative; z-index: 1;
-    font-size: 11px; letter-spacing: 2px;
-    color: rgba(93,232,184,0.3);
-  }
+/* ── EXPERIENCE STRIP ───────────────────────────────────── */
+.expstrip {
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+.expstrip__inner {
+  display: flex; align-items: center; gap: var(--space-9);
+  padding: 14px 0; overflow-x: auto; scrollbar-width: none;
+  cursor: grab;
+}
+.expstrip__inner::-webkit-scrollbar { display: none; }
+.expstrip__inner.dragging { cursor: grabbing; }
+.expstrip__label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint);
+  white-space: nowrap; flex-shrink: 0;
+  padding-right: var(--space-9); border-right: 1px solid var(--border-subtle);
+}
+.expstrip__items { display: flex; gap: var(--space-9); flex-shrink: 0; }
+.expstrip__item {
+  font-size: 13px; color: var(--text-muted); white-space: nowrap;
+}
+.expstrip__item b { color: var(--text-strong); font-weight: 600; }
 
-  .wt-terracotta {
-    background: linear-gradient(160deg, #1e1208 0%, #100c06 100%);
-  }
-  .wt-terracotta::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, transparent 30%, rgba(10,8,4,0.65));
-  }
+/* ── SELECTED WORK ──────────────────────────────────────── */
+.section {
+  padding: var(--section-y) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  scroll-margin-top: 88px;
+}
+.section-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: var(--space-8);
+}
+.section-meta { display: flex; flex-direction: column; gap: var(--space-2); }
+.section-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.02em; color: var(--text-strong);
+}
+.section-link {
+  font-size: 14px; font-weight: 600; color: var(--text-body);
+  display: inline-flex; align-items: center; gap: 5px;
+  transition: color var(--dur-fast);
+}
+.section-link .arr { transition: transform var(--dur-fast); }
+.section-link:hover { color: var(--text-accent); }
+.section-link:hover .arr { transform: translateX(3px); }
 
-  .work-info {
-    padding: 20px 22px 22px;
-    border-top: 1px solid var(--border);
-  }
-  .work-tag {
-    font-size: 10px; font-weight: 700; letter-spacing: 2px;
-    color: var(--accent); text-transform: uppercase;
-    margin-bottom: 7px;
-  }
-  .work-title {
-    font-size: 16px; font-weight: 700; color: var(--text);
-    line-height: 1.3; margin-bottom: 5px;
-    letter-spacing: -0.2px;
-  }
-  .work-meta {
-    font-size: 12px; color: var(--text-low);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .work-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-m); }
-  .work-arrow {
-    position: absolute; top: 18px; right: 18px;
-    width: 28px; height: 28px; border-radius: 50%;
-    background: var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; color: var(--text-mid);
-  }
+/* Work grid */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.work-card {
+  display: flex; flex-direction: column;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none; color: inherit;
+  transition: transform var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              border-color var(--dur-base);
+  position: relative;
+}
+.work-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--clay-line);
+}
+.work-thumb {
+  aspect-ratio: 16/10; overflow: hidden; position: relative;
+}
+.work-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.work-card:hover .work-thumb img { transform: scale(1.03); }
+.work-info { padding: 18px 20px 20px; }
+.work-tag {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--clay-1);
+  margin-bottom: 6px;
+}
+.work-title {
+  font-family: var(--font-display); font-weight: 600; font-size: 17px;
+  line-height: 1.3; color: var(--text-strong); margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.work-meta {
+  font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.work-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-strong); flex-shrink: 0; }
+.work-arrow {
+  position: absolute; top: 16px; right: 16px;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--text-muted);
+  opacity: 0; transform: scale(.85);
+  transition: opacity var(--dur-base), transform var(--dur-base) var(--ease-out), background var(--dur-fast), color var(--dur-fast);
+}
+.work-card:hover .work-arrow {
+  opacity: 1; transform: scale(1);
+  background: var(--clay-1); color: #fff; border-color: var(--clay-1);
+}
 
-  /* ── ABOUT STRIP ─────────────────────── */
-  .about-strip {
-    display: grid; grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid var(--border);
-  }
-  .about-left {
-    padding: 72px 56px;
-    border-right: 1px solid var(--border);
-  }
-  .about-right {
-    padding: 72px 56px;
-  }
-  .about-photo {
-    width: 72px; height: 72px; border-radius: 50%;
-    background: var(--bg-3);
-    border: 2px solid var(--border-m);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; color: var(--text-low);
-    margin-bottom: 28px;
-    overflow: hidden;
-  }
-  .about-h2 {
-    font-size: 32px; font-weight: 800; letter-spacing: -1px;
-    color: var(--text); line-height: 1.2;
-    margin-bottom: 20px;
-  }
-  .about-body {
-    font-size: 15px; color: var(--text-mid);
-    line-height: 1.75; margin-bottom: 28px;
-  }
-  .edu-row {
-    display: flex; flex-direction: column; gap: 12px;
-  }
-  .edu-item {
-    display: flex; align-items: flex-start; gap: 14px;
-    padding: 14px 16px;
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-  }
-  .edu-icon {
-    width: 32px; height: 32px; border-radius: 6px;
-    background: rgba(93,232,184,0.1);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; flex-shrink: 0;
-  }
-  .edu-degree { font-size: 13px; font-weight: 600; color: var(--text); }
-  .edu-school { font-size: 11px; color: var(--text-low); margin-top: 2px; }
+@media (max-width: 900px) { .work-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .work-grid { grid-template-columns: 1fr; } }
 
-  /* Skills Grid */
-  .skills-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-    margin-bottom: 28px;
-  }
-  .skill-group {
-    padding: 16px 18px;
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-  }
-  .skill-group-label {
-    font-size: 10px; letter-spacing: 2px; font-weight: 700;
-    color: var(--text-low); text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .skill-tag {
-    font-size: 11px; font-weight: 500; color: var(--text-mid);
-    padding: 3px 10px; border-radius: 100px;
-    background: var(--bg-3); border: 1px solid var(--border);
-  }
-  .skill-tag.hot { color: var(--accent); border-color: rgba(93,232,184,0.25); }
+/* ── ABOUT ──────────────────────────────────────────────── */
+.about {
+  padding: var(--section-y) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  scroll-margin-top: 88px;
+}
+.about__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 80px); align-items: start;
+}
+.about__photo {
+  width: 80px; height: 80px; border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden; margin-bottom: var(--space-6);
+}
+.about__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about__heading {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(26px, 3.5vw, 38px);
+  line-height: 1.12; letter-spacing: -0.01em;
+  color: var(--text-strong);
+  margin: var(--space-4) 0 var(--space-5);
+}
+.about__body {
+  font-size: 15px; line-height: 1.75; color: var(--text-body);
+  margin-bottom: var(--space-4);
+}
+.edu { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-8); }
+.edu-card {
+  display: flex; align-items: center; gap: var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-xs);
+}
+.edu-icon {
+  width: 40px; height: 40px; border-radius: var(--radius-sm);
+  background: var(--clay-soft); color: var(--clay-1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.edu-degree { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--text-strong); line-height: 1.3; }
+.edu-school { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 3px; }
 
-  /* ── TESTIMONIALS ────────────────────── */
-  .testimonials {
-    padding: 80px 56px;
-    border-bottom: 1px solid var(--border);
-  }
-  .testi-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-    margin-top: 40px;
-  }
-  .testi-card {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px 26px;
-    display: flex; flex-direction: column;
-    gap: 20px;
-  }
-  .testi-quote {
-    font-size: 15px; color: var(--text-mid);
-    line-height: 1.7; font-style: italic;
-    position: relative;
-    padding-top: 20px;
-  }
-  .testi-quote::before {
-    content: '"';
-    position: absolute; top: -6px; left: -2px;
-    font-size: 56px; line-height: 1; color: var(--accent);
-    opacity: 0.3; font-style: normal;
-    font-family: Georgia, serif;
-  }
-  .testi-author {
-    border-top: 1px solid var(--border);
-    padding-top: 18px;
-    margin-top: auto;
-  }
-  .testi-name {
-    font-size: 13px; font-weight: 700; color: var(--text);
-    margin-bottom: 3px;
-  }
-  .testi-role {
-    font-size: 11px; color: var(--text-low); line-height: 1.4;
-  }
+/* Skills */
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6) var(--space-5); }
+.skill-group-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint);
+  margin-bottom: var(--space-3);
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.skill-tag {
+  font-size: 12px; font-weight: 500; color: var(--text-muted);
+  padding: 4px 12px; border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong); background: var(--bg-surface);
+}
+.skill-tag--accent {
+  color: var(--clay-1); background: var(--clay-soft); border-color: var(--clay-line);
+}
 
-  /* ── EXPERIENCE TIMELINE ─────────────── */
-  .experience {
-    padding: 80px 56px;
-    border-bottom: 1px solid var(--border);
-  }
-  .exp-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-    margin-top: 40px;
-  }
-  .exp-card {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 22px;
-  }
-  .exp-period {
-    font-size: 10px; letter-spacing: 2px; font-weight: 700;
-    color: var(--text-low); text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .exp-role {
-    font-size: 16px; font-weight: 700; color: var(--text);
-    margin-bottom: 4px; letter-spacing: -0.2px;
-  }
-  .exp-company {
-    font-size: 13px; color: var(--accent);
-    margin-bottom: 14px; font-weight: 500;
-  }
-  .exp-desc {
-    font-size: 13px; color: var(--text-mid);
-    line-height: 1.65;
-  }
+@media (max-width: 900px) {
+  .about__grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 620px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
 
-  /* ── CTA ─────────────────────────────── */
-  .cta {
-    padding: 96px 56px;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(93,232,184,0.05) 0%, transparent 100%);
-  }
-  .cta-eyebrow {
-    font-size: 11px; letter-spacing: 3px; font-weight: 700;
-    color: var(--text-low); text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .cta-h2 {
-    font-size: 48px; font-weight: 800; letter-spacing: -2px;
-    color: var(--text); margin-bottom: 18px; line-height: 1.1;
-  }
-  .cta-h2 span { color: var(--accent); }
-  .cta-body {
-    font-size: 16px; color: var(--text-mid);
-    max-width: 480px; margin: 0 auto 36px;
-    line-height: 1.7;
-  }
-  .cta-actions {
-    display: flex; gap: 14px; justify-content: center; align-items: center;
-  }
-  .cta-email {
-    font-size: 15px; color: var(--accent);
-    border-bottom: 1px solid rgba(93,232,184,0.3);
-    padding-bottom: 2px;
-  }
+/* ── TESTIMONIALS ───────────────────────────────────────── */
+.testimonials {
+  padding: var(--section-y) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  margin-top: var(--space-8);
+}
+.testi-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7) var(--space-6);
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-xs);
+}
+.testi-quote {
+  font-size: 15px; line-height: 1.75; color: var(--text-body);
+  font-style: italic; position: relative; padding-top: 24px;
+  flex: 1;
+}
+.testi-quote::before {
+  content: '"';
+  position: absolute; top: -8px; left: -4px;
+  font-family: Georgia, serif; font-style: normal;
+  font-size: 64px; line-height: 1; color: var(--clay-1); opacity: 0.35;
+}
+.testi-author {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-5); margin-top: var(--space-5);
+}
+.testi-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--text-strong); margin-bottom: 4px; }
+.testi-role { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); line-height: 1.4; }
 
-  /* ── FOOTER ──────────────────────────── */
-  .footer {
-    padding: 32px 56px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-left {
-    font-size: 13px; color: var(--text-low);
-  }
-  .footer-right {
-    display: flex; gap: 24px;
-  }
-  .footer-right a {
-    font-size: 12px; color: var(--text-low);
-    letter-spacing: 0.3px;
-  }
+@media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .testi-grid { grid-template-columns: 1fr; } }
 
-  /* ── MOBILE RESPONSIVE ───────────────── */
-  @media (max-width: 768px) {
+/* ── EXPERIENCE CARDS ───────────────────────────────────── */
+.experience {
+  padding: var(--section-y) 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.exp-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  margin-top: var(--space-8);
+}
+.exp-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px 22px;
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--dur-base);
+}
+.exp-card:hover { border-color: var(--clay-line); }
+.exp-period {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--clay-1);
+  margin-bottom: var(--space-3);
+}
+.exp-role { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--text-strong); margin-bottom: 4px; }
+.exp-company { font-size: 13px; font-weight: 600; color: var(--clay-1); margin-bottom: var(--space-4); }
+.exp-desc { font-size: 13px; line-height: 1.65; color: var(--text-body); }
 
-    /* Nav */
-    .nav { padding: 0 20px; }
-    .nav-logo { white-space: nowrap; }
-    .nav-links a:not(.nav-cta) { display: none; }
+@media (max-width: 900px) { .exp-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 620px) { .exp-grid { grid-template-columns: 1fr; } }
 
-    /* Hero */
-    .hero {
-      grid-template-columns: 1fr;
-      padding: 48px 24px 40px;
-      min-height: auto;
-      gap: 40px;
-    }
-    .hero h1 { font-size: 42px; letter-spacing: -1.5px; }
-    .hero-body { font-size: 15px; margin-bottom: 32px; }
-    .hero-actions { flex-wrap: wrap; margin-bottom: 32px; }
+/* ── CLOSING CTA ────────────────────────────────────────── */
+.closing {
+  background: var(--bg-inverse);
+  padding: var(--section-y) 0;
+  text-align: center;
+}
+.closing__inner {
+  max-width: 680px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: var(--space-5);
+}
+.closing__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--text-on-inverse);
+}
+.closing__title .accent { color: var(--clay-3); }
+.closing__para {
+  font-size: 17px; line-height: 1.7; color: var(--text-muted-on-inv);
+  max-width: 520px;
+}
+.closing__cta {
+  display: flex; align-items: center; gap: var(--space-6);
+  flex-wrap: wrap; justify-content: center; margin-top: var(--space-3);
+}
+.closing__email {
+  font-family: var(--font-mono); font-size: 14px;
+  color: var(--text-muted-on-inv);
+  transition: color var(--dur-fast);
+}
+.closing__email:hover { color: var(--clay-3); }
 
-    /* Ticker */
-    .ticker { padding: 0 0 0 20px; }
+/* ── FOOTER ─────────────────────────────────────────────── */
+.footer {
+  background: var(--ink-0);
+  border-top: 1px solid var(--border-on-inv);
+}
+.footer__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-5); flex-wrap: wrap;
+  padding: var(--space-6) 0;
+}
+.footer__copy {
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--text-muted-on-inv);
+}
+.footer__links { display: flex; gap: var(--space-6); }
+.footer__links a {
+  font-size: 13px; color: var(--text-muted-on-inv);
+  transition: color var(--dur-fast);
+}
+.footer__links a:hover { color: var(--clay-3); }
 
-    /* Sections */
-    .section { padding: 56px 24px; }
-    .section-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 28px;
-    }
+/* ── CONTACT MODAL ──────────────────────────────────────── */
+.overlay {
+  position: fixed; inset: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--gutter);
+  background: rgba(21,20,15,.42);
+  backdrop-filter: blur(3px);
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--dur-base) var(--ease-soft);
+}
+.overlay.is-open { opacity: 1; pointer-events: auto; }
+.modal {
+  width: min(480px, 100%);
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-8) var(--space-7);
+  position: relative;
+  transform: translateY(12px) scale(.98);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.overlay.is-open .modal { transform: none; }
+.modal__close {
+  position: absolute; top: 16px; right: 16px;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-alt); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--text-muted);
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+.modal__close:hover { background: var(--border-subtle); color: var(--text-strong); }
+.modal__title {
+  font-family: var(--font-display); font-weight: 700; font-size: 22px;
+  color: var(--text-strong); margin-bottom: 4px;
+}
+.modal__sub { font-size: 14px; color: var(--text-muted); }
+.modal__form { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
+.field label {
+  display: block; font-family: var(--font-mono); font-size: 11px;
+  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 6px;
+}
+.field input, .field textarea {
+  width: 100%;
+  font-family: var(--font-sans); font-size: 14px; color: var(--text-strong);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+  outline: none;
+}
+.field input:focus, .field textarea:focus {
+  border-color: var(--clay-1);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+.field textarea { resize: vertical; min-height: 100px; }
+.modal__success {
+  display: none; flex-direction: column; align-items: center; gap: var(--space-4);
+  text-align: center; padding: var(--space-7) 0;
+}
+.modal__success.is-on { display: flex; }
+.modal__success-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--sage-soft); color: var(--sage-1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.modal__success-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--text-strong); }
+.modal__success-body { font-size: 14px; color: var(--text-muted); }
 
-    /* Work grid — single column */
-    .work-grid { grid-template-columns: 1fr; }
-
-    /* About */
-    .about-strip { grid-template-columns: 1fr; }
-    .about-left {
-      padding: 48px 24px;
-      border-right: none;
-      border-bottom: 1px solid var(--border);
-    }
-    .about-right { padding: 48px 24px; }
-    .about-h2 { font-size: 26px; }
-    .skills-grid { grid-template-columns: 1fr; }
-
-    /* Testimonials */
-    .testimonials { padding: 56px 24px; }
-    .testi-grid { grid-template-columns: 1fr; }
-
-    /* Experience */
-    .experience { padding: 56px 24px; }
-    .exp-grid { grid-template-columns: 1fr; }
-
-    /* CTA */
-    .cta { padding: 72px 24px; }
-    .cta-h2 { font-size: 34px; letter-spacing: -1px; }
-    .cta-actions { flex-direction: column; gap: 16px; }
-
-    /* Footer */
-    .footer {
-      padding: 28px 20px;
-      flex-direction: column;
-      gap: 16px;
-      text-align: center;
-    }
-  }
+/* ── SECTION RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo">
-    <div class="nav-logo-mark">KC</div>
-    KC Marshall
-  </div>
-  <div class="nav-links">
-    <a href="#selected-work">Work</a>
-    <a href="#">Process</a>
-    <a href="#about">About</a>
-    <a href="mailto:kevincmarshall@gmail.com" class="nav-cta">Let's Talk</a>
+  <div class="nav__inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-mark">KC</div>
+      KC Marshall
+    </a>
+    <div class="nav-links">
+      <a href="#selected-work">Work</a>
+      <a href="#">Process</a>
+      <a href="#about">About</a>
+      <button class="nav-cta btn" onclick="openModal()" style="font-family:var(--font-sans)">Let's Talk</button>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div>
-    <div class="hero-eyebrow">Senior Principal UX Design Lead</div>
-    <h1>Designing systems<br>that <span class="accent">move<br>numbers.</span></h1>
-    <p class="hero-body">I translate complex enterprise challenges into measurable, human-centered outcomes — across SaaS, Fintech, Healthcare, and Industrial platforms for over 15 years.</p>
-    <div class="hero-actions">
-      <a href="#selected-work" class="btn-primary">View Case Studies</a>
-      <a href="/assets/resume/Kevin-Marshall-2026-Resume.pdf" class="btn-ghost">Download Resume</a>
-    </div>
-    <div class="hero-logos">
-      <span class="hero-logos-label">Worked with</span>
-      <span class="logo-chip">OneTrust</span>
-      <span class="logo-chip">Caterpillar</span>
-      <span class="logo-chip">Allison Transmission</span>
-      <span class="logo-chip">KAR Global</span>
-      <span class="logo-chip">Purdue University</span>
-    </div>
-  </div>
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero__grid reveal">
+      <div>
+        <div class="eyebrow hero__eyebrow">Senior Principal UX Design Lead</div>
+        <h1 class="hero__title">Designing systems<br>that <span class="accent">move<br>numbers.</span></h1>
+        <p class="hero__lede">I translate complex enterprise challenges into measurable, human-centered outcomes — across SaaS, Fintech, Healthcare, and Industrial platforms for over 15 years.</p>
+        <div class="hero__cta">
+          <a href="#selected-work" class="btn btn--primary">View Case Studies <span class="btn-arrow">→</span></a>
+          <a href="/assets/resume/Kevin-Marshall-2026-Resume.pdf" class="btn btn--secondary">↓ Download Resume</a>
+        </div>
+        <div class="hero__logos">
+          <span class="hero__logos-label">Worked with</span>
+          <span class="logo-chip">OneTrust</span>
+          <span class="logo-chip">Caterpillar</span>
+          <span class="logo-chip">Allison Transmission</span>
+          <span class="logo-chip">KAR Global</span>
+          <span class="logo-chip">Purdue University</span>
+        </div>
+      </div>
 
-  <div class="stat-grid">
-    <div class="stat-card">
-      <div class="stat-num">50%</div>
-      <div class="stat-desc">Reduction in call handling times through healthcare service design</div>
-      <div class="stat-source">DMI Consulting · Healthcare Strategy</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">1M+</div>
-      <div class="stat-desc">End-users reached across Automotive, Furniture Retail &amp; Multi-Family markets</div>
-      <div class="stat-source">PERQ Software · Product Design</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num white">15+</div>
-      <div class="stat-desc">Years leading enterprise UX at Fortune 500 scale and beyond</div>
-      <div class="stat-source">Enterprise SaaS · Fintech · Industrial</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num white">3×</div>
-      <div class="stat-desc">Enterprise design systems built &amp; governed (OneTrust, Schlage, QSR)</div>
-      <div class="stat-source">Tokens · Component Libraries · Storybook</div>
+      <div class="stat-grid">
+        <div class="stat-card stat-card--accent">
+          <div class="stat-num">50%</div>
+          <div class="stat-desc">Reduction in call handling times through healthcare service design</div>
+          <div class="stat-meta">DMI Consulting · Healthcare Strategy</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1M+</div>
+          <div class="stat-desc">End-users reached across Automotive, Furniture Retail &amp; Multi-Family markets</div>
+          <div class="stat-meta">PERQ Software · Product Design</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">15+</div>
+          <div class="stat-desc">Years leading enterprise UX at Fortune 500 scale and beyond</div>
+          <div class="stat-meta">Enterprise SaaS · Fintech · Industrial</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3×</div>
+          <div class="stat-desc">Enterprise design systems built &amp; governed (OneTrust, Schlage, QSR)</div>
+          <div class="stat-meta">Tokens · Component Libraries · Storybook</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker">
-  <span class="ticker-label">Experience</span>
-  <div class="ticker-items">
-    <span class="ticker-item"><strong>OneTrust</strong> &nbsp;Sr. Principal UX Design Lead</span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item"><strong>The Basement</strong> &nbsp;UX Director</span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item"><strong>NextGear Capital</strong> &nbsp;Sr. UX Architect</span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item"><strong>DMI Consulting</strong> &nbsp;Sr. UX Architect</span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item"><strong>PERQ Software</strong> &nbsp;UX Manager</span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item"><strong>Express Holdings</strong> &nbsp;Director of Media Technology</span>
+<!-- EXPERIENCE STRIP -->
+<div class="expstrip">
+  <div class="wrap">
+    <div class="expstrip__inner">
+      <span class="expstrip__label">Experience</span>
+      <div class="expstrip__items">
+        <span class="expstrip__item"><b>OneTrust</b> &nbsp;Sr. Principal UX Design Lead</span>
+        <span class="expstrip__item"><b>The Basement</b> &nbsp;UX Director</span>
+        <span class="expstrip__item"><b>NextGear Capital</b> &nbsp;Sr. UX Architect</span>
+        <span class="expstrip__item"><b>DMI Consulting</b> &nbsp;Sr. UX Architect</span>
+        <span class="expstrip__item"><b>PERQ Software</b> &nbsp;UX Manager</span>
+        <span class="expstrip__item"><b>Express Holdings</b> &nbsp;Director of Media Technology</span>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- SELECTED WORK -->
 <section class="section" id="selected-work">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">Selected Work</div>
-      <div class="section-title">Case Studies</div>
+  <div class="wrap">
+    <div class="section-header reveal">
+      <div class="section-meta">
+        <div class="eyebrow eyebrow--no-rule">Selected Work</div>
+        <h2 class="section-title">Case Studies</h2>
+      </div>
+      <a href="#" class="section-link">View all work <span class="arr">→</span></a>
     </div>
-    <a href="#" class="section-link">View all work</a>
-  </div>
 
-  <div class="work-grid">
+    <div class="work-grid">
 
-    <!-- Featured: Rules Builder -->
-    <a href="/work/rules-builder-case-study.html" class="work-card" style="text-decoration:none;color:inherit">
-      <div class="work-thumb wt-rules">
-        <img src="/assets/images/thumb-rule-builder.png" alt="Rule Builder case study thumbnail" style="width:100%;height:100%;object-fit:cover;" />
-      </div>
-      <div class="work-info">
-        <div class="work-tag">AI Prototype · Enterprise UX · UX Research</div>
-        <div class="work-title">Unifying a Rule Builder Across an Enterprise Platform</div>
-        <div class="work-meta">
-          OneTrust
-          <span class="work-meta-dot"></span>
-          March 2026
-          <span class="work-meta-dot"></span>
-          Sr. Principal UX Lead
+      <a href="/work/rules-builder-case-study.html" class="work-card reveal">
+        <div class="work-thumb">
+          <img src="/assets/images/thumb-rule-builder.png" alt="Rule Builder case study thumbnail" />
         </div>
-      </div>
-      <div class="work-arrow">→</div>
-    </a>
+        <div class="work-info">
+          <div class="work-tag">AI Prototype · Enterprise UX · UX Research</div>
+          <div class="work-title">Unifying a Rule Builder Across an Enterprise Platform</div>
+          <div class="work-meta">
+            OneTrust
+            <span class="work-dot"></span>
+            March 2026
+            <span class="work-dot"></span>
+            Sr. Principal UX Lead
+          </div>
+        </div>
+        <div class="work-arrow">→</div>
+      </a>
 
-    <!-- Schlage -->
-    <a href="/work/schlage-ecommerce-case-study" class="work-card" style="text-decoration:none;color:inherit">
-      <div class="work-thumb wt-schlage">
-        <img src="/assets/images/find-finish.gif" alt="Schlage.com End-to-End Redesign" style="width:100%;height:100%;object-fit:cover;" />
-      </div>
-      <div class="work-info">
-        <div class="work-tag">E-Commerce · UX Research</div>
-        <div class="work-title">Schlage.com End-to-End Redesign</div>
-        <div class="work-meta">The Basement <span class="work-meta-dot"></span> 2022</div>
-      </div>
-      <div class="work-arrow">→</div>
-    </a>
+      <a href="/work/schlage-ecommerce-case-study" class="work-card reveal">
+        <div class="work-thumb">
+          <img src="/assets/images/find-finish.gif" alt="Schlage.com End-to-End Redesign" />
+        </div>
+        <div class="work-info">
+          <div class="work-tag">E-Commerce · UX Research</div>
+          <div class="work-title">Schlage.com End-to-End Redesign</div>
+          <div class="work-meta">The Basement <span class="work-dot"></span> 2022</div>
+        </div>
+        <div class="work-arrow">→</div>
+      </a>
 
-    <!-- Healthcare -->
-    <a href="/work/dmi-call-time-case-study" class="work-card" style="text-decoration:none;color:inherit">
-      <div class="work-thumb wt-health">
-        <img src="/assets/images/IMG_5546.jpg" alt="50% Call Time Reduction via Service Design" style="width:100%;height:100%;object-fit:cover;" />
-      </div>
-      <div class="work-info">
-        <div class="work-tag">Healthcare · Service Design</div>
-        <div class="work-title">50% Call Time Reduction via Service Design</div>
-        <div class="work-meta">DMI Consulting <span class="work-meta-dot"></span> 2019</div>
-      </div>
-      <div class="work-arrow">→</div>
-    </a>
+      <a href="/work/dmi-call-time-case-study" class="work-card reveal">
+        <div class="work-thumb">
+          <img src="/assets/images/IMG_5546.jpg" alt="50% Call Time Reduction via Service Design" />
+        </div>
+        <div class="work-info">
+          <div class="work-tag">Healthcare · Service Design</div>
+          <div class="work-title">50% Call Time Reduction via Service Design</div>
+          <div class="work-meta">DMI Consulting <span class="work-dot"></span> 2019</div>
+        </div>
+        <div class="work-arrow">→</div>
+      </a>
 
-    <!-- PERQ -->
-    <a href="/work/perq-case-study" class="work-card" style="text-decoration:none;color:inherit">
-      <div class="work-thumb wt-perq">
-        <img src="/assets/images/perq-animation.gif" alt="PERQ: Scaling to 1M+ Consumers" style="width:100%;height:100%;object-fit:cover;object-position:right;" />
-      </div>
-      <div class="work-info">
-        <div class="work-tag">SaaS Product · Multi-Market</div>
-        <div class="work-title">PERQ: Scaling to 1M+ Consumers</div>
-        <div class="work-meta">PERQ Software <span class="work-meta-dot"></span> 2015–2019</div>
-      </div>
-      <div class="work-arrow">→</div>
-    </a>
+      <a href="/work/perq-case-study" class="work-card reveal">
+        <div class="work-thumb">
+          <img src="/assets/images/perq-animation.gif" alt="PERQ: Scaling to 1M+ Consumers" style="object-position:right" />
+        </div>
+        <div class="work-info">
+          <div class="work-tag">SaaS Product · Multi-Market</div>
+          <div class="work-title">PERQ: Scaling to 1M+ Consumers</div>
+          <div class="work-meta">PERQ Software <span class="work-dot"></span> 2015–2019</div>
+        </div>
+        <div class="work-arrow">→</div>
+      </a>
 
-    <!-- Purdue OTC -->
-    <a href="/work/purdue-otc-case-study" class="work-card">
-      <div class="work-thumb wt-purdue">
-        <img src="/assets/images/purdue-bright.png" alt="Advancing the Office of Commercial Technology" style="width:100%;height:100%;object-fit:cover;" />
-      </div>
-      <div class="work-info">
-        <div class="work-tag">UX Research · Advanced Prototyping</div>
-        <div class="work-title">Redesigning how Purdue research reaches the market</div>
-        <div class="work-meta">Purdue OTC <span class="work-meta-dot"></span> 2023</div>
-      </div>
-      <div class="work-arrow">→</div>
-    </a>
+      <a href="/work/purdue-otc-case-study" class="work-card reveal">
+        <div class="work-thumb">
+          <img src="/assets/images/purdue-bright.png" alt="Advancing the Office of Commercial Technology" />
+        </div>
+        <div class="work-info">
+          <div class="work-tag">UX Research · Advanced Prototyping</div>
+          <div class="work-title">Redesigning how Purdue research reaches the market</div>
+          <div class="work-meta">Purdue OTC <span class="work-dot"></span> 2023</div>
+        </div>
+        <div class="work-arrow">→</div>
+      </a>
 
-    <!-- Treasures of the Earth -->
-    <a href="/work/treasures-case-study" class="work-card" style="text-decoration:none;color:inherit;">
-      <div class="work-thumb wt-terracotta" style="min-height:180px;">
-        <img src="/assets/images/thmb-terracotta.png" alt="Treasures of the Earth — National Geographic Interactive" style="width:100%;height:100%;object-fit:cover;" />
-      </div>
-      <div class="work-info">
-        <div class="work-tag">Interactive Design · RFID · 3D Visualization</div>
-        <div class="work-title">Treasures of the Earth — National Geographic Interactive</div>
-        <div class="work-meta">Children's Museum of Indianapolis <span class="work-meta-dot"></span> 2014–2015</div>
-      </div>
-      <div class="work-arrow">→</div>
-    </a>
+      <a href="/work/treasures-case-study" class="work-card reveal">
+        <div class="work-thumb">
+          <img src="/assets/images/thmb-terracotta.png" alt="Treasures of the Earth — National Geographic Interactive" />
+        </div>
+        <div class="work-info">
+          <div class="work-tag">Interactive Design · RFID · 3D Visualization</div>
+          <div class="work-title">Treasures of the Earth — National Geographic Interactive</div>
+          <div class="work-meta">Children's Museum of Indianapolis <span class="work-dot"></span> 2014–2015</div>
+        </div>
+        <div class="work-arrow">→</div>
+      </a>
 
+    </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<div class="about-strip" id="about">
-  <div class="about-left">
-    <div class="about-photo"><img src="/assets/images/profile.jpg" alt="KC Marshall" style="width:100%;height:100%;object-fit:cover;border-radius:50%" /></div>
-    <div class="section-eyebrow" style="margin-bottom:12px">About</div>
-    <h2 class="about-h2">Strategic architect.<br>Hands-on designer.<br>Team builder.</h2>
-    <p class="about-body">I'm a Senior Principal UX Design Lead based in Fishers, Indiana with over 15 years bridging the gap between business strategy and human-centered design. I've built design departments from scratch, governed enterprise-scale design systems, and led Fortune 500 digital transformations — while keeping the user at the center of every decision.</p>
-    <p class="about-body">Currently at OneTrust, I lead the evolution of the platform's SaaS UX, integrating Pendo analytics and spearheading the organization's AI-driven prototyping initiative.</p>
-    <a href="/assets/resume/Kevin-Marshall-2026-Resume.pdf" class="btn-ghost" style="display:inline-flex;margin-top:8px">Download Resume</a>
-  </div>
-  <div class="about-right">
-    <div class="section-eyebrow" style="margin-bottom:24px">Education &amp; Skills</div>
-    <div class="edu-row" style="margin-bottom:28px">
-      <div class="edu-item">
-        <div class="edu-icon">🎓</div>
-        <div>
-          <div class="edu-degree">Masters of Science — Informatics &amp; HCI</div>
-          <div class="edu-school">Indiana University</div>
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about__grid reveal">
+      <div>
+        <div class="about__photo">
+          <img src="/assets/images/profile.jpg" alt="KC Marshall" />
         </div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-icon">🎨</div>
+        <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-3)">About</div>
+        <h2 class="about__heading">Strategic architect.<br>Hands-on designer.<br>Team builder.</h2>
         <div>
-          <div class="edu-degree">Bachelor of Fine Arts — Graphic Design</div>
-          <div class="edu-school">Ball State University</div>
+          <p class="about__body">I'm a Senior Principal UX Design Lead based in Fishers, Indiana with over 15 years bridging the gap between business strategy and human-centered design. I've built design departments from scratch, governed enterprise-scale design systems, and led Fortune 500 digital transformations — while keeping the user at the center of every decision.</p>
+          <p class="about__body">Currently at OneTrust, I lead the evolution of the platform's SaaS UX, integrating Pendo analytics and spearheading the organization's AI-driven prototyping initiative.</p>
+        </div>
+        <a href="/assets/resume/Kevin-Marshall-2026-Resume.pdf" class="btn btn--secondary" style="margin-top:var(--space-3)">↓ Download Resume</a>
+      </div>
+      <div>
+        <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-6)">Education &amp; Skills</div>
+        <div class="edu" style="margin-bottom:var(--space-8)">
+          <div class="edu-card">
+            <div class="edu-icon">🎓</div>
+            <div>
+              <div class="edu-degree">Masters of Science — Informatics &amp; HCI</div>
+              <div class="edu-school">Indiana University</div>
+            </div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-icon">🎨</div>
+            <div>
+              <div class="edu-degree">Bachelor of Fine Arts — Graphic Design</div>
+              <div class="edu-school">Ball State University</div>
+            </div>
+          </div>
+        </div>
+        <div class="skills-grid">
+          <div>
+            <div class="skill-group-label">Design &amp; AI</div>
+            <div class="skill-tags">
+              <span class="skill-tag skill-tag--accent">Figma</span>
+              <span class="skill-tag skill-tag--accent">AI Prototyping</span>
+              <span class="skill-tag">Figma Make</span>
+              <span class="skill-tag">LLM-Guided UI</span>
+              <span class="skill-tag">Azure XP</span>
+              <span class="skill-tag">Vercel</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">Analytics &amp; Research</div>
+            <div class="skill-tags">
+              <span class="skill-tag skill-tag--accent">Pendo</span>
+              <span class="skill-tag">Mixpanel</span>
+              <span class="skill-tag">GA4</span>
+              <span class="skill-tag">Maze</span>
+              <span class="skill-tag">UXTweak</span>
+              <span class="skill-tag">ROI Modeling</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">Systems &amp; Governance</div>
+            <div class="skill-tags">
+              <span class="skill-tag skill-tag--accent">Design Tokens</span>
+              <span class="skill-tag">Storybook</span>
+              <span class="skill-tag">Component Libraries</span>
+              <span class="skill-tag">Atomic Design</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">Leadership</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Team Building</span>
+              <span class="skill-tag">Career Mentoring</span>
+              <span class="skill-tag">Workshop Facilitation</span>
+              <span class="skill-tag">Agile / Scrum</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <div class="skill-group-label">Design &amp; AI</div>
-        <div class="skill-tags">
-          <span class="skill-tag hot">Figma</span>
-          <span class="skill-tag hot">AI Prototyping</span>
-          <span class="skill-tag hot">Figma Make</span>
-          <span class="skill-tag">LLM-Guided UI</span>
-          <span class="skill-tag">Azure XP</span>
-          <span class="skill-tag">Vercel</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Analytics &amp; Research</div>
-        <div class="skill-tags">
-          <span class="skill-tag hot">Pendo</span>
-          <span class="skill-tag">Mixpanel</span>
-          <span class="skill-tag">GA4</span>
-          <span class="skill-tag">Maze</span>
-          <span class="skill-tag">UXTweak</span>
-          <span class="skill-tag">ROI Modeling</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Systems &amp; Governance</div>
-        <div class="skill-tags">
-          <span class="skill-tag hot">Design Tokens</span>
-          <span class="skill-tag">Storybook</span>
-          <span class="skill-tag">Component Libraries</span>
-          <span class="skill-tag">Atomic Design</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Leadership</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Team Building</span>
-          <span class="skill-tag">Career Mentoring</span>
-          <span class="skill-tag">Workshop Facilitation</span>
-          <span class="skill-tag">Agile / Scrum</span>
-        </div>
-      </div>
-    </div>
   </div>
-</div>
+</section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">Social Proof</div>
-      <div class="section-title">What colleagues say</div>
+<section class="testimonials section" id="testimonials">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-3)">Social Proof</div>
+      <h2 class="section-title">What colleagues say</h2>
     </div>
-  </div>
-  <div class="testi-grid">
-    <div class="testi-card">
-      <p class="testi-quote">Kevin was an awesome member of our team. I consider him a unicorn in the UX world in the sense that he combines excellent visual design skill with a rigorous user research and information architecture mindset — resulting in best-in-class digital experiences.</p>
-      <div class="testi-author">
-        <div class="testi-name">Blake Weishaar</div>
-        <div class="testi-role">Director of Product Management<br>NextGear Capital</div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <p class="testi-quote">Kevin was an awesome member of our team. I consider him a unicorn in the UX world in the sense that he combines excellent visual design skill with a rigorous user research and information architecture mindset — resulting in best-in-class digital experiences.</p>
+        <div class="testi-author">
+          <div class="testi-name">Blake Weishaar</div>
+          <div class="testi-role">Director of Product Management<br>NextGear Capital</div>
+        </div>
       </div>
-    </div>
-    <div class="testi-card">
-      <p class="testi-quote">With Kevin's experience and creative mind he brings his projects to life. His knowledge and experience spans far beyond design, giving him an edge when it comes to architecting holistic digital solutions that serve both user and business goals.</p>
-      <div class="testi-author">
-        <div class="testi-name">Marc Dittmer</div>
-        <div class="testi-role">Senior Technical, Mechanical &amp; Creative Executive</div>
+      <div class="testi-card reveal">
+        <p class="testi-quote">With Kevin's experience and creative mind he brings his projects to life. His knowledge and experience spans far beyond design, giving him an edge when it comes to architecting holistic digital solutions that serve both user and business goals.</p>
+        <div class="testi-author">
+          <div class="testi-name">Marc Dittmer</div>
+          <div class="testi-role">Senior Technical, Mechanical &amp; Creative Executive</div>
+        </div>
       </div>
-    </div>
-    <div class="testi-card">
-      <p class="testi-quote">I had the pleasure to work with Kevin as a Scrum Master while he supported my two Scrum Teams. Kevin brought a calm, strategic presence to every sprint — grounding design decisions in data while moving the team forward with clarity and confidence.</p>
-      <div class="testi-author">
-        <div class="testi-name">Tinsley Dahl — PSM I, CSM, CSPO</div>
-        <div class="testi-role">Experienced Agile Leader, Scrum Master &amp; Product Owner</div>
+      <div class="testi-card reveal">
+        <p class="testi-quote">I had the pleasure to work with Kevin as a Scrum Master while he supported my two Scrum Teams. Kevin brought a calm, strategic presence to every sprint — grounding design decisions in data while moving the team forward with clarity and confidence.</p>
+        <div class="testi-author">
+          <div class="testi-name">Tinsley Dahl — PSM I, CSM, CSPO</div>
+          <div class="testi-role">Experienced Agile Leader, Scrum Master &amp; Product Owner</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section class="experience">
-  <div class="section-header">
-    <div>
-      <div class="section-eyebrow">Career</div>
-      <div class="section-title">Professional Experience</div>
+<section class="experience section" id="career">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-3)">Career</div>
+      <h2 class="section-title">Professional Experience</h2>
     </div>
-  </div>
-  <div class="exp-grid">
-    <div class="exp-card">
-      <div class="exp-period">2024 – Present</div>
-      <div class="exp-role">Senior Principal UX Design Lead</div>
-      <div class="exp-company">OneTrust</div>
-      <div class="exp-desc">Strategic architect and hands-on leader driving the evolution of the OneTrust SaaS platform. Owns Design System governance, Pendo analytics integration, and AI-driven prototyping initiatives across the product org.</div>
-    </div>
-    <div class="exp-card">
-      <div class="exp-period">2020 – 2024</div>
-      <div class="exp-role">UX Director</div>
-      <div class="exp-company">The Basement (Integrated Agency)</div>
-      <div class="exp-desc">Led UX strategy and hands-on design for enterprise clients including Schlage, Purdue University OTC, and a major Midwest healthcare system. Directly managed a cross-disciplinary team of six.</div>
-    </div>
-    <div class="exp-card">
-      <div class="exp-period">2019 – 2020</div>
-      <div class="exp-role">Senior UX Architect</div>
-      <div class="exp-company">NextGear Capital / Cox Automotive</div>
-      <div class="exp-desc">Defined UX/UI standards for financial and automotive software, created the company's component library, and reduced development costs through rapid prototyping and early validation loops.</div>
-    </div>
-    <div class="exp-card">
-      <div class="exp-period">2019</div>
-      <div class="exp-role">Senior UX Architect</div>
-      <div class="exp-company">DMI Consulting</div>
-      <div class="exp-desc">Delivered UX strategy workshops for Fortune 500 clients including Caterpillar and Allison Transmission. Healthcare service design initiative reduced call handling times by 50%.</div>
-    </div>
-    <div class="exp-card">
-      <div class="exp-period">2015 – 2019</div>
-      <div class="exp-role">User Experience Manager</div>
-      <div class="exp-company">PERQ Software</div>
-      <div class="exp-desc">Built the UX department from the ground up. Designed and managed consumer experiences reaching 1M+ users across Automotive, Furniture Retail, and Multi-Family Dwelling markets.</div>
-    </div>
-    <div class="exp-card">
-      <div class="exp-period">2011 – 2015</div>
-      <div class="exp-role">Director of Media Technology</div>
-      <div class="exp-company">Express Holdings</div>
-      <div class="exp-desc">Led product design for enterprise B2B SaaS applications and directed immersive media projects including a planetarium show for the Children's Museum of Indianapolis.</div>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <div class="exp-period">2024 – Present</div>
+        <div class="exp-role">Senior Principal UX Design Lead</div>
+        <div class="exp-company">OneTrust</div>
+        <div class="exp-desc">Strategic architect and hands-on leader driving the evolution of the OneTrust SaaS platform. Owns Design System governance, Pendo analytics integration, and AI-driven prototyping initiatives across the product org.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-period">2020 – 2024</div>
+        <div class="exp-role">UX Director</div>
+        <div class="exp-company">The Basement (Integrated Agency)</div>
+        <div class="exp-desc">Led UX strategy and hands-on design for enterprise clients including Schlage, Purdue University OTC, and a major Midwest healthcare system. Directly managed a cross-disciplinary team of six.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-period">2019 – 2020</div>
+        <div class="exp-role">Senior UX Architect</div>
+        <div class="exp-company">NextGear Capital / Cox Automotive</div>
+        <div class="exp-desc">Defined UX/UI standards for financial and automotive software, created the company's component library, and reduced development costs through rapid prototyping and early validation loops.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-period">2019</div>
+        <div class="exp-role">Senior UX Architect</div>
+        <div class="exp-company">DMI Consulting</div>
+        <div class="exp-desc">Delivered UX strategy workshops for Fortune 500 clients including Caterpillar and Allison Transmission. Healthcare service design initiative reduced call handling times by 50%.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-period">2015 – 2019</div>
+        <div class="exp-role">User Experience Manager</div>
+        <div class="exp-company">PERQ Software</div>
+        <div class="exp-desc">Built the UX department from the ground up. Designed and managed consumer experiences reaching 1M+ users across Automotive, Furniture Retail, and Multi-Family Dwelling markets.</div>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-period">2011 – 2015</div>
+        <div class="exp-role">Director of Media Technology</div>
+        <div class="exp-company">Express Holdings</div>
+        <div class="exp-desc">Led product design for enterprise B2B SaaS applications and directed immersive media projects including a planetarium show for the Children's Museum of Indianapolis.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta">
-  <div class="cta-eyebrow">Open to New Opportunities</div>
-  <h2 class="cta-h2">Let's build something<br><span>worth measuring.</span></h2>
-  <p class="cta-body">I'm currently open to Senior Principal, Staff, or Head of Design roles in enterprise SaaS, Fintech, or Healthcare. Let's talk about how I can help your team move faster and smarter.</p>
-  <div class="cta-actions">
-    <a href="mailto:kevincmarshall@gmail.com" class="btn-primary">Get in Touch</a>
-    <a href="mailto:kevincmarshall@gmail.com" class="cta-email">kevincmarshall@gmail.com</a>
+<!-- CLOSING CTA -->
+<section class="closing">
+  <div class="wrap">
+    <div class="closing__inner reveal">
+      <div class="eyebrow eyebrow--on-inv">Open to New Opportunities</div>
+      <h2 class="closing__title">Let's build something<br><span class="accent">worth measuring.</span></h2>
+      <p class="closing__para">I'm currently open to Senior Principal, Staff, or Head of Design roles in enterprise SaaS, Fintech, or Healthcare. Let's talk about how I can help your team move faster and smarter.</p>
+      <div class="closing__cta">
+        <button class="btn btn--inv" onclick="openModal()">Get in Touch <span>→</span></button>
+        <a href="mailto:kevincmarshall@gmail.com" class="closing__email">kevincmarshall@gmail.com</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-left">© 2026 KC Marshall · Fishers, IN</div>
-  <div class="footer-right">
-    <a href="https://www.linkedin.com/in/kevin-marshall-6252b5/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="/assets/resume/Kevin-Marshall-2026-Resume.pdf">Resume</a>
-    <a href="#">Privacy</a>
+  <div class="wrap">
+    <div class="footer__inner">
+      <div class="footer__copy">© 2026 KC Marshall · Fishers, IN</div>
+      <div class="footer__links">
+        <a href="https://www.linkedin.com/in/kevin-marshall-6252b5/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/assets/resume/Kevin-Marshall-2026-Resume.pdf">Resume</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
   </div>
 </footer>
 
+<!-- CONTACT MODAL -->
+<div class="overlay" id="contact-overlay" role="dialog" aria-modal="true" aria-label="Contact KC Marshall">
+  <div class="modal">
+    <button class="modal__close" onclick="closeModal()" aria-label="Close">×</button>
+    <div id="modal-form-state">
+      <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-3)">Get in Touch</div>
+      <div class="modal__title">Let's talk.</div>
+      <div class="modal__sub">I'll get back to you within a day or two.</div>
+      <form class="modal__form" onsubmit="handleSubmit(event)">
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input type="text" id="f-name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="field">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" placeholder="What are you working on?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary" style="align-self:flex-start">Send Message →</button>
+      </form>
+    </div>
+    <div class="modal__success" id="modal-success">
+      <div class="modal__success-icon">✓</div>
+      <div class="modal__success-title">Message sent!</div>
+      <div class="modal__success-body">Thanks for reaching out — I'll be in touch soon.</div>
+    </div>
+  </div>
+</div>
+
 <script>
-  // Drag-to-scroll for Experience ticker
-  const ticker = document.querySelector('.ticker-items');
-  let isDown = false, startX, scrollLeft;
-  ticker.addEventListener('mousedown', e => {
-    isDown = true;
-    ticker.classList.add('dragging');
-    startX = e.pageX - ticker.offsetLeft;
-    scrollLeft = ticker.scrollLeft;
-  });
-  ticker.addEventListener('mouseleave', () => { isDown = false; ticker.classList.remove('dragging'); });
-  ticker.addEventListener('mouseup', () => { isDown = false; ticker.classList.remove('dragging'); });
-  ticker.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - ticker.offsetLeft;
-    ticker.scrollLeft = scrollLeft - (x - startX);
-  });
+/* ── Scroll reveal ──────────────────────────────────────── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ── Experience strip drag-scroll ───────────────────────── */
+const strip = document.querySelector('.expstrip__inner');
+let isDown = false, startX, scrollLeft;
+strip.addEventListener('mousedown', e => { isDown = true; strip.classList.add('dragging'); startX = e.pageX - strip.offsetLeft; scrollLeft = strip.scrollLeft; });
+strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('dragging'); });
+strip.addEventListener('mouseup', () => { isDown = false; strip.classList.remove('dragging'); });
+strip.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); strip.scrollLeft = scrollLeft - (e.pageX - strip.offsetLeft - startX); });
+
+/* ── Contact modal ──────────────────────────────────────── */
+const overlay = document.getElementById('contact-overlay');
+function openModal() {
+  overlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => overlay.querySelector('input,textarea,button:not(.modal__close)'), 100);
+}
+function closeModal() {
+  overlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('modal-form-state').style.display = 'none';
+  document.getElementById('modal-success').classList.add('is-on');
+  setTimeout(closeModal, 3000);
+}
 </script>
 
 </body>
