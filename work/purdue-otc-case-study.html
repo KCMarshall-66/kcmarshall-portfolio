@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/case-study.css" />
+<link rel="stylesheet" href="/assets/case-study.css?v=2" />
 </head>
 <body>
 
@@ -81,8 +81,9 @@
     <p class="section-body">The Purdue Research Foundation's Office of Technology Commercialization (Purdue OTC) is one of the most comprehensive technology transfer programs among leading research universities in the United States. The organization protects Purdue's intellectual property and leads technology transfer activities for patented innovations — innovations now used in more than 100 countries worldwide by millions of people.</p>
     <p class="section-body">Purdue OTC approached us with a focused request: redesign their homepage. What we discovered through rigorous research was a far more systemic challenge — one that, if left unaddressed, would have made any homepage redesign a cosmetic fix to a structural problem.</p>
 
-    <div style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
+    <div class="lb-trigger" style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; position: relative;">
       <img src="/assets/images/purdue-bright.png" alt="Purdue Office of Technology Commercialization" style="width:100%; display:block;" />
+      <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
     </div>
 
     <div class="callout">
@@ -455,5 +456,21 @@
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button class="lb-close" id="lb-close" aria-label="Close">×</button>
+  <img id="lb-img" src="" alt="" />
+</div>
+<script>
+(function(){
+  const overlay=document.getElementById('lb-overlay'),lbImg=document.getElementById('lb-img'),lbClose=document.getElementById('lb-close');
+  function open(src,alt){lbImg.src=src;lbImg.alt=alt||'';overlay.classList.add('lb-open');document.body.style.overflow='hidden';}
+  function close(){overlay.classList.remove('lb-open');document.body.style.overflow='';lbImg.src='';}
+  document.querySelectorAll('.lb-trigger').forEach(function(el){var img=el.querySelector('img');if(!img)return;el.addEventListener('click',function(){open(img.src,img.alt);});});
+  lbClose.addEventListener('click',close);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
 </body>
 </html>

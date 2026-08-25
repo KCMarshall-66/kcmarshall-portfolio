@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/case-study.css" />
+<link rel="stylesheet" href="/assets/case-study.css?v=2" />
 </head>
 <body>
 
@@ -288,5 +288,21 @@
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button class="lb-close" id="lb-close" aria-label="Close">×</button>
+  <img id="lb-img" src="" alt="" />
+</div>
+<script>
+(function(){
+  const overlay=document.getElementById('lb-overlay'),lbImg=document.getElementById('lb-img'),lbClose=document.getElementById('lb-close');
+  function open(src,alt){lbImg.src=src;lbImg.alt=alt||'';overlay.classList.add('lb-open');document.body.style.overflow='hidden';}
+  function close(){overlay.classList.remove('lb-open');document.body.style.overflow='';lbImg.src='';}
+  document.querySelectorAll('.lb-trigger').forEach(function(el){var img=el.querySelector('img');if(!img)return;el.addEventListener('click',function(){open(img.src,img.alt);});});
+  lbClose.addEventListener('click',close);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
 </body>
 </html>

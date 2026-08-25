@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/case-study.css" />
+<link rel="stylesheet" href="/assets/case-study.css?v=2" />
 </head>
 <body>
 
@@ -78,8 +78,9 @@
   <div class="cs-section">
     <div class="section-eyebrow">01 — Context</div>
     <h2 class="section-h2">The same task, built five different ways</h2>
-    <div style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
+    <div class="lb-trigger" style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; position: relative;">
       <img src="/assets/images/rules-builder-5-designs-wideB.png" alt="Five distinct rule builder implementations found across the OneTrust platform" style="width:100%; display:block;" />
+      <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
     </div>
     <p class="section-body">Rules and logic are at the heart of what OneTrust's platform does — users define conditions to trigger automation, enforce data policies, and configure complex workflows. But the component they used to do it wasn't a component at all. It was a collection of one-offs: some products used dropdowns, others used checkboxes, some used free-text inputs, and others launched modal dialogs. Each team had built their own interpretation of the same interaction.</p>
     <p class="section-body">The "MS-Rules UI" in the design system's component library served as a nominal foundation, but adoption was inconsistent. The result was a fragmented experience where a user working across multiple OneTrust products — Privacy, Integrations, Data Discovery, AI Governance — would encounter a completely different rule-building paradigm in each one. Re-learning the same interaction multiple times across the same platform is a fundamental UX failure. That's what this project set out to fix.</p>
@@ -158,8 +159,9 @@
   <div class="cs-section">
     <div class="section-eyebrow">03 — Design Strategy</div>
     <h2 class="section-h2">Defining what a rule builder should actually be</h2>
-    <div style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
+    <div class="lb-trigger" style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; position: relative;">
       <img src="/assets/images/header-anatomyB.png" alt="Rule builder component anatomy" style="width:100%; display:block;" />
+      <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
     </div>
     <p class="section-body">Before designing anything, I needed to establish a working definition — a reference specification for what a complex yet flexible rule builder does, so that every decision made downstream could be measured against it. This wasn't just a UX exercise; it became the conceptual foundation I used to align stakeholders, inform component architecture, and scope the Maze validation.</p>
     <p class="section-body">I also surveyed how the industry's most respected design systems had approached this problem. IBM's Carbon, Salesforce Lightning, Atlassian, Google Material, and Shopify Polaris were all evaluated. The finding was notable: none of them ship a rule builder as a ready-made component. They provide the building blocks — selects, inputs, toggles, buttons — and assume product teams will assemble them. This meant OneTrust had an opportunity to do something genuinely differentiating: build a governed, reusable rule builder that didn't require each team to reinvent the wheel.</p>
@@ -422,8 +424,9 @@
           <div class="ab-label">Common Pattern</div>
           <div class="ab-badge preferred">Preferred</div>
         </div>
-        <div class="ab-body">
+        <div class="ab-body lb-trigger" style="position:relative;">
           <img src="/assets/images/common.png" alt="Common Pattern interaction model" style="width:100%; display:block; border-radius: 6px;" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
         <div class="ab-caption">Uses explicit "Add condition" and "Add group" controls to expand the formula and create nested logical expressions. Clear affordances, predictable structure.</div>
       </div>
@@ -432,8 +435,9 @@
           <div class="ab-label">Minimalist Approach</div>
           <div class="ab-badge variant">Variant</div>
         </div>
-        <div class="ab-body">
+        <div class="ab-body lb-trigger" style="position:relative;">
           <img src="/assets/images/minimalist.png" alt="Minimalist Approach interaction model" style="width:100%; display:block; border-radius: 6px;" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
         <div class="ab-caption">Attempts to reduce visual overload by combining AND/OR toggling and nesting into a single multi-use control. Cleaner visually, but less legible in practice.</div>
       </div>
@@ -589,5 +593,21 @@
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button class="lb-close" id="lb-close" aria-label="Close">×</button>
+  <img id="lb-img" src="" alt="" />
+</div>
+<script>
+(function(){
+  const overlay=document.getElementById('lb-overlay'),lbImg=document.getElementById('lb-img'),lbClose=document.getElementById('lb-close');
+  function open(src,alt){lbImg.src=src;lbImg.alt=alt||'';overlay.classList.add('lb-open');document.body.style.overflow='hidden';}
+  function close(){overlay.classList.remove('lb-open');document.body.style.overflow='';lbImg.src='';}
+  document.querySelectorAll('.lb-trigger').forEach(function(el){var img=el.querySelector('img');if(!img)return;el.addEventListener('click',function(){open(img.src,img.alt);});});
+  lbClose.addEventListener('click',close);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
 </body>
 </html>
