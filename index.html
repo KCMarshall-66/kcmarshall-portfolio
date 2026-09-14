@@ -20,7 +20,7 @@
 <style>
 /* ── RESET ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
 /* ── TOKENS ─────────────────────────────────────────────── */
 :root {
@@ -34,8 +34,8 @@ html { scroll-behavior: smooth; }
   --ink-0:   #15140F;
   --ink-1:   #1C1B16;
   --ink-2:   #45433B;
-  --ink-3:   #6B675C;
-  --ink-4:   #928D80;
+  --ink-3:   #5A5650;
+  --ink-4:   #6E6A60;
 
   /* borders */
   --line-1:         #E7E2D7;
@@ -43,10 +43,10 @@ html { scroll-behavior: smooth; }
   --line-on-ink:    rgba(255,255,255,.12);
 
   /* clay / terracotta */
-  --clay-1:    #C5532E;
-  --clay-2:    #A8431F;
-  --clay-3:    #E07A52;
-  --clay-soft: #F6E7DF;
+  --clay-1:    #B84A27;
+  --clay-2:    #9B3C1A;
+  --clay-3:    #D06A42;
+  --clay-soft: #FAF0EB;
   --clay-line: #EBC9B8;
 
   /* sage */
@@ -252,7 +252,7 @@ a { text-decoration: none; color: inherit; }
 .hero__cta { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-10); }
 .hero__logos { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
 .hero__logos-label {
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+  font-family: var(--font-sans); font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--text-faint);
 }
 .logo-chip {
@@ -275,7 +275,7 @@ a { text-decoration: none; color: inherit; }
   box-shadow: var(--shadow-xs);
   display: flex; flex-direction: column;
 }
-.stat-card--accent { border-top: 2px solid var(--clay-1); }
+.stat-card--accent { border-top: 1px solid var(--clay-line); }
 .stat-num {
   font-family: var(--font-display); font-weight: 800;
   font-size: 56px; line-height: 1; letter-spacing: -0.03em;
@@ -288,7 +288,7 @@ a { text-decoration: none; color: inherit; }
   flex: 1;
 }
 .stat-meta {
-  font-family: var(--font-mono); font-size: 11px; color: var(--text-faint);
+  font-family: var(--font-sans); font-size: 12px; color: var(--text-faint);
   letter-spacing: 0.04em; margin-top: var(--space-4);
   padding-top: var(--space-4); border-top: 1px solid var(--border-subtle);
 }
@@ -310,7 +310,7 @@ a { text-decoration: none; color: inherit; }
 .expstrip__inner::-webkit-scrollbar { display: none; }
 .expstrip__inner.dragging { cursor: grabbing; }
 .expstrip__label {
-  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint);
   white-space: nowrap; flex-shrink: 0;
   padding-right: var(--space-9); border-right: 1px solid var(--border-subtle);
@@ -381,8 +381,8 @@ a { text-decoration: none; color: inherit; }
 .work-card:hover .work-thumb img { transform: scale(1.03); }
 .work-info { padding: 18px 20px 20px; }
 .work-tag {
-  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--clay-1);
+  font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-1);
   margin-bottom: 6px;
 }
 .work-title {
@@ -457,13 +457,13 @@ a { text-decoration: none; color: inherit; }
   font-size: 18px; flex-shrink: 0;
 }
 .edu-degree { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--text-strong); line-height: 1.3; }
-.edu-school { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+.edu-school { font-family: var(--font-sans); font-size: 12px; color: var(--text-muted); margin-top: 3px; }
 
 /* Skills */
 .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6) var(--space-5); }
 .skill-group-label {
-  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint);
+  font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
   margin-bottom: var(--space-3);
 }
 .skill-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
@@ -517,7 +517,7 @@ a { text-decoration: none; color: inherit; }
   padding-top: var(--space-5); margin-top: var(--space-5);
 }
 .testi-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--text-strong); margin-bottom: 4px; }
-.testi-role { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+.testi-role { font-family: var(--font-sans); font-size: 12px; color: var(--text-muted); line-height: 1.4; }
 
 @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 620px) { .testi-grid { grid-template-columns: 1fr; } }
@@ -541,8 +541,8 @@ a { text-decoration: none; color: inherit; }
 }
 .exp-card:hover { border-color: var(--clay-line); }
 .exp-period {
-  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--clay-1);
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--clay-1);
   margin-bottom: var(--space-3);
 }
 .exp-role { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--text-strong); margin-bottom: 4px; }
@@ -645,8 +645,8 @@ a { text-decoration: none; color: inherit; }
 .modal__sub { font-size: 14px; color: var(--text-muted); }
 .modal__form { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6); }
 .field label {
-  display: block; font-family: var(--font-mono); font-size: 11px;
-  font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  display: block; font-family: var(--font-sans); font-size: 13px;
+  font-weight: 600;
   color: var(--text-muted); margin-bottom: 6px;
 }
 .field input, .field textarea {
@@ -694,7 +694,7 @@ a { text-decoration: none; color: inherit; }
     </a>
     <div class="nav-links">
       <a href="#selected-work">Work</a>
-      <a href="#">Process</a>
+      <a href="#career">Process</a>
       <a href="#about">About</a>
       <button class="nav-cta btn" onclick="openModal()" style="font-family:var(--font-sans)">Let's Talk</button>
     </div>
@@ -774,7 +774,7 @@ a { text-decoration: none; color: inherit; }
         <div class="eyebrow eyebrow--no-rule">Selected Work</div>
         <h2 class="section-title">Case Studies</h2>
       </div>
-      <a href="#" class="section-link">View all work <span class="arr">→</span></a>
+      <a href="#selected-work" class="section-link">View all work <span class="arr">→</span></a>
     </div>
 
     <div class="work-grid">
@@ -946,7 +946,6 @@ a { text-decoration: none; color: inherit; }
 <section class="testimonials section" id="testimonials">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-3)">Social Proof</div>
       <h2 class="section-title">What colleagues say</h2>
     </div>
     <div class="testi-grid">
@@ -979,7 +978,6 @@ a { text-decoration: none; color: inherit; }
 <section class="experience section" id="career">
   <div class="wrap">
     <div class="reveal">
-      <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-3)">Career</div>
       <h2 class="section-title">Professional Experience</h2>
     </div>
     <div class="exp-grid">
@@ -1042,11 +1040,11 @@ a { text-decoration: none; color: inherit; }
 <footer class="footer">
   <div class="wrap">
     <div class="footer__inner">
-      <div class="footer__copy">© 2026 KC Marshall · Fishers, IN <span style="opacity:.4;font-size:.8em;margin-left:.5em;">v1.1.0</span></div>
+      <div class="footer__copy">© 2026 KC Marshall · Fishers, IN <span style="opacity:.4;font-size:11px;margin-left:.5em;">v1.1.0</span></div>
       <div class="footer__links">
         <a href="https://www.linkedin.com/in/kevin-marshall-6252b5/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="/assets/resume/Kevin-Marshall-Resume-June26.pdf">Resume</a>
-        <a href="#">Privacy</a>
+        <a href="mailto:kevincmarshall@gmail.com">Contact</a>
       </div>
     </div>
   </div>
@@ -1057,10 +1055,9 @@ a { text-decoration: none; color: inherit; }
   <div class="modal">
     <button class="modal__close" onclick="closeModal()" aria-label="Close">×</button>
     <div id="modal-form-state">
-      <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-3)">Get in Touch</div>
       <div class="modal__title">Let's talk.</div>
       <div class="modal__sub">I'll get back to you within a day or two.</div>
-      <form class="modal__form" onsubmit="handleSubmit(event)">
+      <form class="modal__form" id="contact-form" onsubmit="handleSubmit(event)">
         <div class="field">
           <label for="f-name">Name</label>
           <input type="text" id="f-name" name="name" placeholder="Your name" required />
@@ -1104,7 +1101,10 @@ const overlay = document.getElementById('contact-overlay');
 function openModal() {
   overlay.classList.add('is-open');
   document.body.style.overflow = 'hidden';
-  setTimeout(() => overlay.querySelector('input,textarea,button:not(.modal__close)'), 100);
+  setTimeout(() => {
+    const first = overlay.querySelector('input,textarea');
+    if (first) first.focus();
+  }, 100);
 }
 function closeModal() {
   overlay.classList.remove('is-open');
@@ -1113,11 +1113,35 @@ function closeModal() {
 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-function handleSubmit(e) {
+/* Replace FORMSPREE_ID below with your form id from formspree.io/forms */
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/FORMSPREE_ID';
+
+async function handleSubmit(e) {
   e.preventDefault();
-  document.getElementById('modal-form-state').style.display = 'none';
-  document.getElementById('modal-success').classList.add('is-on');
-  setTimeout(closeModal, 3000);
+  const form = e.target;
+  const btn = form.querySelector('[type=submit]');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('modal-form-state').style.display = 'none';
+      document.getElementById('modal-success').classList.add('is-on');
+      setTimeout(closeModal, 3000);
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Send Message →';
+      alert('Something went wrong. Please email kevincmarshall@gmail.com directly.');
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Send Message →';
+    alert('Could not send. Please email kevincmarshall@gmail.com directly.');
+  }
 }
 </script>
 

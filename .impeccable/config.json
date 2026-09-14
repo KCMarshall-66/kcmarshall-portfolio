@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-14T23:29:16.894Z",
+        "reason": "Identity content: factual job title, not SaaS marketing kicker"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "*.html"
+        ],
+        "createdAt": "2026-09-14T23:29:23.383Z",
+        "reason": "Intentional brand palette — warm paper tone deliberate design system choice"
+      },
+      {
+        "rule": "marketing-buzzword",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-14T23:29:23.402Z",
+        "reason": "Best-in-class is in verbatim testimonial quote from Blake Weishaar"
+      }
+    ]
+  }
+}
