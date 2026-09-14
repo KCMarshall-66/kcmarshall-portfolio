@@ -29,6 +29,24 @@
         ],
         "createdAt": "2026-09-14T23:29:23.402Z",
         "reason": "Best-in-class is in verbatim testimonial quote from Blake Weishaar"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "*.html"
+        ],
+        "createdAt": "2026-09-14T23:31:23.921Z",
+        "reason": "Section border-bottom lines are dividers, not container padding failures; sections have generous --section-y padding"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "*.html"
+        ],
+        "createdAt": "2026-09-14T23:31:23.940Z",
+        "reason": "All-caps text is short eyebrow/label text (31-44 chars), intentionally uppercase — not body paragraphs"
       }
     ]
   }
