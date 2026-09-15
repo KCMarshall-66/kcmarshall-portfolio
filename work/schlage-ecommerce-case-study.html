@@ -8,6 +8,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/case-study.css?v=2" />
+<style>
+.cs-hero {
+  background-image: url('/assets/images/find-finish.gif');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.cs-company-tag { color: var(--clay-3); }
+.cs-company-tag::before { background: var(--clay-3); }
+.cs-title { color: #ffffff; }
+.cs-subtitle { color: rgba(255,255,255,0.8); }
+.meta-key { color: rgba(255,255,255,0.5); }
+.meta-val { color: rgba(255,255,255,0.9); }
+.meta-row { background: rgba(0,0,0,0.6); border-top-color: rgba(255,255,255,0.15); }
+.meta-cell + .meta-cell { border-left-color: rgba(255,255,255,0.15); }
+.outcome-card::before { display: none; }
+</style>
 </head>
 <body>
 
@@ -76,7 +93,6 @@
 
   <!-- 01: CONTEXT -->
   <div class="cs-section">
-    <div class="section-eyebrow">01 — Context</div>
     <h2 class="section-h2">A complex e-commerce platform built from scratch</h2>
     <p class="section-body">Schlage is a leading manufacturer of locks and security hardware — a brand with a broad consumer base, a complex product catalog, and a website that wasn't keeping pace with how people shop. This was a large, enterprise-level e-commerce redesign currently in production, covering the full spectrum of UX activity: from initial discovery and stakeholder alignment, through strategy and tiered release planning, to final design system delivery.</p>
     <p class="section-body">My role as UX Director meant owning both the research-to-design process and the systems that would govern how that design scaled. No off-the-shelf templates — every pattern, component, and interaction model was defined, tested, and documented from the ground up.</p>
@@ -89,7 +105,6 @@
 
   <!-- 02: RESEARCH & DISCOVERY -->
   <div class="cs-section">
-    <div class="section-eyebrow">02 — Research &amp; Discovery</div>
     <h2 class="section-h2">Understanding the customer before touching a frame</h2>
     <p class="section-body">Every project starts with understanding people — both the users and the business stakeholders behind them. I conducted heuristic evaluations of the existing site alongside stakeholder interviews to calibrate user empathy against business objectives. That groundwork informed a deeper research phase: end-user interviews, usability testing on existing flows, site heuristics, and technology audits to understand platform constraints before making design decisions.</p>
     <p class="section-body">The research phase produced a suite of artifacts that gave the project team a shared model of who we were designing for and what their experience actually looked like — not just what the business assumed it to be.</p>
@@ -148,7 +163,6 @@
 
   <!-- 03: DESIGN SYSTEM -->
   <div class="cs-section">
-    <div class="section-eyebrow">03 — Design System</div>
     <h2 class="section-h2">Building the atomic foundation first</h2>
     <p class="section-body">Before designing pages, I established the design system — the single source of truth that would govern every decision made downstream. I adopted the Atomic Design Methodology, organizing the system into hierarchical levels: Atoms (colors, typography), Molecules (buttons, icon pairs), Organisms (headers, footers, feature blocks), and Templates. Implemented using Adobe XD's component library, any change made at the atomic level cascaded automatically across every team artboard.</p>
     <p class="section-body">The result was a living document that saved measurable design and development time — changes at any organizational level kept all designs up-to-date without manual rework, and gave the development team a clear, unambiguous specification at every stage of implementation.</p>
@@ -271,7 +285,6 @@
 
   <!-- 04: PROTOTYPING -->
   <div class="cs-section">
-    <div class="section-eyebrow">04 — Prototyping &amp; Motion</div>
     <h2 class="section-h2">Static artboards aren't enough</h2>
     <p class="section-body">For a site with complex interactions — favoriting products, search, navigation, and dynamic inventory-driven layouts — static designs don't communicate the full intent. Motion prototypes were created for key interactions to facilitate both rigorous user testing and precise developer handoffs. The goal was to remove ambiguity at every decision point before engineering investment was made.</p>
 
@@ -320,7 +333,6 @@
 
   <!-- 05: TESTING -->
   <div class="cs-section">
-    <div class="section-eyebrow">05 — Testing &amp; Validation</div>
     <h2 class="section-h2">Quantitative data at every stage, not just the end</h2>
     <p class="section-body">Opinions are easy to come by. What the project needed was quantitative evidence. Testing wasn't a single gate at the end of the design process — it was embedded throughout, with tools selected to answer specific questions at specific stages: tree testing to validate information architecture before building navigation, and prototype testing to validate interaction models before committing to implementation.</p>
 
@@ -382,7 +394,6 @@
 
   <!-- 06: OUTCOMES -->
   <div class="cs-section">
-    <div class="section-eyebrow">06 — Outcomes</div>
     <h2 class="section-h2">Research-backed design, delivered at scale</h2>
     <p class="section-body">The Schlage.com redesign delivered a full-stack UX engagement — from foundational user research through a production-ready atomic design system and validated interaction models. The dual workstreams of e-commerce UX and design system architecture were executed in parallel, ensuring the final designs were both user-tested and built to scale with the platform's evolving product catalog.</p>
 
@@ -417,7 +428,6 @@
 
   <!-- 07: REFLECTION -->
   <div class="cs-section">
-    <div class="section-eyebrow">07 — Reflection</div>
     <h2 class="section-h2">What this project reinforced about end-to-end UX</h2>
     <div class="reflection">
       <div class="reflection-label">Honest Retrospective</div>
