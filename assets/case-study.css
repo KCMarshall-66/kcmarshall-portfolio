@@ -99,7 +99,7 @@ a { text-decoration: none; color: inherit; }
 .nav-back:hover { border-color: var(--clay-line); color: var(--clay-1); }
 .nav-back::before { content: '←'; margin-right: 2px; }
 .breadcrumb {
-  font-family: var(--font-mono); font-size: 12px; color: var(--ink-4);
+  font-family: var(--font-mono); font-size: 12px; color: var(--ink-3);
   display: flex; align-items: center; gap: 8px;
 }
 .breadcrumb span { color: var(--ink-3); }
@@ -120,12 +120,12 @@ a { text-decoration: none; color: inherit; }
 .cs-company-tag {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay-1);
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay-2);
   margin-bottom: 20px;
 }
 .cs-company-tag::before {
   content: '';
-  width: 20px; height: 1.5px; background: var(--clay-1);
+  width: 20px; height: 1.5px; background: var(--clay-2);
 }
 
 .cs-title {
@@ -179,8 +179,8 @@ a { text-decoration: none; color: inherit; }
 }
 .meta-cell:last-child { border-right: none; }
 .meta-key {
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
-  font-weight: 600; color: var(--ink-4); text-transform: uppercase;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
+  font-weight: 600; color: var(--ink-3); text-transform: uppercase;
   margin-bottom: 6px;
 }
 .meta-val {
@@ -199,7 +199,7 @@ a { text-decoration: none; color: inherit; }
 
 .section-eyebrow {
   font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
-  font-weight: 600; color: var(--clay-1); text-transform: uppercase;
+  font-weight: 600; color: var(--clay-2); text-transform: uppercase;
   margin-bottom: 12px;
 }
 .section-h2 {
@@ -215,10 +215,11 @@ a { text-decoration: none; color: inherit; }
 
 /* Callout */
 .callout {
-  border-left: 3px solid var(--clay-1);
+  border-left: 1px solid var(--clay-line);
+  border: 1px solid var(--clay-line);
   background: var(--clay-soft);
   padding: 20px 24px;
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-radius: var(--radius-md);
   margin: 28px 0;
 }
 .callout p {
@@ -226,7 +227,7 @@ a { text-decoration: none; color: inherit; }
   line-height: 1.7; font-style: italic;
 }
 .callout-attr {
-  font-family: var(--font-mono); font-size: 11px; color: var(--ink-4);
+  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
   margin-top: 10px; font-style: normal; letter-spacing: 0.04em;
 }
 
@@ -394,7 +395,7 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid var(--clay-line);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-mono); font-size: 12px; font-weight: 700;
-  color: var(--clay-1); flex-shrink: 0;
+  color: var(--clay-2); flex-shrink: 0;
 }
 .step-title {
   font-family: var(--font-display); font-size: 14px; font-weight: 700;
@@ -419,18 +420,18 @@ a { text-decoration: none; color: inherit; }
 }
 .ab-label { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--ink-1); }
 .ab-badge {
-  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase;
   padding: 3px 10px; border-radius: var(--radius-pill);
 }
-.ab-badge.preferred { background: var(--clay-soft); color: var(--clay-1); border: 1px solid var(--clay-line); }
+.ab-badge.preferred { background: var(--clay-soft); color: var(--clay-2); border: 1px solid var(--clay-line); }
 .ab-badge.variant   { background: var(--paper-2); color: var(--ink-3); border: 1px solid var(--border); }
 .ab-body {
   padding: 16px; min-height: 120px;
   display: flex; align-items: center; justify-content: center;
 }
 .ab-body img { width: 100%; display: block; border-radius: 6px; }
-.ab-diagram { font-size: 11px; color: var(--ink-4); text-align: center; letter-spacing: 0.05em; }
+.ab-diagram { font-size: 11px; color: var(--ink-3); text-align: center; letter-spacing: 0.05em; }
 .ab-caption {
   padding: 10px 16px;
   font-size: 12px; color: var(--ink-3);
@@ -461,14 +462,14 @@ a { text-decoration: none; color: inherit; }
   padding: 5px 13px; border-radius: var(--radius-pill);
   background: var(--clay-soft);
   border: 1px solid var(--clay-line);
-  color: var(--clay-1);
+  color: var(--clay-2);
 }
 
 /* Code inline */
 code {
   font-family: var(--font-mono); font-size: 13px;
   background: var(--clay-soft); padding: 2px 6px;
-  border-radius: var(--radius-sm); color: var(--clay-1);
+  border-radius: var(--radius-sm); color: var(--clay-2);
 }
 
 /* Divider */
@@ -497,7 +498,7 @@ code {
   width: 22px; height: 22px; border-radius: 50%;
   background: var(--clay-soft);
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; color: var(--clay-1);
+  font-size: 11px; color: var(--clay-2);
   flex-shrink: 0; margin-top: 1px;
 }
 .os-text { font-size: 14px; color: var(--ink-2); line-height: 1.6; }
@@ -511,8 +512,8 @@ code {
   margin: 28px 0;
 }
 .reflection-label {
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
-  font-weight: 600; color: var(--clay-1); text-transform: uppercase;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
+  font-weight: 600; color: var(--clay-2); text-transform: uppercase;
   margin-bottom: 14px;
 }
 .reflection-body { font-size: 15px; color: var(--ink-2); line-height: 1.8; }
@@ -532,11 +533,11 @@ code {
 .page-link:hover { background: var(--paper-2); }
 .page-link.next { border-right: none; text-align: right; align-items: flex-end; }
 .page-direction {
-  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
-  font-weight: 600; color: var(--ink-4); text-transform: uppercase;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
+  font-weight: 600; color: var(--ink-3); text-transform: uppercase;
 }
 .page-title { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--ink-1); }
-.page-co { font-family: var(--font-mono); font-size: 12px; color: var(--ink-4); }
+.page-co { font-family: var(--font-mono); font-size: 12px; color: var(--ink-3); }
 
 /* ── FOOTER ──────────────────────────────────────────────── */
 .footer {

@@ -47,6 +47,22 @@
         ],
         "createdAt": "2026-09-14T23:31:23.940Z",
         "reason": "All-caps text is short eyebrow/label text (31-44 chars), intentionally uppercase — not body paragraphs"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-15T12:45:31.251Z"
+      },
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "work/treasures-case-study.html"
+        ],
+        "createdAt": "2026-09-15T15:23:32.208Z"
       }
     ]
   }

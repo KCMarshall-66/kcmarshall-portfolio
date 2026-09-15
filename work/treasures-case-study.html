@@ -8,6 +8,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/case-study.css?v=2" />
+<style>
+.cs-hero {
+  background-image: url('/assets/images/header-back-treasures.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.cs-company-tag { color: var(--clay-3); }
+.cs-company-tag::before { background: var(--clay-3); }
+.cs-title { color: #ffffff; }
+.cs-subtitle { color: rgba(255,255,255,0.8); }
+.meta-key { color: rgba(255,255,255,0.5); }
+.meta-val { color: rgba(255,255,255,0.9); }
+.meta-row { background: rgba(0,0,0,0.6); border-top-color: rgba(255,255,255,0.15); }
+.outcome-card::before { display: none; }
+.meta-cell + .meta-cell { border-left-color: rgba(255,255,255,0.15); }
+</style>
 </head>
 <body>
 
@@ -76,16 +93,9 @@
 
   <!-- 01: THE EXHIBIT -->
   <div class="cs-section">
-    <div class="section-eyebrow">01 — The Exhibit</div>
     <h2 class="section-h2">National Geographic meets children's education</h2>
     <p class="section-body">This project hit all the aspects of UX: discovery, testing, ideation, concept, wireframes, prototypes, heuristic evaluation, usability, and delivery. For the Children's Museum of Indianapolis's large "Treasures of the Earth" exhibit, I had to pull out all the stops and start at the beginning.</p>
     <p class="section-body">The central ask from National Geographic was to educate children about the Terra Cotta Warriors and how they were originally brightly colored — not the dull tan that we see today. Most of the painted pigmentation has worn off over the centuries, but archaeologists and scientists can still recreate the original look based on chemical scans of surviving fragments to identify the pigments once used.</p>
-
-    <div class="full-img-card lb-trigger" style="position:relative;">
-      <img src="/assets/images/ExhibitsIconsPlaces_Treasures_Large_012.jpg" alt="Treasures of the Earth exhibit branding" />
-      <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-      <div class="full-img-caption">National Geographic's "Treasures of the Earth" exhibit at the Children's Museum of Indianapolis — the backdrop for both deliverables in this project.</div>
-    </div>
 
     <div class="insight-row">
       <div class="insight-card">
@@ -107,7 +117,6 @@
 
   <!-- 02: THE RFID CONCEPT -->
   <div class="cs-section">
-    <div class="section-eyebrow">02 — The Concept</div>
     <h2 class="section-h2">An RFID-powered "Paint a Warrior" experience</h2>
     <p class="section-body">Earlier that year I had created an interactive game for the museum using RFID chips implanted in stuffed animals — for the Nickelodeon Studios "Dora and Diego" exhibit, and it was a huge hit with visitors. That experience sparked an idea: what if I implanted coded RFID chips into physical replica fragments (shards) of the warrior figurines?</p>
     <p class="section-body">Visitors would scan a shard and the kiosk would identify which warrior type was associated with that specific fragment — along with what pigments were originally present. They could then use a touchscreen interface to "paint" the selected warrior back to its original colors, and send themselves a digital copy as a keepsake.</p>
@@ -152,7 +161,6 @@
 
   <!-- 03: RESEARCH & PROCESS -->
   <div class="cs-section">
-    <div class="section-eyebrow">03 — Research & Process</div>
     <h2 class="section-h2">Discovery, wireframes, and stakeholder alignment</h2>
     <p class="section-body">My task was to deliver educational and scientific information in an entertaining manner that worked for all age groups. That meant deploying nearly every software package and media skill in my toolkit: Photoshop, Illustrator, Sketch, Balsamiq, After Effects, 3ds Max, Audition, custom programming, and extensive research into the original painting schemes of the warriors.</p>
     <p class="section-body">The process started with process flows, wireframes, and storyboards. I developed several iterations while collaborating with the educational staff at the museum to ensure the correct learning outcomes were embedded into the experience. Each iteration was walked through with stakeholders for feedback before advancing to the next stage.</p>
@@ -210,7 +218,6 @@
 
   <!-- 04: INTERFACE DESIGN -->
   <div class="cs-section">
-    <div class="section-eyebrow">04 — Interface Design</div>
     <h2 class="section-h2">From notebook animation to the installed kiosk</h2>
     <p class="section-body">The experience needed an opening intro sequence that walked visitors through the discovery of the painted figures and explained how scientists determine which pigments were originally present. I designed and animated a hand-drawn notebook sequence to guide viewers through this backstory and introduce them to the kiosk interaction before they touched the screen.</p>
 
@@ -264,7 +271,6 @@
 
   <!-- 05: 3D VISUALIZATION -->
   <div class="cs-section">
-    <div class="section-eyebrow">05 — 3D Visualization</div>
     <h2 class="section-h2">Terra Cotta Warriors — the widescreen film</h2>
     <p class="section-body">Alongside the interactive kiosk, I was also asked to create a 3D visualization film to run continuously within the exhibit space. The film needed to tell the story of how the warriors ended up in the ground, what they originally looked like, and how they deteriorated to the state we see today.</p>
     <p class="section-body">This part of the project was an exciting opportunity to collaborate with former co-workers and peers. It involved deep research into original painting schemes, pouring through documentation provided by National Geographic Magazine, and producing hundreds of reference renders before arriving at a finished result. The final widescreen movie represented the output of that extensive modeling and rendering effort.</p>
@@ -362,7 +368,6 @@
 
   <!-- 06: OUTCOMES -->
   <div class="cs-section">
-    <div class="section-eyebrow">06 — Outcomes &amp; Impact</div>
     <h2 class="section-h2">Award-winning interactives in six months</h2>
     <p class="section-body">Both deliverables were produced and installed within the exhibit timeline, with the interactive kiosk going on to become the first RFID-based interactive in the Children's Museum of Indianapolis's history. The full project was recognized as award-winning work, produced within six months of rejoining and fully rebuilding a previously dissolved creative department.</p>
 
