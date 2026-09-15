@@ -229,6 +229,11 @@ a { text-decoration: none; color: inherit; }
   padding-bottom: clamp(48px, 7vw, 80px);
   border-bottom: 1px solid var(--border-subtle);
   scroll-margin-top: 88px;
+  position: relative;
+  background-image: url('assets/images/hero-back02.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
 }
 .hero__grid {
   display: grid;
@@ -241,12 +246,12 @@ a { text-decoration: none; color: inherit; }
   font-family: var(--font-display); font-weight: 800;
   font-size: clamp(44px, 6vw, 80px);
   line-height: 1.02; letter-spacing: -0.02em;
-  color: var(--text-strong);
+  color: #ffffff;
   margin-bottom: var(--space-5);
 }
-.hero__title .accent { color: var(--clay-1); }
+.hero__title .accent { color: var(--clay-3); }
 .hero__lede {
-  font-size: 18px; line-height: 1.6; color: var(--text-body);
+  font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.8);
   max-width: 480px; margin-bottom: var(--space-7);
 }
 .hero__cta { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-10); }
@@ -706,7 +711,7 @@ a { text-decoration: none; color: inherit; }
   <div class="wrap">
     <div class="hero__grid reveal">
       <div>
-        <div class="eyebrow hero__eyebrow">Senior Principal UX Design Lead</div>
+        <div class="eyebrow eyebrow--on-inv hero__eyebrow">Senior Principal UX Design Lead</div>
         <h1 class="hero__title">Designing systems<br>that <span class="accent">move<br>numbers.</span></h1>
         <p class="hero__lede">I translate complex enterprise challenges into measurable, human-centered outcomes — across SaaS, Fintech, Healthcare, and Industrial platforms for over 15 years.</p>
         <div class="hero__cta">
