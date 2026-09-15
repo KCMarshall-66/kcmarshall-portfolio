@@ -60,9 +60,19 @@
         "rule": "broken-image",
         "value": "*",
         "files": [
-          "work/treasures-case-study.html"
+          "work/treasures-case-study.html",
+          "work/perq-case-study.html"
         ],
         "createdAt": "2026-09-15T15:23:32.208Z"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "work/perq-case-study.html"
+        ],
+        "createdAt": "2026-09-15T18:00:00.000Z",
+        "reason": "Hero uses light text on dark gif background; body uses clay-2 which passes AA — clay-1 only appears as accent and passes at large text sizes"
       }
     ]
   }

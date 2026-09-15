@@ -8,6 +8,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/case-study.css?v=2" />
+<style>
+.cs-hero {
+  background-image: url('/assets/images/perq-animation.gif');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.cs-company-tag { color: var(--clay-3); }
+.cs-company-tag::before { background: var(--clay-3); }
+.cs-title { color: #ffffff; }
+.cs-subtitle { color: rgba(255,255,255,0.8); }
+.meta-key { color: rgba(255,255,255,0.5); }
+.meta-val { color: rgba(255,255,255,0.9); }
+.meta-row { background: rgba(0,0,0,0.6); border-top-color: rgba(255,255,255,0.15); }
+.meta-cell + .meta-cell { border-left-color: rgba(255,255,255,0.15); }
+.outcome-card::before { display: none; }
+</style>
 </head>
 <body>
 
@@ -76,7 +93,6 @@
 
   <!-- 01: CONTEXT -->
   <div class="cs-section">
-    <div class="section-eyebrow">01 — Context</div>
     <h2 class="section-h2">A platform built to convert</h2>
     <p class="section-body">When I joined PERQ Software in 2015 as Lead UX Architect, the product was conceived as an additive technology layer — a set of branded, interactive experiences a customer could deploy directly on top of their existing web platform to drive lead generation and conversion. The three core business verticals were multi-family dwelling communities, automotive dealerships, and furniture retailers.</p>
     <p class="section-body">My initial mandate was to design a wide array of templates that powered PERQ's lead engagement and conversion platform. These experiences ranged from credit pre-approvals and shopping guides to purchasing quizzes and reward-based interactions — each one engineered to attract and educate buyers while producing higher-quality, more qualified leads for sales teams.</p>
@@ -91,10 +107,10 @@
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:240px;">
-          <img src="/assets/images/perq-animation.gif" alt="PERQ lead engagement platform animation" />
+          <img src="/assets/images/two-iphones-3.gif" alt="PERQ mobile consumer experience on iPhone" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">PERQ's lead engagement platform in action — interactive consumer experiences deployed as an additive layer on customer websites.</div>
+        <div class="artifact-caption">PERQ's lead engagement platform on mobile — interactive consumer experiences optimized for the devices buyers actually use.</div>
       </div>
     </div>
 
@@ -110,7 +126,6 @@
 
   <!-- 02: THE SHIFT -->
   <div class="cs-section">
-    <div class="section-eyebrow">02 — The Shift</div>
     <h2 class="section-h2">Customers didn't want to do it themselves</h2>
     <p class="section-body">The templates proved highly effective — attracting buyers, educating them through the funnel, and converting to stronger leads. But testing the platform in the hands of real customers revealed a critical insight that would reshape the entire business model: PERQ's customers had no interest in setting up and managing their own experiences. They wanted PERQ to do it for them.</p>
 
@@ -149,7 +164,6 @@
 
   <!-- 03: BUILDING THE TEAM -->
   <div class="cs-section">
-    <div class="section-eyebrow">03 — Building the Team</div>
     <h2 class="section-h2">From sole architect to department lead</h2>
     <p class="section-body">The pivot required me to transition quickly from being the sole UX practitioner to building and leading an entire UX department. I hired, onboarded, and developed a team of six UX designers and researchers who could execute custom experiences at the same quality level I had established — but across a much larger volume of client engagements and at a pace the business demanded.</p>
     <p class="section-body">Building the team meant more than filling seats. I developed career path rubrics that gave each designer a clear understanding of where they were and where they could grow. I ran regular one-on-ones, provided structured feedback to both new hires and existing team members, and evaluated performance against meaningful UX craft standards. As the team grew, I also took on an elevated stakeholder role — representing UX strategy and priorities directly to PERQ's leadership.</p>
@@ -204,7 +218,6 @@
 
   <!-- 04: PROCESS & INFRASTRUCTURE -->
   <div class="cs-section">
-    <div class="section-eyebrow">04 — Research, Process &amp; Infrastructure</div>
     <h2 class="section-h2">Building the foundation that made scale possible</h2>
     <p class="section-body">A team of six designers producing custom experiences across three verticals can only maintain consistency and quality if it's supported by strong infrastructure. I developed a research and development strategy for the team, established best practices for approaching projects, and built the design systems and tooling that kept work aligned and accelerated delivery.</p>
 
@@ -283,7 +296,6 @@
 
   <!-- 05: THE EXPERIENCES -->
   <div class="cs-section">
-    <div class="section-eyebrow">05 — The Experiences</div>
     <h2 class="section-h2">Custom, data-driven journeys across three verticals</h2>
     <p class="section-body">With the team, infrastructure, and process in place, PERQ's product could deliver fully bespoke consumer experiences at scale. Each vertical required a distinct UX approach — automotive buyers needed credit pre-qualification flows and inventory-driven shopping assistants; multi-family prospects needed floor plan explorers and community comparison tools; furniture shoppers needed style quizzes and purchase configurators.</p>
 
@@ -325,7 +337,6 @@
 
   <!-- 06: MOBILE & MOTION -->
   <div class="cs-section">
-    <div class="section-eyebrow">06 — Mobile &amp; Motion</div>
     <h2 class="section-h2">Designing for how consumers actually engage</h2>
     <p class="section-body">As mobile usage across PERQ's three verticals grew, ensuring that every experience translated seamlessly to smaller screens became a core design priority. Rigorous mobile UX reviews were conducted to audit interaction models, evaluate touch target sizing, assess reading legibility, and identify friction points unique to the mobile context.</p>
     <p class="section-body">Motion design played an equally important role. Static screens couldn't fully communicate complex interaction models — especially for multi-step flows involving floor plan exploration, product configuration, and guided quiz experiences. Motion studies were developed to document and validate key interaction sequences before they reached engineering.</p>
@@ -363,7 +374,6 @@
 
   <!-- 07: OUTCOMES -->
   <div class="cs-section">
-    <div class="section-eyebrow">07 — Outcomes &amp; Impact</div>
     <h2 class="section-h2">From one designer to a scaled UX operation</h2>
 
     <div class="insight-row">
