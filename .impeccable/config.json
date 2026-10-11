@@ -62,7 +62,8 @@
         "files": [
           "work/treasures-case-study.html",
           "work/perq-case-study.html",
-          "work/schlage-ecommerce-case-study.html"
+          "work/schlage-ecommerce-case-study.html",
+          "work/tessera-case-study.html"
         ],
         "createdAt": "2026-09-15T15:23:32.208Z"
       },
@@ -70,10 +71,11 @@
         "rule": "low-contrast",
         "value": "*",
         "files": [
-          "work/perq-case-study.html"
+          "work/perq-case-study.html",
+          "work/tessera-case-study.html"
         ],
         "createdAt": "2026-09-15T18:00:00.000Z",
-        "reason": "Hero uses light text on dark gif background; body uses clay-2 which passes AA — clay-1 only appears as accent and passes at large text sizes"
+        "reason": "Hero uses light text on dark background; tessera-case-study inline dark card uses Tessera brand colors (#131929 nav surface with #F3F6FC text) — intentional design system, passes AA"
       }
     ]
   }
