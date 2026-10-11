@@ -5,24 +5,24 @@ html { scroll-behavior: smooth; }
 /* ── TOKENS ─────────────────────────────────────────────── */
 :root {
   --paper-0: #FFFFFF;
-  --paper-1: #FBF9F5;
-  --paper-2: #F4F1EA;
-  --paper-3: #ECE7DD;
-  --ink-0:   #15140F;
-  --ink-1:   #1C1B16;
-  --ink-2:   #45433B;
-  --ink-3:   #6B675C;
-  --ink-4:   #928D80;
-  --line-1:  #E7E2D7;
-  --line-2:  #D8D2C4;
+  --paper-1: #EFF3F7;
+  --paper-2: #E4EDF5;
+  --paper-3: #D6E3F0;
+  --ink-0:   #131929;
+  --ink-1:   #26313D;
+  --ink-2:   #3D4E5C;
+  --ink-3:   #5B6B7C;
+  --ink-4:   #7B8CA8;
+  --line-1:  #E2E5EC;
+  --line-2:  #C9D5E3;
   --line-on-ink: rgba(255,255,255,.12);
-  --clay-1:  #C5532E;
-  --clay-2:  #A8431F;
-  --clay-3:  #E07A52;
-  --clay-soft: #F6E7DF;
-  --clay-line: #EBC9B8;
-  --sage-1:  #3F6B5E;
-  --sage-soft: #E4EBE6;
+  --clay-1:  #2F62AA;
+  --clay-2:  #255292;
+  --clay-3:  #689AE2;
+  --clay-soft: #EBF1FA;
+  --clay-line: #B0CAEF;
+  --sage-1:  #255292;
+  --sage-soft: #E8F0FB;
 
   /* semantic shorthands matching old var names */
   --bg:        var(--paper-1);
@@ -36,11 +36,11 @@ html { scroll-behavior: smooth; }
   --text-low:  var(--ink-3);
   --sans:      'Hanken Grotesk', system-ui, sans-serif;
 
-  --shadow-xs: 0 1px 2px rgba(28,27,22,.05);
-  --shadow-sm: 0 1px 3px rgba(28,27,22,.06), 0 1px 2px rgba(28,27,22,.04);
-  --shadow-md: 0 4px 14px rgba(28,27,22,.07), 0 2px 4px rgba(28,27,22,.04);
-  --shadow-lg: 0 12px 32px rgba(28,27,22,.10), 0 4px 8px rgba(28,27,22,.05);
-  --shadow-accent: 0 6px 20px rgba(197,83,46,.22);
+  --shadow-xs: 0 1px 2px rgba(38,49,61,.05);
+  --shadow-sm: 0 1px 3px rgba(38,49,61,.06), 0 1px 2px rgba(38,49,61,.04);
+  --shadow-md: 0 4px 14px rgba(38,49,61,.07), 0 2px 4px rgba(38,49,61,.04);
+  --shadow-lg: 0 12px 32px rgba(38,49,61,.10), 0 4px 8px rgba(38,49,61,.05);
+  --shadow-accent: 0 6px 20px rgba(47,98,170,.22);
 
   --radius-sm: 6px;
   --radius-md: 10px;
