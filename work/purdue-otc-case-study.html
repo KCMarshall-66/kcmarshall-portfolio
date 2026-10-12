@@ -8,6 +8,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/case-study.css?v=2" />
+<style>
+  .cs-hero {
+    background-image: url('/assets/images/purdue-hero-back.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }
+  .cs-company-tag { color: var(--clay-3); }
+  .cs-company-tag::before { background: var(--clay-3); }
+  .cs-title { color: #ffffff; }
+  .cs-subtitle { color: rgba(255,255,255,0.8); }
+  .meta-key { color: rgba(255,255,255,0.5); }
+  .meta-val { color: rgba(255,255,255,0.9); }
+  .meta-row { background: rgba(0,0,0,0.6); border-top-color: rgba(255,255,255,0.15); }
+  .meta-cell + .meta-cell { border-left-color: rgba(255,255,255,0.15); }
+  .outcome-card::before { display: none; }
+</style>
 </head>
 <body>
 
@@ -76,7 +93,6 @@
 
   <!-- 01: OVERVIEW -->
   <div class="cs-section">
-    <div class="section-eyebrow">01 — Context</div>
     <h2 class="section-h2">A homepage request that revealed a system problem</h2>
     <p class="section-body">The Purdue Research Foundation's Office of Technology Commercialization (Purdue OTC) is one of the most comprehensive technology transfer programs among leading research universities in the United States. The organization protects Purdue's intellectual property and leads technology transfer activities for patented innovations — innovations now used in more than 100 countries worldwide by millions of people.</p>
     <p class="section-body">Purdue OTC approached us with a focused request: redesign their homepage. What we discovered through rigorous research was a far more systemic challenge — one that, if left unaddressed, would have made any homepage redesign a cosmetic fix to a structural problem.</p>
@@ -95,7 +111,6 @@
 
   <!-- 02: THE CHALLENGE -->
   <div class="cs-section">
-    <div class="section-eyebrow">02 — The Challenge</div>
     <h2 class="section-h2">Beyond the homepage</h2>
     <p class="section-body">Through stakeholder interviews, user research, and a thorough audit of the existing site, it became clear that the homepage was not the root problem — it was a symptom of deeper structural issues. The existing site failed its most critical audience — technology scouts and investors — in three fundamental ways.</p>
 
@@ -145,7 +160,6 @@
 
   <!-- 03: RESEARCH -->
   <div class="cs-section">
-    <div class="section-eyebrow">03 — Research & Discovery</div>
     <h2 class="section-h2">Understanding the ecosystem</h2>
     <p class="section-body">A multi-method research approach was used to develop a holistic understanding of all user groups — their workflows, pain points, and mental models. Discovery was structured across four key activities, each designed to surface different layers of the problem.</p>
 
@@ -185,7 +199,6 @@
 
   <!-- 04: UX ARTIFACTS -->
   <div class="cs-section">
-    <div class="section-eyebrow">04 — UX Artifacts</div>
     <h2 class="section-h2">Synthesizing research into direction</h2>
     <p class="section-body">Research findings were synthesized into a suite of UX artifacts that grounded design decisions in observed user behavior and business process realities. These artifacts became the shared language between research, design, and stakeholders — ensuring every structural decision that followed was traceable to something a real user said or did.</p>
 
@@ -225,7 +238,6 @@
 
   <!-- 05: INFORMATION ARCHITECTURE -->
   <div class="cs-section">
-    <div class="section-eyebrow">05 — Information Architecture</div>
     <h2 class="section-h2">Mapping the current state</h2>
     <p class="section-body">A comprehensive sitemap of the existing OTC website was developed to document and analyze the full information architecture. The existing structure revealed significant complexity working against the needs of all user groups — a site organized around internal process logic rather than user need.</p>
 
@@ -264,7 +276,6 @@
 
   <!-- 06: WIREFRAMES -->
   <div class="cs-section">
-    <div class="section-eyebrow">06 — Wireframes</div>
     <h2 class="section-h2">Rethinking the experience</h2>
     <p class="section-body">With research findings and architectural analysis complete, wireframes were developed to explore new structural and interaction patterns that would serve all user groups while prioritizing the technology scout and investor experience. A central design decision was to introduce explicit role-based entry points on the homepage.</p>
 
@@ -306,7 +317,6 @@
 
   <!-- 07: DESIGN CONCEPTS -->
   <div class="cs-section">
-    <div class="section-eyebrow">07 — Design Concepts</div>
     <h2 class="section-h2">Bringing it to life</h2>
     <p class="section-body">Visual design concepts translated the wireframe structures into a high-fidelity direction that honored Purdue's brand while creating a modern, credible digital experience that could compete with top-tier technology commercialization offices globally. The visual concept centered on three qualities most important to technology scouts, investors, and inventors navigating the site.</p>
 
@@ -336,7 +346,6 @@
 
   <!-- 08: PROTOTYPES -->
   <div class="cs-section">
-    <div class="section-eyebrow">08 — Prototypes</div>
     <h2 class="section-h2">Validating the solution</h2>
     <p class="section-body">High-fidelity interactive prototypes were developed to validate the redesigned experience with users before development handoff. The prototype covered the full homepage experience, the technology browsing flow, the inventor disclosure pathway, and the licensing engagement flow.</p>
 
@@ -397,7 +406,6 @@
 
   <!-- 09: INSIGHTS & OUTCOMES -->
   <div class="cs-section">
-    <div class="section-eyebrow">09 — Insights & Outcomes</div>
     <h2 class="section-h2">What we learned</h2>
     <p class="section-body">This project reinforced a fundamental truth about UX research: the stated problem is rarely the actual problem. Purdue OTC asked for a homepage redesign. What they needed — and what this engagement delivered — was a rethinking of how their entire digital presence served the people who needed to use it most.</p>
 

@@ -64,7 +64,8 @@
           "work/perq-case-study.html",
           "work/schlage-ecommerce-case-study.html",
           "work/tessera-case-study.html",
-          "work/dmi-call-time-case-study.html"
+          "work/dmi-call-time-case-study.html",
+          "work/purdue-otc-case-study.html"
         ],
         "createdAt": "2026-09-15T15:23:32.208Z"
       },
@@ -73,7 +74,8 @@
         "value": "*",
         "files": [
           "work/perq-case-study.html",
-          "work/tessera-case-study.html"
+          "work/tessera-case-study.html",
+          "work/purdue-otc-case-study.html"
         ],
         "createdAt": "2026-09-15T18:00:00.000Z",
         "reason": "Hero uses light text on dark background; tessera-case-study inline dark card uses Tessera brand colors (#131929 nav surface with #F3F6FC text) — intentional design system, passes AA"
