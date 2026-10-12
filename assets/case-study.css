@@ -555,7 +555,7 @@ code {
 @media (max-width: 768px) {
   .nav { padding: 0 20px; }
   .breadcrumb { display: none; }
-  .cs-hero { padding: 40px 24px 0; }
+  .cs-hero { padding: 40px 24px 0; background-image: url('/assets/images/mobile-header-blue.png') !important; }
   .cs-title { font-size: 28px; margin-bottom: 14px; }
   .cs-subtitle { font-size: 15px; margin-bottom: 32px; }
   .outcome-strip { grid-template-columns: 1fr; max-width: 100%; margin-bottom: 32px; }
