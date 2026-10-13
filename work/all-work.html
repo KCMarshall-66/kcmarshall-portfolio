@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>All Work — KC Marshall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --paper-0: #FFFFFF;
+  --paper-1: #EFF3F7;
+  --paper-2: #E4EDF5;
+  --paper-3: #D6E3F0;
+  --ink-0:   #131929;
+  --ink-1:   #26313D;
+  --ink-2:   #3D4E5C;
+  --ink-3:   #4A5A6B;
+  --ink-4:   #5B6B7C;
+  --line-1:  #E2E5EC;
+  --line-2:  #C9D5E3;
+  --clay-1:  #2F62AA;
+  --clay-2:  #255292;
+  --clay-3:  #689AE2;
+  --clay-soft: #EBF1FA;
+  --clay-line: #B0CAEF;
+
+  --bg-page:     var(--paper-1);
+  --bg-surface:  var(--paper-0);
+  --text-strong: var(--ink-1);
+  --text-body:   var(--ink-2);
+  --text-muted:  var(--ink-3);
+  --text-faint:  var(--ink-4);
+  --text-accent: var(--clay-1);
+  --border-subtle: var(--line-1);
+  --accent:      var(--clay-1);
+  --accent-hover: var(--clay-2);
+
+  --shadow-sm: 0 1px 3px rgba(38,49,61,.06), 0 1px 2px rgba(38,49,61,.04);
+  --shadow-md: 0 4px 14px rgba(38,49,61,.07), 0 2px 4px rgba(38,49,61,.04);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --font-display: 'Schibsted Grotesk', system-ui, sans-serif;
+  --font-sans:    'Hanken Grotesk', system-ui, sans-serif;
+
+  --container: 1200px;
+  --gutter:    clamp(20px, 5vw, 64px);
+
+  --dur-fast: 140ms;
+  --dur-base: 220ms;
+  --ease-out: cubic-bezier(.22,1,.36,1);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-page);
+  color: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; padding: 0 var(--gutter);
+  background: color-mix(in srgb, var(--paper-1) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.nav-left { display: flex; align-items: center; gap: 20px; }
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  color: var(--text-strong);
+}
+.nav-logo-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--clay-1); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; letter-spacing: .02em;
+}
+.nav-back {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; color: var(--text-muted);
+  padding: 5px 12px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  transition: border-color var(--dur-fast), color var(--dur-fast);
+}
+.nav-back::before { content: '←'; }
+.nav-back:hover { border-color: var(--clay-line); color: var(--clay-1); }
+.nav-right { display: flex; align-items: center; gap: 24px; font-size: 13px; color: var(--ink-3); }
+.nav-right a { color: inherit; text-decoration: none; transition: color var(--dur-fast); }
+.nav-right a:hover { color: var(--clay-1); }
+.nav-cta {
+  background: var(--clay-1) !important; color: #fff !important;
+  padding: 8px 18px; border-radius: var(--radius-sm);
+  font-weight: 600; font-size: 13px;
+  transition: background var(--dur-fast) !important;
+}
+.nav-cta:hover { background: var(--clay-2) !important; }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  padding: clamp(48px, 8vw, 96px) var(--gutter) clamp(32px, 5vw, 56px);
+  max-width: var(--container); margin: 0 auto;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.page-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--clay-1);
+  margin-bottom: 16px;
+}
+.page-eyebrow::before {
+  content: ''; display: block;
+  width: 20px; height: 1.5px; background: var(--clay-1);
+}
+.page-title {
+  font-family: var(--font-display); font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800; line-height: 1.05; letter-spacing: -0.02em;
+  color: var(--text-strong); margin-bottom: 16px;
+}
+.page-lede {
+  font-size: 18px; color: var(--text-muted); max-width: 560px; line-height: 1.6;
+}
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  max-width: var(--container); margin: 0 auto;
+  padding: 24px var(--gutter) 0;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.filter-btn {
+  font-family: var(--font-sans); font-size: 12px; font-weight: 500;
+  padding: 6px 14px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface); color: var(--text-muted);
+  cursor: pointer; transition: all var(--dur-fast);
+}
+.filter-btn:hover { border-color: var(--clay-line); color: var(--clay-1); }
+.filter-btn.active {
+  background: var(--clay-1); border-color: var(--clay-1);
+  color: #fff;
+}
+
+/* ── WORK GRID ── */
+.work-section {
+  max-width: var(--container); margin: 0 auto;
+  padding: 32px var(--gutter) clamp(64px, 10vw, 120px);
+}
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.work-card {
+  display: flex; flex-direction: column;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+.work-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.work-thumb {
+  width: 100%; aspect-ratio: 16/9; overflow: hidden;
+  background: var(--paper-2);
+}
+.work-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.work-card:hover .work-thumb img { transform: scale(1.03); }
+.work-info { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; }
+.work-tag {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--clay-1);
+  margin-bottom: 8px;
+}
+.work-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 16px; line-height: 1.35; color: var(--text-strong);
+  margin-bottom: 10px; flex: 1;
+}
+.work-meta {
+  font-size: 12px; color: var(--text-faint);
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.work-dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--text-faint); flex-shrink: 0;
+}
+.work-footer {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.work-cta {
+  font-size: 13px; font-weight: 600; color: var(--clay-1);
+  display: flex; align-items: center; gap: 6px;
+  transition: gap var(--dur-fast);
+}
+.work-card:hover .work-cta { gap: 10px; }
+
+/* hidden cards for filter */
+.work-card[hidden] { display: none; }
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 32px var(--gutter);
+  max-width: var(--container); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; color: var(--text-faint);
+}
+.footer a { color: var(--clay-1); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .nav-right .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="/" class="nav-logo" style="text-decoration:none;color:inherit">
+      <div class="nav-logo-mark">KC</div>
+      KC Marshall
+    </a>
+    <a href="/" class="nav-back">Home</a>
+  </div>
+  <div class="nav-right" style="display:flex;align-items:center;gap:24px;font-size:13px;color:var(--ink-3);">
+    <a href="/#about" style="color:inherit;text-decoration:none;">About</a>
+    <a href="mailto:kevincmarshall@gmail.com" class="nav-cta" style="text-decoration:none;">Let's Talk</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-eyebrow">Portfolio</div>
+  <h1 class="page-title">All Work</h1>
+  <p class="page-lede">Case studies spanning enterprise SaaS, e-commerce, healthcare, AI, and interactive design — 15+ years of UX leadership.</p>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="saas">SaaS &amp; AI</button>
+  <button class="filter-btn" data-filter="ecommerce">E-Commerce</button>
+  <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+  <button class="filter-btn" data-filter="design-systems">Design Systems</button>
+  <button class="filter-btn" data-filter="interactive">Interactive</button>
+</div>
+
+<!-- WORK GRID -->
+<div class="work-section">
+  <div class="work-grid" id="work-grid">
+
+    <a href="/work/tessera-case-study" class="work-card" data-tags="saas">
+      <div class="work-thumb">
+        <img src="/assets/images/tessera-dashboard-hero.png" alt="Tessera — AI-Assisted Vendor Risk Management" />
+      </div>
+      <div class="work-info">
+        <div class="work-tag">SaaS · AI · Design Exercise</div>
+        <div class="work-title">Tessera: Intelligent Third-Party Governance</div>
+        <div class="work-meta">
+          Design Exercise
+          <span class="work-dot"></span>
+          2026
+          <span class="work-dot"></span>
+          Solo UX / Product Design
+        </div>
+      </div>
+      <div class="work-footer">
+        <span class="work-cta">View case study →</span>
+      </div>
+    </a>
+
+    <a href="/work/schlage-ecommerce-case-study" class="work-card" data-tags="ecommerce">
+      <div class="work-thumb">
+        <img src="/assets/images/find-finish.gif" alt="Schlage.com End-to-End Redesign" />
+      </div>
+      <div class="work-info">
+        <div class="work-tag">E-Commerce · UX Research</div>
+        <div class="work-title">Schlage.com End-to-End Redesign</div>
+        <div class="work-meta">
+          The Basement
+          <span class="work-dot"></span>
+          2022
+        </div>
+      </div>
+      <div class="work-footer">
+        <span class="work-cta">View case study →</span>
+      </div>
+    </a>
+
+    <a href="/work/onetrust-design-system" class="work-card" data-tags="design-systems saas">
+      <div class="work-thumb">
+        <img src="/assets/images/thumb-onetrust.jpg" alt="OneTrust Design System" />
+      </div>
+      <div class="work-info">
+        <div class="work-tag">Design Systems · Enterprise SaaS</div>
+        <div class="work-title">Governing a global design system across 12 product suites</div>
+        <div class="work-meta">
+          OneTrust
+          <span class="work-dot"></span>
+          2021–2024
+        </div>
+      </div>
+      <div class="work-footer">
+        <span class="work-cta">View case study →</span>
+      </div>
+    </a>
+
+    <a href="/work/rules-builder-case-study" class="work-card" data-tags="saas design-systems">
+      <div class="work-thumb">
+        <img src="/assets/images/thumb-rule-builder.png" alt="Rule Builder — OneTrust" />
+      </div>
+      <div class="work-info">
+        <div class="work-tag">AI Prototype · Enterprise UX · UX Research</div>
+        <div class="work-title">Unifying a Rule Builder Across an Enterprise Platform</div>
+        <div class="work-meta">
+          OneTrust
+          <span class="work-dot"></span>
+          2026
+          <span class="work-dot"></span>
+          Sr. Principal UX Lead
+        </div>
+      </div>
+      <div class="work-footer">
+        <span class="work-cta">View case study →</span>
+      </div>
+    </a>
+
+    <a href="/work/dmi-call-time-case-study" class="work-card" data-tags="healthcare">
+      <div class="work-thumb">
+        <img src="/assets/images/IMG_5546.jpg" alt="50% Call Time Reduction via Service Design" />
+      </div>
+      <div class="work-info">
+        <div class="work-tag">Healthcare · Service Design</div>
+        <div class="work-title">50% Call Time Reduction via Service Design</div>
+        <div class="work-meta">
+          DMI Consulting
+          <span class="work-dot"></span>
+          2019
+        </div>
+      </div>
+      <div class="work-footer">
+        <span class="work-cta">View case study →</span>
+      </div>
+    </a>
+
+    <a href="/work/perq-case-study" class="work-card" data-tags="saas">
+      <div class="work-thumb">
+        <img src="/assets/images/perq-animation.gif" alt="PERQ: Scaling to 1M+ Consumers" style="object-position:right" />
+      </div>
+      <div class="work-info">
+        <div class="work-tag">SaaS Product · Multi-Market</div>
+        <div class="work-title">PERQ: Scaling to 1M+ Consumers</div>
+        <div class="work-meta">
+          PERQ Software
+          <span class="work-dot"></span>
+          2015–2019
+        </div>
+      </div>
+      <div class="work-footer">
+        <span class="work-cta">View case study →</span>
+      </div>
+    </a>
+
+    <a href="/work/purdue-otc-case-study" class="work-card" data-tags="saas">
+      <div class="work-thumb">
+        <img src="/assets/images/purdue-bright.png" alt="Redesigning how Purdue research reaches the market" />
+      </div>
+      <div class="work-info">
+        <div class="work-tag">UX Research · Advanced Prototyping</div>
+        <div class="work-title">Redesigning how Purdue research reaches the market</div>
+        <div class="work-meta">
+          Purdue OTC
+          <span class="work-dot"></span>
+          2023
+        </div>
+      </div>
+      <div class="work-footer">
+        <span class="work-cta">View case study →</span>
+      </div>
+    </a>
+
+    <a href="/work/treasures-case-study" class="work-card" data-tags="interactive">
+      <div class="work-thumb">
+        <img src="/assets/images/thmb-terracotta.png" alt="Treasures of the Earth — National Geographic Interactive" />
+      </div>
+      <div class="work-info">
+        <div class="work-tag">Interactive Design · RFID · 3D Visualization</div>
+        <div class="work-title">Treasures of the Earth — National Geographic Interactive</div>
+        <div class="work-meta">
+          Children's Museum of Indianapolis
+          <span class="work-dot"></span>
+          2014–2015
+        </div>
+      </div>
+      <div class="work-footer">
+        <span class="work-cta">View case study →</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>© 2026 KC Marshall</span>
+  <a href="/">← Back to home</a>
+</div>
+
+<script>
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.work-card');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.tags.includes(filter)) {
+          card.removeAttribute('hidden');
+        } else {
+          card.setAttribute('hidden', '');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
