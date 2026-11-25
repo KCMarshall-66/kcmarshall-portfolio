@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/case-study.css?v=2" />
+<link rel="stylesheet" href="/assets/case-study.css?v=5" />
 <style>
 .cs-hero {
   background-image: url('/assets/images/schlage-hero-back.png');
@@ -44,396 +44,190 @@
 </nav>
 
 <!-- HERO -->
-<div class="cs-hero">
-  <div class="cs-company-tag">The Basement · E-Commerce · UX Research</div>
-  <h1 class="cs-title">Redesigning Schlage.com from the ground up</h1>
-  <p class="cs-subtitle">How I led end-to-end UX for a large-scale enterprise e-commerce platform — from research and empathy mapping through design system architecture, motion prototyping, and validated usability testing.</p>
-
-  <div class="outcome-strip">
-    <div class="outcome-card">
-      <div class="o-num">5+</div>
-      <div class="o-label">User research artifacts including empathy maps, journey maps, and service blueprints</div>
-    </div>
-    <div class="outcome-card">
-      <div class="o-num">A/B</div>
-      <div class="o-label">Mobile navigation patterns tested head-to-head before final implementation</div>
-    </div>
-    <div class="outcome-card">
-      <div class="o-num">2×</div>
-      <div class="o-label">Parallel workstreams — e-commerce UX and a unified atomic design system</div>
-    </div>
-  </div>
-
-  <div class="meta-row">
-    <div class="meta-cell">
-      <div class="meta-key">My Role</div>
-      <div class="meta-val">UX Director</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Timeline</div>
-      <div class="meta-val">2022</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Platform</div>
-      <div class="meta-val">E-Commerce · Retail</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Core Tools</div>
-      <div class="meta-val">Adobe XD · Maze · UXTweak</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Client</div>
-      <div class="meta-val">Schlage via The Basement</div>
-    </div>
-  </div>
+<div class="cs-hero cs-hero--plain">
+  <div class="cs-company-tag">The Basement · 2022</div>
+  <h1 class="cs-title">Redesigning Schlage.com</h1>
+  <p class="cs-subtitle">Schlage makes locks and door hardware. They have a huge catalog, a broad customer base, and a website that hadn't kept up with how people shop. I led UX on the rebuild and on the design system underneath it, which we ran at the same time.</p>
+  <p class="cs-credit">UX Director at The Basement. Research, IA, design system, prototyping, and testing.</p>
 </div>
 
 <!-- BODY -->
 <div class="cs-body">
 
-  <!-- 01: CONTEXT -->
   <div class="cs-section">
-    <h2 class="section-h2">A complex e-commerce platform built from scratch</h2>
-    <p class="section-body">Schlage is a leading manufacturer of locks and security hardware — a brand with a broad consumer base, a complex product catalog, and a website that wasn't keeping pace with how people shop. This was a large, enterprise-level e-commerce redesign currently in production, covering the full spectrum of UX activity: from initial discovery and stakeholder alignment, through strategy and tiered release planning, to final design system delivery.</p>
-    <p class="section-body">My role as UX Director meant owning both the research-to-design process and the systems that would govern how that design scaled. No off-the-shelf templates — every pattern, component, and interaction model was defined, tested, and documented from the ground up.</p>
-    <div class="callout">
-      <p>"The heart of any project is the design system. Think of a style guide, pattern library, and component library all rolled into one — a single source of truth that evolves with the project."</p>
+    <div class="full-img-card lb-trigger" style="position:relative;">
+      <img src="/assets/images/find-finish.gif" alt="Find to Finish motion prototype" />
+      <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+      <div class="full-img-caption">The find-a-finish prototype, one of the flows we tested in motion before it went to engineering.</div>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 02: RESEARCH & DISCOVERY -->
   <div class="cs-section">
-    <h2 class="section-h2">Understanding the customer before touching a frame</h2>
-    <p class="section-body">Every project starts with understanding people — both the users and the business stakeholders behind them. I conducted heuristic evaluations of the existing site alongside stakeholder interviews to calibrate user empathy against business objectives. That groundwork informed a deeper research phase: end-user interviews, usability testing on existing flows, site heuristics, and technology audits to understand platform constraints before making design decisions.</p>
-    <p class="section-body">The research phase produced a suite of artifacts that gave the project team a shared model of who we were designing for and what their experience actually looked like — not just what the business assumed it to be.</p>
+    <h2 class="section-h2">Starting with people</h2>
+    <p class="section-body">I began with a heuristic review of the old site and interviews with Schlage's stakeholders, so I understood what the business needed before talking to customers. Then I interviewed end users, ran usability tests on the existing flows, and audited the tech stack so we'd know the platform's limits before we designed around them.</p>
+    <p class="section-body">That gave us two primary personas, Charles and Amy, plus a journey map and a service blueprint. With those, everyone on the project was designing for the same people, and the team stopped working from assumptions about what customers wanted.</p>
 
-    <div class="insight-row">
-      <div class="insight-card">
-        <div class="insight-num">2</div>
-        <div class="insight-label">Primary user personas built from interview research (Charles and Amy)</div>
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger">
+          <img src="/assets/images/Empathy-map-Charles.png" alt="Empathy map for Charles" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Charles</div>
       </div>
-      <div class="insight-card">
-        <div class="insight-num">4</div>
-        <div class="insight-label">Research methods deployed: interviews, usability testing, heuristics, technology audit</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-num">1</div>
-        <div class="insight-label">Service blueprint mapping end-to-end process opportunities across the buying journey</div>
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger">
+          <img src="/assets/images/Empathy-map-Amy.png" alt="Empathy map for Amy" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Amy, who cared most about home security.</div>
       </div>
     </div>
 
     <div class="artifact-grid cols-2">
       <div class="artifact-card">
         <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Empathy-map-Charles.png" alt="Empathy Map — Charles" />
+          <img src="/assets/images/Entrepreneur-Journey-Map-–-Assumptive-2.png" alt="Assumptive journey map" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Empathy Map — Charles. Captures goals, frustrations, and mental models surfaced during user interviews.</div>
+        <div class="artifact-caption">Assumptive journey map, which we checked against the interviews.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Empathy-map-Amy.png" alt="Empathy Map — Amy" />
+          <img src="/assets/images/Service-Process-Blueprint.png" alt="Service process blueprint" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Empathy Map — Amy. A secondary persona with distinct motivations, particularly around home security purchasing decisions.</div>
-      </div>
-    </div>
-
-    <div class="artifact-grid cols-2">
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Entrepreneur-Journey-Map-–-Assumptive-2.png" alt="Entrepreneur Journey Map" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Assumptive Journey Map — Entrepreneur path. Documents each stage of the purchase journey, emotional highs and lows, and friction points ripe for improvement.</div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Service-Process-Blueprint.png" alt="Service Process Blueprint" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Service Blueprint. Maps the full service process to surface industry-level process opportunities beyond the screen.</div>
+        <div class="artifact-caption">Service blueprint. Some of the problems were in the process behind the site, not on the screen.</div>
       </div>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 03: DESIGN SYSTEM -->
   <div class="cs-section">
-    <h2 class="section-h2">Building the atomic foundation first</h2>
-    <p class="section-body">Before designing pages, I established the design system — the single source of truth that would govern every decision made downstream. I adopted the Atomic Design Methodology, organizing the system into hierarchical levels: Atoms (colors, typography), Molecules (buttons, icon pairs), Organisms (headers, footers, feature blocks), and Templates. Implemented using Adobe XD's component library, any change made at the atomic level cascaded automatically across every team artboard.</p>
-    <p class="section-body">The result was a living document that saved measurable design and development time — changes at any organizational level kept all designs up-to-date without manual rework, and gave the development team a clear, unambiguous specification at every stage of implementation.</p>
-
-    <div class="capability-grid">
-      <div class="capability-item">
-        <div class="cap-icon">🎨</div>
-        <div>
-          <div class="cap-title">Color Atoms</div>
-          <div class="cap-desc">A defined palette governing primary, secondary, neutral, and semantic states across all surfaces</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">Aa</div>
-        <div>
-          <div class="cap-title">Typography Atoms</div>
-          <div class="cap-desc">Type scale, weight hierarchy, and line-height rules established at the atom level and enforced throughout</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">⬜</div>
-        <div>
-          <div class="cap-title">Button &amp; UI Molecules</div>
-          <div class="cap-desc">Interactive states (default, hover, active, disabled) documented with interaction rules for consistent behavior</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">☰</div>
-        <div>
-          <div class="cap-title">Navigation Organisms</div>
-          <div class="cap-desc">Header and footer organisms with responsive behavior rules and documented content variation patterns</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">▦</div>
-        <div>
-          <div class="cap-title">Component Library</div>
-          <div class="cap-desc">Reusable components enabling dynamic changes across all team artboards via XD's component override system</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">◱</div>
-        <div>
-          <div class="cap-title">Feature Blocks &amp; Organisms</div>
-          <div class="cap-desc">Complex layout patterns — feature blocks, promotional modules — with documented interaction rules and content flexibility</div>
-        </div>
-      </div>
-    </div>
+    <h2 class="section-h2">The design system came first</h2>
+    <p class="section-body">I set up the design system before designing any pages. It followed atomic design: color and type as atoms, buttons and icon pairs as molecules, headers, footers, and feature blocks as organisms, then templates. We built it as an Adobe XD component library, so a change to an atom showed up on every artboard the team had.</p>
+    <p class="section-body">It slowed the first few weeks. After that, every new page was built from parts that were already specified and documented, and the developers always had a clear spec to work from.</p>
 
     <div class="artifact-grid cols-2">
       <div class="artifact-card">
         <div class="artifact-img lb-trigger">
-          <img src="/assets/images/schlage_colors.png" alt="Schlage Color System" />
+          <img src="/assets/images/schlage_colors.png" alt="Schlage color system" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Color atoms — primary, secondary, and neutral palettes with semantic usage guidance.</div>
+        <div class="artifact-caption">Color</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger">
-          <img src="/assets/images/schlage_typography.png" alt="Schlage Typography System" />
+          <img src="/assets/images/schlage_typography.png" alt="Schlage typography system" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Typography atoms — type scale, weight hierarchy, and line-height rules for all text styles.</div>
+        <div class="artifact-caption">Type</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger">
+          <img src="/assets/images/schlage_buttons_tabs_ui_patterns.png" alt="Buttons, tabs, and UI patterns" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Buttons and tabs, with every state.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger">
+          <img src="/assets/images/Components.png" alt="Component library" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Component library</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger">
+          <img src="/assets/images/Header.png" alt="Header organism" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Header</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger">
+          <img src="/assets/images/Footer.png" alt="Footer organism" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Footer</div>
       </div>
     </div>
+
+    <div class="full-img-card lb-trigger" style="position:relative;">
+      <img src="/assets/images/Features-and-Blocks-Quick-Hits.png" alt="Feature blocks" />
+      <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+      <div class="full-img-caption">Feature and promo blocks, with rules for how the content could change.</div>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2 class="section-h2">Prototyping the tricky parts</h2>
+    <p class="section-body">You can't really test favoriting, search, or inventory-driven layouts from static artboards. We built motion prototypes for those interactions and used them for both testing and dev handoff. For mobile nav, we prototyped several approaches and tested them against each other before choosing one.</p>
+    <p class="section-body">We also documented how each element should behave when the inventory data changed. That doc collected stakeholder feedback and kept development aligned.</p>
+
+    <div class="artifact-grid cols-3">
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger" style="height:220px;">
+          <img src="/assets/images/mobile-menus.png" alt="Mobile navigation approaches" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Mobile nav options we tested.</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger" style="height:220px;">
+          <img src="/assets/images/Schlage-default-head-on.png" alt="Default state documentation" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Default states and breakpoints</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger" style="height:220px;">
+          <img src="/assets/images/Product-Card-Homepage-Desktop-and-Mobile.png" alt="Product card, desktop and mobile" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Product card rules for desktop and mobile</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2 class="section-h2">Testing as we went</h2>
+    <p class="section-body">It's easy to look at a design and say "I like it." I wanted numbers, so testing happened throughout the project, with a different method for each question.</p>
+    <ul class="cs-list">
+      <li><strong>Tree testing in UXTweak</strong> before we built any navigation. It showed where people expected to find things and where our proposed IA confused them.</li>
+      <li><strong>Prototype testing in Maze</strong> with high-fidelity Axure prototypes. Completion rates, misclicks, and path data showed friction our own reviews had missed.</li>
+      <li><strong>Moderated interviews</strong>, synthesized in Mural, to explain the why behind the numbers and decide which problems hurt conversion most.</li>
+    </ul>
 
     <div class="artifact-grid cols-2">
       <div class="artifact-card">
         <div class="artifact-img lb-trigger">
-          <img src="/assets/images/schlage_buttons_tabs_ui_patterns.png" alt="Buttons, Tabs, and UI Patterns" />
+          <img src="/assets/images/Screenshot-2023-08-15-at-2.34.55-PM.png" alt="Maze usability test results" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Button molecules and UI pattern documentation — all interactive states defined and ready for dev handoff.</div>
+        <div class="artifact-caption">Maze paths and misclicks on the shopping flow.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Components.png" alt="Component Library" />
+          <img src="/assets/images/Screenshot-2023-08-15-at-2.36.13-PM.png" alt="UXTweak tree test results" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Component library overview — reusable molecules and organisms powering the entire platform.</div>
-      </div>
-    </div>
-
-    <div class="artifact-grid cols-2">
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Header.png" alt="Header Organism" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Header organism — responsive navigation with documented content rules and interaction states.</div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Footer.png" alt="Footer Organism" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Footer organism — structured for content flexibility while maintaining visual consistency across pages.</div>
-      </div>
-    </div>
-
-    <div class="artifact-grid cols-1" style="grid-template-columns:1fr;">
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:240px;">
-          <img src="/assets/images/Features-and-Blocks-Quick-Hits.png" alt="Feature Blocks" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Feature blocks and promotional organisms — modular layout patterns with documented interaction and content variation rules.</div>
+        <div class="artifact-caption">UXTweak tree test results</div>
       </div>
     </div>
 
     <div class="tool-chips">
       <span class="tool-chip">Adobe XD</span>
-      <span class="tool-chip">Atomic Design</span>
-      <span class="tool-chip">Component Library</span>
-      <span class="tool-chip">Design Tokens</span>
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <!-- 04: PROTOTYPING -->
-  <div class="cs-section">
-    <h2 class="section-h2">Static artboards aren't enough</h2>
-    <p class="section-body">For a site with complex interactions — favoriting products, search, navigation, and dynamic inventory-driven layouts — static designs don't communicate the full intent. Motion prototypes were created for key interactions to facilitate both rigorous user testing and precise developer handoffs. The goal was to remove ambiguity at every decision point before engineering investment was made.</p>
-
-    <div class="callout">
-      <p>"Static artboards simply aren't enough for thoroughly testing complex patterns such as favoriting an item or searching for help. Micro-interactions require comprehensive prototyping before developer handoff."</p>
-    </div>
-
-    <div class="artifact-grid cols-2">
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:220px;">
-          <img src="/assets/images/find-finish.gif" alt="Find to Finish Motion Prototype" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Find-to-Finish motion prototype — animating the full product discovery-to-checkout interaction model for user testing and dev handoff.</div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:220px;">
-          <img src="/assets/images/mobile-menus.png" alt="Mobile Navigation Approaches" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Multiple mobile navigation approaches prototyped and tested before implementation — A/B comparison used to determine the strongest pattern.</div>
-      </div>
-    </div>
-
-    <p class="section-body">Documentation played a critical role alongside prototyping. Element documentation gathered stakeholder feedback, secured development alignment, and ensured the design team understood how dynamic content — database and inventory changes — would impact layouts across states.</p>
-
-    <div class="artifact-grid cols-2">
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Schlage-default-head-on.png" alt="Default State Documentation" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Element documentation — default layout states showing component specifications and responsive breakpoint behavior.</div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Product-Card-Homepage-Desktop-and-Mobile.png" alt="Product Card — Desktop and Mobile" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Product card usage documentation — desktop and mobile variants with defined content rules for inventory-driven display variations.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <!-- 05: TESTING -->
-  <div class="cs-section">
-    <h2 class="section-h2">Quantitative data at every stage, not just the end</h2>
-    <p class="section-body">Opinions are easy to come by. What the project needed was quantitative evidence. Testing wasn't a single gate at the end of the design process — it was embedded throughout, with tools selected to answer specific questions at specific stages: tree testing to validate information architecture before building navigation, and prototype testing to validate interaction models before committing to implementation.</p>
-
-    <div class="callout">
-      <p>"It's easy to look at a design and give an opinion such as 'I like it' or 'I'm not sure this is going to work'. Without any quantitative stats, you really are missing the opportunity for insights, improvements, and confirmation."</p>
-    </div>
-
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-icon">🌳</div>
-        <div>
-          <div class="problem-title">UXTweak Tree Testing — Information Architecture</div>
-          <div class="problem-desc">Before building navigation, I ran unmoderated tree tests using UXTweak to validate the proposed site taxonomy with real users. The resulting pie chart visualizations revealed where users expected to find products and content — and where the proposed IA created confusion — before a single navigation component was designed.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">🧪</div>
-        <div>
-          <div class="problem-title">Maze Prototype Testing — Shopping Paths</div>
-          <div class="problem-desc">High-fidelity Axure RP prototypes were deployed through Maze to run unmoderated usability tests uncovering how users actually navigated the shopping experience. Task completion rates, misclick analysis, and path data surfaced friction points that static reviews had missed — and confirmed which design decisions held up under real use conditions.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">👥</div>
-        <div>
-          <div class="problem-title">User Interviews &amp; Mural Synthesis</div>
-          <div class="problem-desc">Moderated user interviews provided qualitative depth to complement the quantitative testing data. Interview findings were synthesized in Mural, allowing the team to collaboratively identify patterns, cluster insights, and prioritize which friction points had the highest impact on conversion and satisfaction.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="artifact-grid cols-2">
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Screenshot-2023-08-15-at-2.34.55-PM.png" alt="Maze Usability Test Results" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">Maze usability test results — task path analysis and misclick heatmaps revealing friction in the shopping flow.</div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger">
-          <img src="/assets/images/Screenshot-2023-08-15-at-2.36.13-PM.png" alt="UXTweak Tree Test Results" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">UXTweak tree test output — pie chart visualization confirming IA structure before navigation components were built.</div>
-      </div>
-    </div>
-
-    <div class="tool-chips">
+      <span class="tool-chip">Axure RP</span>
       <span class="tool-chip">Maze</span>
       <span class="tool-chip">UXTweak</span>
-      <span class="tool-chip">Axure RP</span>
-      <span class="tool-chip">User Interviews</span>
       <span class="tool-chip">Mural</span>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 06: OUTCOMES -->
   <div class="cs-section">
-    <h2 class="section-h2">Research-backed design, delivered at scale</h2>
-    <p class="section-body">The Schlage.com redesign delivered a full-stack UX engagement — from foundational user research through a production-ready atomic design system and validated interaction models. The dual workstreams of e-commerce UX and design system architecture were executed in parallel, ensuring the final designs were both user-tested and built to scale with the platform's evolving product catalog.</p>
-
-    <div class="outcome-summary">
-      <div class="os-heading">Key Deliverables</div>
-      <div class="os-items">
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Full user research suite</strong> — empathy maps, assumptive journey maps, and a service blueprint establishing a shared understanding of user needs before any design work began</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Atomic design system</strong> — a living component library governing color, typography, interactions, and layout organisms, enabling dynamic updates across all artboards and reducing design-to-development friction</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Motion prototypes for critical interactions</strong> — find-to-finish flows, favoriting, search, and mobile navigation tested and documented before engineering investment was committed</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Validated information architecture</strong> — UXTweak tree testing confirmed the site taxonomy with real users, eliminating IA assumptions before navigation was built</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Quantitative usability evidence</strong> — Maze prototype testing and user interview synthesis provided a data-grounded foundation for every major interaction decision made during the project</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <!-- 07: REFLECTION -->
-  <div class="cs-section">
-    <h2 class="section-h2">What this project reinforced about end-to-end UX</h2>
-    <div class="reflection">
-      <div class="reflection-label">Honest Retrospective</div>
-      <p class="reflection-body">Running a design system and an e-commerce UX engagement in parallel is genuinely difficult — and genuinely worth it. The temptation on projects like this is to treat the design system as a cleanup task: something you build after the product designs stabilize. That approach creates rework. Building the atomic foundation first — even when it slows the early phases — means every component you design later is already governed, already reusable, and already documented for development. The system pays back its investment within the first major feature cycle.</p>
-      <p class="reflection-body">What I'd do again: the embedded testing cadence. Tree testing before navigation, prototype testing before interaction commitment, interview synthesis alongside quantitative data. Each layer added something the others couldn't — and each one surfaced at least one finding that would have cost significantly more to fix post-launch than it did to address during design. The goal isn't to test everything; it's to test at the moments where being wrong is most expensive.</p>
-    </div>
+    <h2 class="section-h2">Looking back</h2>
+    <p class="section-body">Running the design system and the site redesign together was hard, and I'd do it the same way again. Teams often treat the system as cleanup to do once the pages settle, and that guarantees rework. Building it first meant everything after it was already reusable and documented, and it paid for itself by the first big feature.</p>
+    <p class="section-body">I'd keep the testing rhythm too. Every round turned up at least one problem that would have cost a lot more to fix after launch. You don't have to test everything. Test the decisions that would be most expensive to get wrong.</p>
   </div>
 
 </div>

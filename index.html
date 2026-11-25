@@ -345,30 +345,6 @@ a { text-decoration: none; color: inherit; }
   .hero__grid { grid-template-columns: 1fr; }
 }
 
-/* ── EXPERIENCE STRIP ───────────────────────────────────── */
-.expstrip {
-  border-bottom: 1px solid var(--border-subtle);
-  overflow: hidden;
-}
-.expstrip__inner {
-  display: flex; align-items: center; gap: var(--space-9);
-  padding: 14px 0; overflow-x: auto; scrollbar-width: none;
-  cursor: grab;
-}
-.expstrip__inner::-webkit-scrollbar { display: none; }
-.expstrip__inner.dragging { cursor: grabbing; }
-.expstrip__label {
-  font-family: var(--font-sans); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-faint);
-  white-space: nowrap; flex-shrink: 0;
-  padding-right: var(--space-9); border-right: 1px solid var(--border-subtle);
-}
-.expstrip__items { display: flex; gap: var(--space-9); flex-shrink: 0; }
-.expstrip__item {
-  font-size: 13px; color: var(--text-muted); white-space: nowrap;
-}
-.expstrip__item b { color: var(--text-strong); font-weight: 600; }
-
 /* ── SELECTED WORK ──────────────────────────────────────── */
 .section {
   padding: var(--section-y) 0;
@@ -491,18 +467,12 @@ a { text-decoration: none; color: inherit; }
 }
 .edu { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-8); }
 .edu-card {
-  display: flex; align-items: center; gap: var(--space-4);
+  display: block;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: var(--space-4);
   box-shadow: var(--shadow-xs);
-}
-.edu-icon {
-  width: 40px; height: 40px; border-radius: var(--radius-sm);
-  background: var(--clay-soft); color: var(--clay-1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
 }
 .edu-degree { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--text-strong); line-height: 1.3; }
 .edu-school { font-family: var(--font-sans); font-size: 12px; color: var(--text-muted); margin-top: 3px; }
@@ -757,7 +727,7 @@ a { text-decoration: none; color: inherit; }
       <div>
         <div class="eyebrow eyebrow--on-inv hero__eyebrow">Senior Principal UX Design Lead</div>
         <h1 class="hero__title">Designing systems<br>that <span class="accent">move<br>numbers.</span></h1>
-        <p class="hero__lede">I translate complex enterprise challenges into measurable, human-centered outcomes — across SaaS, Fintech, Healthcare, and Industrial platforms for over 15 years.</p>
+        <p class="hero__lede">I’ve spent 15 years designing enterprise software in SaaS, fintech, healthcare, and industrial companies. The projects below are the ones where I can point to what changed.</p>
         <div class="hero__cta">
           <a href="#selected-work" class="btn btn--primary">View Case Studies <span class="btn-arrow">→</span></a>
           <a href="/assets/resume/Kevin-Marshall-Resume-Oct30.pdf" class="btn btn--secondary">↓ Download Resume</a>
@@ -789,23 +759,6 @@ a { text-decoration: none; color: inherit; }
     </div>
   </div>
 </section>
-
-<!-- EXPERIENCE STRIP -->
-<div class="expstrip">
-  <div class="wrap">
-    <div class="expstrip__inner">
-      <span class="expstrip__label">Experience</span>
-      <div class="expstrip__items">
-        <span class="expstrip__item"><b>OneTrust</b> &nbsp;Sr. Principal UX Design Lead</span>
-        <span class="expstrip__item"><b>The Basement</b> &nbsp;UX Director</span>
-        <span class="expstrip__item"><b>NextGear Capital</b> &nbsp;Sr. UX Architect</span>
-        <span class="expstrip__item"><b>DMI Consulting</b> &nbsp;Sr. UX Architect</span>
-        <span class="expstrip__item"><b>PERQ Software</b> &nbsp;UX Manager</span>
-        <span class="expstrip__item"><b>Express Holdings</b> &nbsp;Director of Media Technology</span>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- SELECTED WORK -->
 <section class="section" id="selected-work">
@@ -919,10 +872,10 @@ a { text-decoration: none; color: inherit; }
           <img src="/assets/images/profile.jpg" alt="KC Marshall" />
         </div>
         <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-3)">About</div>
-        <h2 class="about__heading">Strategic architect.<br>Hands-on designer.<br>Team builder.</h2>
+        <h2 class="about__heading">I still open Figma every day, even with a team to run.</h2>
         <div>
-          <p class="about__body">I'm a Senior Principal UX Design Lead based in Fishers, Indiana with over 15 years bridging the gap between business strategy and human-centered design. I've built design departments from scratch, governed enterprise-scale design systems, and led Fortune 500 digital transformations — while keeping the user at the center of every decision.</p>
-          <p class="about__body">Currently at OneTrust, I lead the evolution of the platform's SaaS UX, integrating Pendo analytics and spearheading the organization's AI-driven prototyping initiative.</p>
+          <p class="about__body">I'm a Senior Principal UX Design Lead in Fishers, Indiana. Over 15 years I've built UX teams from scratch, run design systems at enterprise scale, and led redesigns for Fortune 500 clients.</p>
+          <p class="about__body">Right now I'm at OneTrust, working on the platform's UX, our Pendo rollout, and the AI prototyping program.</p>
         </div>
         <a href="/assets/resume/Kevin-Marshall-Resume-Oct30.pdf" class="btn btn--secondary" style="margin-top:var(--space-3)">↓ Download Resume</a>
       </div>
@@ -930,14 +883,12 @@ a { text-decoration: none; color: inherit; }
         <div class="eyebrow eyebrow--no-rule" style="margin-bottom:var(--space-6)">Education &amp; Skills</div>
         <div class="edu" style="margin-bottom:var(--space-8)">
           <div class="edu-card">
-            <div class="edu-icon">🎓</div>
             <div>
               <div class="edu-degree">Masters of Science — Informatics &amp; HCI</div>
               <div class="edu-school">Indiana University</div>
             </div>
           </div>
           <div class="edu-card">
-            <div class="edu-icon">🎨</div>
             <div>
               <div class="edu-degree">Bachelor of Fine Arts — Graphic Design</div>
               <div class="edu-school">Ball State University</div>
@@ -952,7 +903,7 @@ a { text-decoration: none; color: inherit; }
               <span class="skill-tag skill-tag--accent">AI Prototyping</span>
               <span class="skill-tag">Figma Make</span>
               <span class="skill-tag">LLM-Guided UI</span>
-              <span class="skill-tag">Azure XP</span>
+              <span class="skill-tag">Axure RP</span>
               <span class="skill-tag">Vercel</span>
             </div>
           </div>
@@ -1034,7 +985,7 @@ a { text-decoration: none; color: inherit; }
         <div class="exp-period">2024 – Present</div>
         <div class="exp-role">Senior Principal UX Design Lead</div>
         <div class="exp-company">OneTrust</div>
-        <div class="exp-desc">Strategic architect and hands-on leader driving the evolution of the OneTrust SaaS platform. Owns Design System governance, Pendo analytics integration, and AI-driven prototyping initiatives across the product org.</div>
+        <div class="exp-desc">Leads UX for the OneTrust SaaS platform. Owns design system governance, rolled out Pendo analytics, and runs the product org's AI prototyping work.</div>
       </div>
       <div class="exp-card reveal">
         <div class="exp-period">2020 – 2024</div>
@@ -1089,7 +1040,7 @@ a { text-decoration: none; color: inherit; }
 <footer class="footer">
   <div class="wrap">
     <div class="footer__inner">
-      <div class="footer__copy">© 2026 KC Marshall · Fishers, IN <span style="opacity:.4;font-size:11px;margin-left:.5em;">v1.1.0</span></div>
+      <div class="footer__copy">© 2026 KC Marshall · Fishers, IN</div>
       <div class="footer__links">
         <a href="https://www.linkedin.com/in/kevin-marshall-6252b5/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="/assets/resume/Kevin-Marshall-Resume-Oct30.pdf">Resume</a>
@@ -1159,44 +1110,6 @@ document.querySelectorAll('.work-card, .testi-card, .exp-card').forEach((el, i, 
   /* only watch the first sibling — when it fires, all stagger together */
   if (el === el.parentElement.firstElementChild) staggerObserver.observe(el);
 });
-
-/* ── Stat counter ───────────────────────────────────────── */
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-function animateCount(el) {
-  const raw = el.textContent.trim();
-  const suffix = raw.replace(/[\d.]/g, '');
-  const num = parseFloat(raw);
-  if (isNaN(num) || prefersReduced) return;
-  const duration = 1600;
-  const start = performance.now();
-  const isInt = Number.isInteger(num);
-  function tick(now) {
-    const t = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - t, 3);
-    const val = num * ease;
-    el.textContent = (isInt ? Math.round(val) : val.toFixed(1)) + suffix;
-    if (t < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-const countObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    animateCount(e.target);
-    countObserver.unobserve(e.target);
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.stat-num').forEach(el => countObserver.observe(el));
-
-/* ── Experience strip drag-scroll ───────────────────────── */
-const strip = document.querySelector('.expstrip__inner');
-let isDown = false, startX, scrollLeft;
-strip.addEventListener('mousedown', e => { isDown = true; strip.classList.add('dragging'); startX = e.pageX - strip.offsetLeft; scrollLeft = strip.scrollLeft; });
-strip.addEventListener('mouseleave', () => { isDown = false; strip.classList.remove('dragging'); });
-strip.addEventListener('mouseup', () => { isDown = false; strip.classList.remove('dragging'); });
-strip.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); strip.scrollLeft = scrollLeft - (e.pageX - strip.offsetLeft - startX); });
 
 /* ── Contact modal ──────────────────────────────────────── */
 const overlay = document.getElementById('contact-overlay');

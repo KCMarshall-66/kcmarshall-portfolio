@@ -7,10 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/case-study.css?v=2" />
+<link rel="stylesheet" href="/assets/case-study.css?v=5" />
 <style>
 .cs-hero {
-  background-image: url('/assets/images/header-back-treasures.png');
+  background-image: linear-gradient(90deg, rgba(10,12,18,.82) 0%, rgba(10,12,18,.55) 55%, rgba(10,12,18,.1) 100%), url('/assets/images/header-back-treasures.png');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -19,11 +19,9 @@
 .cs-company-tag::before { background: var(--clay-3); }
 .cs-title { color: #ffffff; }
 .cs-subtitle { color: rgba(255,255,255,0.8); }
-.meta-key { color: rgba(255,255,255,0.5); }
-.meta-val { color: rgba(255,255,255,0.9); }
-.meta-row { background: rgba(0,0,0,0.6); border-top-color: rgba(255,255,255,0.15); }
-.outcome-card::before { display: none; }
-.meta-cell + .meta-cell { border-left-color: rgba(255,255,255,0.15); }
+.cs-hero { padding-bottom: 56px; }
+.cs-subtitle { margin-bottom: 24px; }
+.cs-credit { font-size: 14px; color: rgba(255,255,255,0.65); max-width: 640px; }
 </style>
 </head>
 <body>
@@ -47,88 +45,32 @@
 <div class="cs-hero">
   <div class="cs-company-tag">Children's Museum of Indianapolis &nbsp;·&nbsp; 2014–2015</div>
   <h1 class="cs-title">Treasures of the Earth</h1>
-  <p class="cs-subtitle">Designing a first-of-its-kind RFID-powered interactive kiosk and a widescreen 3D visualization film for National Geographic's Terra Cotta Warriors exhibit — covering every phase of UX from discovery through delivery.</p>
-
-  <div class="outcome-strip">
-    <div class="outcome-card">
-      <div class="o-num">1st</div>
-      <div class="o-label">RFID interactive experience at the Children's Museum of Indianapolis</div>
-    </div>
-    <div class="outcome-card">
-      <div class="o-num">2</div>
-      <div class="o-label">Deliverables: touchscreen kiosk + widescreen 3D visualization film</div>
-    </div>
-    <div class="outcome-card">
-      <div class="o-num">Award</div>
-      <div class="o-label">Winning interactive produced within 6 months of rejoining a dissolved department</div>
-    </div>
-  </div>
-
-  <div class="meta-row">
-    <div class="meta-cell">
-      <div class="meta-key">Client</div>
-      <div class="meta-val">Children's Museum of Indianapolis</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Partner</div>
-      <div class="meta-val">National Geographic</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Role</div>
-      <div class="meta-val">Interactive Product Designer / UX Architect</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Year</div>
-      <div class="meta-val">2014–2015</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Medium</div>
-      <div class="meta-val">Touchscreen Kiosk · 3D Film</div>
-    </div>
-  </div>
+  <p class="cs-subtitle">An RFID kiosk where kids "paint" a Terra Cotta Warrior back to its original colors, and a widescreen 3D film about how the warriors were made and buried. Both were for the museum's National Geographic exhibit.</p>
+  <p class="cs-credit">My role: interactive designer and UX lead, plus 3D modeling and animation for the film</p>
 </div>
 
 <!-- BODY -->
 <div class="cs-body">
 
-  <!-- 01: THE EXHIBIT -->
   <div class="cs-section">
-    <h2 class="section-h2">National Geographic meets children's education</h2>
-    <p class="section-body">This project hit all the aspects of UX: discovery, testing, ideation, concept, wireframes, prototypes, heuristic evaluation, usability, and delivery. For the Children's Museum of Indianapolis's large "Treasures of the Earth" exhibit, I had to pull out all the stops and start at the beginning.</p>
-    <p class="section-body">The central ask from National Geographic was to educate children about the Terra Cotta Warriors and how they were originally brightly colored — not the dull tan that we see today. Most of the painted pigmentation has worn off over the centuries, but archaeologists and scientists can still recreate the original look based on chemical scans of surviving fragments to identify the pigments once used.</p>
-
-    <div class="insight-row">
-      <div class="insight-card">
-        <div class="insight-label">The Challenge</div>
-        <div class="insight-body">Translate complex archaeological science into an engaging, age-inclusive experience that all visitors — from young children to adults — could participate in and enjoy.</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">The Audience</div>
-        <div class="insight-body">All age groups visiting the exhibit, from elementary school children on field trips to curious adult visitors — requiring an experience that worked across a wide range of technical familiarity.</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">The Scope</div>
-        <div class="insight-body">Two standalone deliverables: a physical touchscreen kiosk with custom RFID interaction and a large-format widescreen 3D visualization film running continuously in the exhibit space.</div>
-      </div>
+    <div class="full-img-card lb-trigger" style="position:relative;">
+      <img src="/assets/images/img_3524.jpg" alt="The installed Paint a Warrior kiosk inside the Treasures of the Earth exhibit" />
+      <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+      <div class="full-img-caption">The finished kiosk on the exhibit floor.</div>
     </div>
+    <p class="section-body">National Geographic wanted kids to learn that the Terra Cotta Warriors were once brightly painted. The tan figures you see in photos today lost most of their paint over the centuries. Scientists can still work out the original colors by chemically analyzing pigment left on surviving fragments, and that's the idea we had to get across to an eight-year-old on a field trip.</p>
+    <p class="section-body">I worked on this one from discovery all the way through installation: research, flows, wireframes, prototypes, testing, visual design, and delivery.</p>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 02: THE RFID CONCEPT -->
   <div class="cs-section">
-    <h2 class="section-h2">An RFID-powered "Paint a Warrior" experience</h2>
-    <p class="section-body">Earlier that year I had created an interactive game for the museum using RFID chips implanted in stuffed animals — for the Nickelodeon Studios "Dora and Diego" exhibit, and it was a huge hit with visitors. That experience sparked an idea: what if I implanted coded RFID chips into physical replica fragments (shards) of the warrior figurines?</p>
-    <p class="section-body">Visitors would scan a shard and the kiosk would identify which warrior type was associated with that specific fragment — along with what pigments were originally present. They could then use a touchscreen interface to "paint" the selected warrior back to its original colors, and send themselves a digital copy as a keepsake.</p>
-
-    <div class="callout">
-      "The experience had to be compelling enough to work on a child's level while being credible enough to deliver real archaeological science. That tension was the design challenge."
-    </div>
+    <h2 class="section-h2">Putting RFID chips in the shards</h2>
+    <p class="section-body">Earlier that year I'd built a game for the museum's Nickelodeon "Dora and Diego" exhibit that used RFID chips sewn into stuffed animals. Kids loved it. So for this project I wondered what would happen if we put coded chips inside replica fragments of the warriors.</p>
+    <p class="section-body">A visitor picks up a shard and sets it on the reader. The kiosk works out which type of warrior it came from and which pigments it would have had. Then they paint that warrior on the touchscreen and can email themselves a copy.</p>
 
     <div class="full-img-card lb-trigger" style="position:relative;">
       <img src="/assets/images/warrior_types_and_shards.jpg" alt="The various painted warrior types alongside their matching RFID fragments" style="object-fit:contain; background:#0d0f13;" />
       <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-      <div class="full-img-caption">The various warrior types and their associated physical shard fragments — each embedded with a unique RFID chip that triggered the corresponding warrior content on the kiosk.</div>
+      <div class="full-img-caption">Each warrior type with its matching shard. Every shard had its own chip.</div>
     </div>
 
     <div class="artifact-grid cols-2">
@@ -137,33 +79,22 @@
           <img src="/assets/images/ShardTexture_footsoldier.jpg" alt="3D wireframe of warrior foot soldier shard" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Wireframe model of the foot soldier shard — each fragment 3D-modeled to match the physical RFID prop visitors would hold in their hands.</div>
+        <div class="artifact-caption">Foot soldier shard, modeled to match the physical prop.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:260px;">
           <img src="/assets/images/shard_color_footsoldier.jpg" alt="Final color render of warrior foot soldier shard" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Final color render of the foot soldier shard — showing the reconstructed original pigmentation based on chemical analysis of actual archaeological fragments.</div>
+        <div class="artifact-caption">The same shard with its reconstructed pigment.</div>
       </div>
-    </div>
-
-    <div class="tool-chips">
-      <span class="tool-chip">RFID Technology</span>
-      <span class="tool-chip">Interaction Design</span>
-      <span class="tool-chip">3ds Max</span>
-      <span class="tool-chip">Sketch</span>
-      <span class="tool-chip">Balsamiq</span>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 03: RESEARCH & PROCESS -->
   <div class="cs-section">
-    <h2 class="section-h2">Discovery, wireframes, and stakeholder alignment</h2>
-    <p class="section-body">My task was to deliver educational and scientific information in an entertaining manner that worked for all age groups. That meant deploying nearly every software package and media skill in my toolkit: Photoshop, Illustrator, Sketch, Balsamiq, After Effects, 3ds Max, Audition, custom programming, and extensive research into the original painting schemes of the warriors.</p>
-    <p class="section-body">The process started with process flows, wireframes, and storyboards. I developed several iterations while collaborating with the educational staff at the museum to ensure the correct learning outcomes were embedded into the experience. Each iteration was walked through with stakeholders for feedback before advancing to the next stage.</p>
+    <h2 class="section-h2">Working it out with the education team</h2>
+    <p class="section-body">I started with process flows and storyboards so the museum's education staff could react to the whole experience before any screens existed. We went through several rounds. They kept an eye on the learning goals and on whether the science held up, and I kept pushing on whether a kid would actually finish it.</p>
+    <p class="section-body">After that came wireframes in Balsamiq and Sketch, then clickable prototypes for heuristic reviews and usability testing. Under all of it was a lot of reading on how the warriors were originally painted.</p>
 
     <div class="artifact-grid cols-2">
       <div class="artifact-card">
@@ -171,139 +102,102 @@
           <img src="/assets/images/paint-a-warrior-logic-flow-v02.jpg" alt="Paint a Warrior process flow diagram" style="object-fit:contain; background:#0d0f13;" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Process flow — mapping the full interaction logic from RFID scan through warrior selection, painting, and email delivery.</div>
+        <div class="artifact-caption">Logic flow, from the scan to the email.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:340px;">
           <img src="/assets/images/storyboards.jpg" alt="Storyboards for the Paint a Warrior kiosk experience" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Storyboards — visualizing the narrative arc and key interaction beats of the kiosk experience before a single screen was designed.</div>
+        <div class="artifact-caption">Storyboards we walked the education staff through.</div>
       </div>
     </div>
 
-    <div class="process-list">
-      <div class="process-step">
-        <div class="step-num">01</div>
-        <div>
-          <div class="step-title">Archaeological Research</div>
-          <div class="step-desc">Reviewed National Geographic documentation and scientific literature on original warrior pigmentation, chemical analysis methods, and the excavation history — ensuring the educational content was factually grounded.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">02</div>
-        <div>
-          <div class="step-title">Process Flow & Storyboarding</div>
-          <div class="step-desc">Mapped the full interaction logic including RFID trigger events, warrior selection, the painting interface, and the email delivery flow. Storyboards walked stakeholders through the experience before any screens were built.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">03</div>
-        <div>
-          <div class="step-title">Stakeholder Collaboration</div>
-          <div class="step-desc">Worked closely with the museum's educational staff to validate learning outcomes at each stage. Multiple iteration rounds refined both the content accuracy and the appropriateness of the interaction model for young visitors.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">04</div>
-        <div>
-          <div class="step-title">Wireframes & Prototype</div>
-          <div class="step-desc">Developed low-fidelity wireframes in Balsamiq and Sketch, progressing to interactive prototypes used for heuristic evaluation and usability testing before final interface production.</div>
-        </div>
-      </div>
+    <div class="tool-chips">
+      <span class="tool-chip">RFID</span>
+      <span class="tool-chip">Balsamiq</span>
+      <span class="tool-chip">Sketch</span>
+      <span class="tool-chip">Photoshop</span>
+      <span class="tool-chip">Illustrator</span>
+      <span class="tool-chip">After Effects</span>
+      <span class="tool-chip">3ds Max</span>
+      <span class="tool-chip">Audition</span>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 04: INTERFACE DESIGN -->
   <div class="cs-section">
-    <h2 class="section-h2">From notebook animation to the installed kiosk</h2>
-    <p class="section-body">The experience needed an opening intro sequence that walked visitors through the discovery of the painted figures and explained how scientists determine which pigments were originally present. I designed and animated a hand-drawn notebook sequence to guide viewers through this backstory and introduce them to the kiosk interaction before they touched the screen.</p>
+    <h2 class="section-h2">A notebook intro, then the painting screen</h2>
+    <p class="section-body">Before anyone touched the screen, I wanted to explain how archaeologists figured out the colors and show how the kiosk worked. So I drew and animated an intro that looks like a field notebook to walk them through it.</p>
 
     <div class="full-img-card lb-trigger" style="position:relative;">
       <img src="/assets/images/page_turn0338.png" alt="Sample frame from the animated notebook intro sequence" />
       <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-      <div class="full-img-caption">A sample frame from the animated intro sequence — a hand-illustrated notebook style animation that taught visitors how the warriors were originally painted and how to use the kiosk.</div>
+      <div class="full-img-caption">A frame from the notebook animation.</div>
     </div>
 
-    <div class="artifact-grid cols-2">
+    <div class="artifact-grid cols-3">
       <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:280px;">
+        <div class="artifact-img lb-trigger" style="height:220px;">
           <img src="/assets/images/screen_mockup-1.jpg" alt="Early screen concept for the Paint a Warrior interface" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Early screen concept — establishing the visual tone and layout of the painting interface before full visual design.</div>
+        <div class="artifact-caption">Early concept.</div>
       </div>
       <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:280px;">
+        <div class="artifact-img lb-trigger" style="height:220px;">
           <img src="/assets/images/interface_design02_cork.jpg" alt="Refined interface design with cork texture" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Refined interface — the final UI direction using a cork-board aesthetic to evoke the archaeological research and discovery theme of the exhibit.</div>
+        <div class="artifact-caption">Final direction. The cork board matched the dig-site look of the exhibit.</div>
       </div>
-    </div>
-
-    <div class="artifact-grid cols-2">
       <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:300px;">
+        <div class="artifact-img lb-trigger" style="height:220px;">
           <img src="/assets/images/kiosl-design.jpeg" alt="The physical kiosk design" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">The kiosk design — a custom enclosure housing the touchscreen, RFID reader, and all supporting hardware, designed to complement the exhibit's aesthetic.</div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:300px;">
-          <img src="/assets/images/img_3524.jpg" alt="The installed Paint a Warrior kiosk inside the Treasures of the Earth exhibit" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">The installed kiosk — in its final home within the "Treasures of the Earth" exhibit, ready for museum visitors to pick up a shard and begin their painting journey.</div>
+        <div class="artifact-caption">Enclosure for the screen and RFID reader.</div>
       </div>
     </div>
 
     <div class="video-wrap">
-      <iframe src="https://player.vimeo.com/video/424149338" title="Paint a Warrior — Featured on Children's Museum of Indianapolis channel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-      <div class="video-caption">Featured project on the Children's Museum of Indianapolis channel — the full "Paint a Warrior" kiosk experience as seen by exhibit visitors.</div>
+      <iframe src="https://player.vimeo.com/video/424149338" title="Paint a Warrior kiosk walkthrough" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      <div class="video-caption">The museum featured the kiosk on its channel.</div>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 05: 3D VISUALIZATION -->
   <div class="cs-section">
-    <h2 class="section-h2">Terra Cotta Warriors — the widescreen film</h2>
-    <p class="section-body">Alongside the interactive kiosk, I was also asked to create a 3D visualization film to run continuously within the exhibit space. The film needed to tell the story of how the warriors ended up in the ground, what they originally looked like, and how they deteriorated to the state we see today.</p>
-    <p class="section-body">This part of the project was an exciting opportunity to collaborate with former co-workers and peers. It involved deep research into original painting schemes, pouring through documentation provided by National Geographic Magazine, and producing hundreds of reference renders before arriving at a finished result. The final widescreen movie represented the output of that extensive modeling and rendering effort.</p>
+    <h2 class="section-h2">The film</h2>
+    <p class="section-body">The museum also asked for a 3D film to loop in the exhibit, covering how the warriors were made, buried, and worn down to what we see now. I made it with a few former coworkers. Most of the time went into research: poring through National Geographic's documentation on the painting schemes, and then hundreds of test renders before the look was right.</p>
 
     <div class="full-img-card lb-trigger" style="position:relative;">
       <img src="/assets/images/warriors_wireframe_still01.png" alt="Wireframe still of the terra cotta warriors scene" />
       <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-      <div class="full-img-caption">Wireframe still from the full warrior scene — one of hundreds of renders produced during the production process before reaching final color and texture output.</div>
+      <div class="full-img-caption">Wireframe pass of the full scene.</div>
     </div>
 
-    <p class="section-body">The warrior head was the most intricate modeling challenge — requiring accurate anatomical structure, historically informed painting schemes, and enough polygon detail to hold up in widescreen playback. The progression from wireframe to finished render took multiple major revision cycles.</p>
+    <p class="section-body">The hardest model was the head. It needed believable anatomy and paint we could defend historically, and it had to hold up at widescreen size. It went through several major revisions, including a rework of the eyes after the first review.</p>
 
     <div class="artifact-grid cols-3">
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:200px;">
-          <img src="/assets/images/hero_head01-wireframe.png" alt="Warrior head — initial wireframe" />
+          <img src="/assets/images/hero_head01-wireframe.png" alt="Warrior head, initial wireframe" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Step 1 — Initial wireframe mesh of the warrior head, establishing proportions and polygon structure.</div>
+        <div class="artifact-caption">Base mesh</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:200px;">
-          <img src="/assets/images/hero_head01-wireframe02.png" alt="Warrior head — refined wireframe" />
+          <img src="/assets/images/hero_head01-wireframe02.png" alt="Warrior head, refined wireframe" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Step 2 — Refined wireframe with added surface detail and texturing guides applied over the base mesh.</div>
+        <div class="artifact-caption">Surface detail</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:200px;">
-          <img src="/assets/images/hero_head01.png" alt="Warrior head — final color render" />
+          <img src="/assets/images/hero_head01.png" alt="Warrior head, final color render" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Step 3 — Final color render with historically accurate pigmentation applied based on scientific analysis of excavated warrior fragments.</div>
+        <div class="artifact-caption">First color pass</div>
       </div>
     </div>
 
@@ -313,14 +207,14 @@
           <img src="/assets/images/hero_head_revised_eyes.jpg" alt="Revised warrior head with eye detail" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Revised head model — updated eye anatomy and facial pigmentation detail following stakeholder review of the initial renders.</div>
+        <div class="artifact-caption">Revised eyes and face paint after review.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:300px;">
           <img src="/assets/images/HERO_head_revised_angle2.jpg" alt="Revised warrior head from alternate angle" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Alternate angle showing the revised head's surface texture and secondary paint layer detail used in the final widescreen sequence.</div>
+        <div class="artifact-caption">The same head from another angle.</div>
       </div>
     </div>
 
@@ -330,78 +224,44 @@
           <img src="/assets/images/crossbow_01.jpg" alt="3D model of a warrior crossbow" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Crossbow model — one of the weapons and accessories modeled to populate the full warrior scene in the widescreen visualization.</div>
+        <div class="artifact-caption">Crossbow, one of many props for the scene.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:260px;">
           <img src="/assets/images/terra-cotta.jpg" alt="Final terra cotta warrior render" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Final warrior render — the fully textured and lit figure as it appeared in the widescreen exhibition film.</div>
+        <div class="artifact-caption">Final lit warrior as it appears in the film.</div>
       </div>
     </div>
 
     <div class="artifact-grid cols-2">
       <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:260px;">
+        <div class="artifact-img lb-trigger" style="height:220px;">
           <img src="/assets/images/IMG_1745.jpg" alt="Reference photography of terra cotta warrior details" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Reference photography — used alongside National Geographic documentation to ensure accurate surface texture and scale in the 3D models.</div>
+        <div class="artifact-caption">Reference photo</div>
       </div>
       <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:260px;">
+        <div class="artifact-img lb-trigger" style="height:220px;">
           <img src="/assets/images/IMG_1744.jpg" alt="Reference photography of terra cotta warrior artifacts" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Additional artifact reference — details of excavated warrior components that informed the modeling of armor, weapons, and surface wear patterns.</div>
+        <div class="artifact-caption">Armor and weapon detail reference</div>
       </div>
     </div>
 
     <div class="video-wrap">
-      <iframe src="https://player.vimeo.com/video/425475228" title="Terra Cotta Warriors — 3D Visualization Film" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-      <div class="video-caption">Terra Cotta Warriors — the final 3D visualization film produced for the Children's Museum of Indianapolis exhibit, telling the story of the warriors' creation, burial, and discovery.</div>
+      <iframe src="https://player.vimeo.com/video/425475228" title="Terra Cotta Warriors 3D visualization film" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      <div class="video-caption">The finished film.</div>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 06: OUTCOMES -->
   <div class="cs-section">
-    <h2 class="section-h2">Award-winning interactives in six months</h2>
-    <p class="section-body">Both deliverables were produced and installed within the exhibit timeline, with the interactive kiosk going on to become the first RFID-based interactive in the Children's Museum of Indianapolis's history. The full project was recognized as award-winning work, produced within six months of rejoining and fully rebuilding a previously dissolved creative department.</p>
-
-    <div class="outcome-summary">
-      <div class="os-heading">What was delivered</div>
-      <div class="os-items">
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>First RFID interactive at the Children's Museum of Indianapolis</strong> — a novel interaction model embedding coded chips into physical prop fragments, triggering custom touchscreen content for each warrior type.</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>End-to-end UX process</strong> — covering the full spectrum from discovery research and educational stakeholder collaboration through wireframes, prototyping, heuristic evaluation, usability testing, and final delivery.</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Custom animated intro sequence</strong> — a hand-illustrated, animated notebook that taught visitors the science of warrior pigmentation and oriented them to the kiosk interaction model before they touched the screen.</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Widescreen 3D visualization film</strong> — an exhibition-quality animated film narrating the warriors' creation, burial, and modern discovery, backed by extensive National Geographic research and hundreds of production renders.</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Featured by the Children's Museum of Indianapolis</strong> — the "Paint a Warrior" kiosk experience was highlighted on the museum's official channel as a signature exhibit activity.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reflection">
-      <div class="reflection-label">Reflection</div>
-      <p class="reflection-body">What made this project especially meaningful was that it demanded the full range of design and production skills simultaneously — from UX research and educational design to 3D modeling, animation, and hardware integration. There was no playbook for embedding RFID chips into physical props and wiring them into a museum touchscreen experience. Every element had to be invented from scratch, in tight collaboration with the museum's educational team, within a fixed installation deadline.</p>
-      <p class="reflection-body">The discipline required to deliver two production-quality interactives — both the kiosk and the 3D film — within six months shaped how I think about what's possible when you combine rigorous process with genuine creative ambition. This project remains one of the most technically and creatively demanding I've undertaken, and one of the most rewarding to see in the hands of real visitors.</p>
-    </div>
+    <h2 class="section-h2">How it turned out</h2>
+    <p class="section-body">Both pieces were installed on schedule. The kiosk was the museum's first RFID interactive, and the project won an award. All of it got done within six months of my coming back to rebuild a creative department the museum had dissolved.</p>
+    <p class="section-body">It's still one of my favorite projects, because it needed nearly everything I could do at once: research, interaction design, illustration, animation, 3D, and enough hardware work to get a chip in a fake shard talking to a touchscreen. Nobody had a playbook for that part, so we figured it out with the education team as we went.</p>
   </div>
 
 </div><!-- /cs-body -->

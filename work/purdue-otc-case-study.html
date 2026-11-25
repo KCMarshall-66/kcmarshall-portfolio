@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/case-study.css?v=2" />
+<link rel="stylesheet" href="/assets/case-study.css?v=5" />
 <style>
   .cs-hero {
     background-image: url('/assets/images/purdue-hero-back.png');
@@ -44,398 +44,75 @@
 </nav>
 
 <!-- HERO -->
-<div class="cs-hero">
-  <div class="cs-company-tag">Purdue Research Foundation · UX Research · Service Design · Information Architecture</div>
-  <h1 class="cs-title">Redesigning how Purdue research reaches the market</h1>
-  <p class="cs-subtitle">How a homepage request became a full-system rethink — connecting inventors, technology scouts, and investors through a user-centered digital experience built for the way innovation actually gets discovered.</p>
-
-  <div class="outcome-strip">
-    <div class="outcome-card">
-      <div class="o-num">4</div>
-      <div class="o-label">Distinct user groups researched and designed for simultaneously</div>
-    </div>
-    <div class="outcome-card">
-      <div class="o-num">3</div>
-      <div class="o-label">Core discovery failures identified and resolved through research</div>
-    </div>
-    <div class="outcome-card">
-      <div class="o-num">9</div>
-      <div class="o-label">Research-to-prototype phases delivered across the engagement</div>
-    </div>
-  </div>
-
-  <div class="meta-row">
-    <div class="meta-cell">
-      <div class="meta-key">My Role</div>
-      <div class="meta-val">UX Research Lead</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Client</div>
-      <div class="meta-val">Purdue Research Foundation</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Platform</div>
-      <div class="meta-val">Higher Ed / Web</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Core Tools</div>
-      <div class="meta-val">Figma · Miro · Usability Testing</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Deliverables</div>
-      <div class="meta-val">Research · Wireframes · Prototype</div>
-    </div>
-  </div>
+<div class="cs-hero cs-hero--plain">
+  <div class="cs-company-tag">Purdue Research Foundation · 2023</div>
+  <h1 class="cs-title">They asked for a new homepage. The problem was everywhere else.</h1>
+  <p class="cs-subtitle">Purdue's Office of Technology Commercialization licenses university inventions to industry. Research showed that the people most likely to license them, technology scouts and investors, couldn't find anything on the site.</p>
+  <p class="cs-credit">UX research lead. Stakeholder sessions, interviews, journey map, service blueprint, IA, wireframes, and an Axure prototype.</p>
 </div>
 
 <!-- BODY -->
 <div class="cs-body">
 
-  <!-- 01: OVERVIEW -->
   <div class="cs-section">
-    <h2 class="section-h2">A homepage request that revealed a system problem</h2>
-    <p class="section-body">The Purdue Research Foundation's Office of Technology Commercialization (Purdue OTC) is one of the most comprehensive technology transfer programs among leading research universities in the United States. The organization protects Purdue's intellectual property and leads technology transfer activities for patented innovations — innovations now used in more than 100 countries worldwide by millions of people.</p>
-    <p class="section-body">Purdue OTC approached us with a focused request: redesign their homepage. What we discovered through rigorous research was a far more systemic challenge — one that, if left unaddressed, would have made any homepage redesign a cosmetic fix to a structural problem.</p>
+    <p class="section-body">Purdue OTC runs one of the largest technology transfer programs at any US research university. It protects Purdue's intellectual property and licenses patented work that's now used in more than 100 countries. They came to us for a homepage redesign.</p>
+    <p class="section-body">We started with stakeholder interviews, user research, and an audit of the existing site. It quickly became clear that a new homepage would just be a fresh coat of paint over a structural problem.</p>
 
-    <div class="lb-trigger" style="margin: 24px 0 32px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; position: relative;">
-      <img src="/assets/images/purdue-bright.png" alt="Purdue Office of Technology Commercialization" style="width:100%; display:block;" />
+    <div class="full-img-card lb-trigger" style="position:relative;">
+      <img src="/assets/images/purdue-bright.png" alt="Purdue Office of Technology Commercialization redesign concept" />
       <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-    </div>
-
-    <div class="callout">
-      <p>The stated problem is rarely the actual problem. Purdue OTC asked for a homepage redesign. What they needed — and what this engagement delivered — was a rethinking of how their entire digital presence served the people who needed to use it most.</p>
+      <div class="full-img-caption">Homepage concept from the redesign.</div>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 02: THE CHALLENGE -->
   <div class="cs-section">
-    <h2 class="section-h2">Beyond the homepage</h2>
-    <p class="section-body">Through stakeholder interviews, user research, and a thorough audit of the existing site, it became clear that the homepage was not the root problem — it was a symptom of deeper structural issues. The existing site failed its most critical audience — technology scouts and investors — in three fundamental ways.</p>
-
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-icon">🏷️</div>
-        <div>
-          <div class="problem-title">Incorrect Taxonomy</div>
-          <div class="problem-desc">Discoveries were categorized in ways that didn't align with how technology scouts and investors search for and classify technologies. Industry-standard classifications were absent, making efficient browsing nearly impossible.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">🔍</div>
-        <div>
-          <div class="problem-title">Broken Discovery Experience</div>
-          <div class="problem-desc">The search and listing interfaces were awkward and returned inefficient results. Technology scouts could not quickly scan for new discoveries relevant to their investors' interests — a core job the site needed to support.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">📄</div>
-        <div>
-          <div class="problem-title">Unconsumed Documentation</div>
-          <div class="problem-desc">Technology disclosures and innovation PDFs were poorly structured — non-descriptive titles, no clickable links, and content that didn't meet the standard format scouts need to catalog and present to investors.</div>
-        </div>
-      </div>
-    </div>
-
-    <p class="section-body">With these discoveries in hand, the project shifted from a homepage facelift to a comprehensive UX research and design engagement aimed at rethinking how Purdue packaged, presented, and connected its innovations with the right audiences at the right time. The ecosystem involved four distinct user groups whose needs had to be balanced:</p>
-
-    <div class="insight-row">
-      <div class="insight-card">
-        <div class="insight-num">01</div>
-        <div class="insight-label">Purdue Researchers, Scientists & Professors — inventors seeking to disclose and commercialize their work</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-num">02</div>
-        <div class="insight-label">Technology Scouts — industry professionals who identify innovations to recommend to investors</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-num">03</div>
-        <div class="insight-label">Investors & Licensees — organizations seeking to license or fund Purdue technologies</div>
-      </div>
-    </div>
+    <h2 class="section-h2">What was actually wrong</h2>
+    <ul class="cs-list">
+      <li><strong>The categories were OTC's, not the industry's.</strong> Inventions were filed under internal labels instead of the standard classifications scouts and investors use. You couldn't browse in any way that made sense to them.</li>
+      <li><strong>Search was the only way in.</strong> There was no browsable catalog, and search results were clumsy. A scout had to know exactly what they wanted before they could find it, which is the opposite of scouting.</li>
+      <li><strong>The documents didn't work.</strong> The technology PDFs had vague titles and no links, and they didn't follow the format scouts need to catalog an invention and pitch it to an investor.</li>
+      <li><strong>The site mirrored the org chart.</strong> Seven top-level nav items, most with deep dropdowns. Important pages were three or four levels down. A scout and a professor submitting a disclosure got exactly the same site.</li>
+    </ul>
+    <p class="section-body">So the project grew from a homepage update into rethinking how Purdue packages its inventions and gets them in front of the right people.</p>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 03: RESEARCH -->
   <div class="cs-section">
-    <h2 class="section-h2">Understanding the ecosystem</h2>
-    <p class="section-body">A multi-method research approach was used to develop a holistic understanding of all user groups — their workflows, pain points, and mental models. Discovery was structured across four key activities, each designed to surface different layers of the problem.</p>
-
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-title">Stakeholder Sessions</div>
-          <div class="step-desc">Collaborative sessions using digital whiteboarding tools to map the current state, surface organizational goals, and align on project priorities — covering the purpose of the OTC digital presence, how success is measured, and who is actually visiting the site and whether they find what they need.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-title">Current Process Walk-Through</div>
-          <div class="step-desc">A detailed walkthrough of the existing site and internal workflows to document the current user experience from both an inventor and licensee perspective — revealing the disconnect between how OTC organized content and how technology scouts actually searched for innovations.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-title">User Interviews</div>
-          <div class="step-desc">Structured interviews across user groups focused on demographics and domain expertise, current workflows for discovering university technologies, step-by-step task flows, pain points with the existing site, the language users actually use, and what tools and formats would improve their workflow.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">4</div>
-        <div>
-          <div class="step-title">Empathy Mapping — The Technology Scout</div>
-          <div class="step-desc">A detailed empathy map was developed for the primary external user: the Technology Scout. This artifact captured what scouts see, think, feel, and do when working with university technology transfer sites — grounding all subsequent design decisions in the realities of their workflow.</div>
-        </div>
-      </div>
-    </div>
+    <h2 class="section-h2">Who we talked to</h2>
+    <p class="section-body">The site has three outside audiences. Purdue researchers want to disclose and commercialize their work. Technology scouts find inventions to recommend to the companies they represent. Investors and licensees want to fund or license Purdue technology. Behind all of them is the OTC and PRF staff who keep the site running.</p>
+    <p class="section-body">I ran whiteboard sessions with stakeholders on goals, how success is measured, and who actually visits the site. I walked through the site and the internal workflows from both the inventor's side and the licensee's. Then I interviewed people in each group about how they find university technology today, step by step, and what words they use for it. Matching their vocabulary turned out to matter a lot.</p>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 04: UX ARTIFACTS -->
   <div class="cs-section">
-    <h2 class="section-h2">Synthesizing research into direction</h2>
-    <p class="section-body">Research findings were synthesized into a suite of UX artifacts that grounded design decisions in observed user behavior and business process realities. These artifacts became the shared language between research, design, and stakeholders — ensuring every structural decision that followed was traceable to something a real user said or did.</p>
-
-    <div class="capability-grid">
-      <div class="capability-item">
-        <div class="cap-icon">🗺️</div>
-        <div>
-          <div class="cap-title">Inventor & Licensee Journey Map</div>
-          <div class="cap-desc">A dual-track journey map visualizing the end-to-end experience for both inventors and licensees — from initial awareness through campaign, landing page engagement, onboarding, and follow-up. Key emotions revealed that both groups experienced frustration at the browsing and engagement stages due to lack of guidance and inadequate content depth.</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">📐</div>
-        <div>
-          <div class="cap-title">Service Blueprint</div>
-          <div class="cap-desc">A service blueprint documenting the full ecosystem of people, processes, and technology supporting the digital experience — frontstage content publishing (WordPress, HubSpot, Absorb LMS), backstage OTC and PRF staff operations, and support processes (Google Drive, Salesforce CRM).</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">👤</div>
-        <div>
-          <div class="cap-title">Primary Inventor Personas</div>
-          <div class="cap-desc">Two primary inventor personas defined to represent the Purdue research community — capturing the goals, workflows, and barriers of faculty researchers navigating the disclosure and commercialization process for the first time and returning users managing active IP portfolios.</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">🧭</div>
-        <div>
-          <div class="cap-title">Technology Scout Empathy Map</div>
-          <div class="cap-desc">A detailed empathy map for the primary external audience — capturing what scouts see when evaluating competing TTO sites, what they think when navigating innovation databases, what they feel when they can't find what they need quickly, and what they do to compensate for poor IA.</div>
-        </div>
-      </div>
-    </div>
+    <h2 class="section-h2">Making sense of it</h2>
+    <p class="section-body">The scout became the primary outside user, and I built an empathy map around them. It covered what they see when comparing different universities' sites, what they think inside an innovation database, and what they do when they can't find something fast.</p>
+    <p class="section-body">A two-track journey map followed inventors and licensees from first awareness through follow-up. Both groups got frustrated at the same stage, browsing, because there was no guidance and not enough depth. The service blueprint showed everything behind the site: WordPress, HubSpot, and Absorb LMS on the front end, and Google Drive and Salesforce behind the staff. I also wrote two inventor personas, one for a first-time discloser and one for a researcher already managing active IP.</p>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 05: INFORMATION ARCHITECTURE -->
   <div class="cs-section">
-    <h2 class="section-h2">Mapping the current state</h2>
-    <p class="section-body">A comprehensive sitemap of the existing OTC website was developed to document and analyze the full information architecture. The existing structure revealed significant complexity working against the needs of all user groups — a site organized around internal process logic rather than user need.</p>
-
-    <div class="callout">
-      <p>The main navigation included seven top-level items — Technologies, About, Licensing, Resources, Trask Innovation Fund, News, and Contact Us — with nearly every item containing deep dropdown sub-navigation. No clear role-based navigation existed. A technology scout and a researcher submitting a disclosure were expected to navigate the same undifferentiated site.</p>
-    </div>
-
-    <p class="section-body">The sitemap analysis confirmed three architectural failures that compounded the taxonomy and documentation issues found in user research:</p>
-
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-icon">📂</div>
-        <div>
-          <div class="problem-title">Depth Over Accessibility</div>
-          <div class="problem-desc">Key tasks required multiple clicks through dropdown menus with no progressive disclosure or user-type orientation. Critical information was reachable only after navigating three or four levels deep.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">🏢</div>
-        <div>
-          <div class="problem-title">Internal Logic Externalized</div>
-          <div class="problem-desc">The site's structure mirrored OTC's internal org chart rather than the user's mental model or task flow. Categories and labels made sense to staff but created confusion for scouts, investors, and inventors alike.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">🔎</div>
-        <div>
-          <div class="problem-title">No Technology Browsing Experience</div>
-          <div class="problem-desc">Innovations were accessible through search only, with no browsable category structure aligned to industry-standard classifications. Scouts couldn't scan the portfolio quickly — they had to know exactly what they were looking for before they could find anything.</div>
-        </div>
-      </div>
-    </div>
+    <h2 class="section-h2">The redesign</h2>
+    <p class="section-body">The biggest structural change was splitting the homepage by role. Investors and scouts get trending technologies, category snapshots, and the path to licensing. Inventors get a clear route to disclosure forms, inventor resources, and the Purdue Inventor Hub. Nobody has to wade through the other group's content.</p>
+    <p class="section-body">For scouts, I added a category grid with live counts, like Electrical Engineering (243) and Mechanical Engineering (207), so they get a sense of the portfolio the moment they arrive. Quick search got category, subcategory, and date filters that match how scouts actually search. I also added newsletter signup by category, so a scout only gets alerts for the fields they cover.</p>
+    <p class="section-body">The listing page switched to industry-standard categories. It added filters for people, keywords, and categories, showed the lead inventor, and let scouts bookmark technologies to build a shortlist for their investors. A licensing module and a short credentials block sit right under the browse section: #6 in the world for patents, 400+ technologies available, used in 100+ countries.</p>
+    <p class="section-body">Visually, we kept it dark and confident, using Purdue gold only for actions and key numbers. Scouts are comparing Purdue to every other tech transfer office, so it needed to look like it belonged with the best of them.</p>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 06: WIREFRAMES -->
   <div class="cs-section">
-    <h2 class="section-h2">Rethinking the experience</h2>
-    <p class="section-body">With research findings and architectural analysis complete, wireframes were developed to explore new structural and interaction patterns that would serve all user groups while prioritizing the technology scout and investor experience. A central design decision was to introduce explicit role-based entry points on the homepage.</p>
+    <h2 class="section-h2">Testing it</h2>
+    <p class="section-body">The Axure prototype covered the homepage, browsing, the inventor disclosure path, and the licensing path. In testing, scouts didn't run into the navigation confusion they'd described in interviews. They found technologies faster with the new categories, and they told us the trending module was the kind of quick scan that would bring them back regularly.</p>
 
-    <div class="capability-grid">
-      <div class="capability-item">
-        <div class="cap-icon">💼</div>
-        <div>
-          <div class="cap-title">For Investors</div>
-          <div class="cap-desc">Surfacing trending technologies, category snapshots, and licensing pathways — giving scouts the "quick scan" experience they described as essential for regular return visits.</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">🔬</div>
-        <div>
-          <div class="cap-title">For Inventors</div>
-          <div class="cap-desc">Clear paths to disclosure forms, inventor resources, and the Purdue Inventor Hub — cleanly separated from the licensee/investor experience with no ambiguity about where to go.</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">📊</div>
-        <div>
-          <div class="cap-title">Top 5 Trending Research Categories</div>
-          <div class="cap-desc">Dynamic, data-driven category blocks showing innovation counts (e.g., Electrical Engineering: 243, Mechanical Engineering: 207) — giving scouts an immediate sense of portfolio depth and breadth on every visit.</div>
-        </div>
-      </div>
-      <div class="capability-item">
-        <div class="cap-icon">🔧</div>
-        <div>
-          <div class="cap-title">Technology Quick Search</div>
-          <div class="cap-desc">A simplified, prominent search interface with category, subcategory, and date filters aligned to how scouts actually query innovation databases — not how OTC internally categorizes IP.</div>
-        </div>
-      </div>
-    </div>
-
-    <p class="section-body">Supporting content modules wireframed for the redesigned homepage included quarterly report statistics and success stories to reinforce Purdue's commercialization track record, an upcoming tech events calendar, and a category-specific newsletter signup allowing scouts to receive alerts only for the technology areas relevant to their portfolio.</p>
+    <a class="proto-link" href="https://lfrsd8.axshare.com/#id=7chfgk&p=page_1&c=1" target="_blank" rel="noopener noreferrer">
+      <span>
+        <strong>Open the Axure prototype</strong>
+        <span>Innovation cards with the new taxonomy, TRL maturity, inventor attribution, and a one-field newsletter signup.</span>
+      </span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </a>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 07: DESIGN CONCEPTS -->
   <div class="cs-section">
-    <h2 class="section-h2">Bringing it to life</h2>
-    <p class="section-body">Visual design concepts translated the wireframe structures into a high-fidelity direction that honored Purdue's brand while creating a modern, credible digital experience that could compete with top-tier technology commercialization offices globally. The visual concept centered on three qualities most important to technology scouts, investors, and inventors navigating the site.</p>
-
-    <div class="insight-row">
-      <div class="insight-card">
-        <div class="insight-num" style="font-size:22px; letter-spacing: -0.5px;">Authority</div>
-        <div class="insight-label">Dark hero treatment with bold, full-width messaging communicating scale and ambition to arriving scouts and investors immediately</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-num" style="font-size:22px; letter-spacing: -0.5px;">Innovation</div>
-        <div class="insight-label">Gold and dark palette used with intention — Purdue brand colors for calls to action and key data points, dark backgrounds for authority and focus</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-num" style="font-size:22px; letter-spacing: -0.5px;">Accessibility</div>
-        <div class="insight-label">Data-forward category grid with innovation counts giving scouts an immediate sense of portfolio depth and breadth without any searching required</div>
-      </div>
-    </div>
-
-    <p class="section-body">A redesigned technology listing page resolved the taxonomy issues identified in research — replacing internal classifications with industry-standard categories, adding filterable attributes (People, Keywords, Categories), and introducing lead inventor attribution and bookmark functionality allowing scouts to curate shortlists for investor presentations.</p>
-
-    <div class="callout">
-      <p>A dedicated licensing module — "License a technology for your business, easily" — was introduced alongside a "Reasons to Believe" section anchoring Purdue's credentials (#6 in the world for patents, 400+ innovations available, 100+ countries) immediately below the technology browsing experience.</p>
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <!-- 08: PROTOTYPES -->
-  <div class="cs-section">
-    <h2 class="section-h2">Validating the solution</h2>
-    <p class="section-body">High-fidelity interactive prototypes were developed to validate the redesigned experience with users before development handoff. The prototype covered the full homepage experience, the technology browsing flow, the inventor disclosure pathway, and the licensing engagement flow.</p>
-
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-title">Homepage</div>
-          <div class="step-desc">Role-based orientation, trending categories, technology quick search, and dynamic content modules — the full entry-point experience for both scouts and inventors.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-title">Technology Browse</div>
-          <div class="step-desc">Category-filtered listing with improved taxonomy, bookmarking, and inventor attribution — designed around the scout's actual research workflow, not OTC's internal filing system.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-title">Inventor Path</div>
-          <div class="step-desc">Disclosure submission flow, Purdue Inventor Hub, and resource navigation — a step-by-step journey that reduced the ambiguity inventors described as their primary barrier to engaging OTC.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">4</div>
-        <div>
-          <div class="step-title">Investor / Licensee Path</div>
-          <div class="step-desc">Technology deep-dive pages, licensing process overview, and OTC contact flow — giving investors a clear, frictionless path from technology discovery to licensing conversation.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="callout">
-      <p>Prototype testing with technology scouts confirmed the core hypotheses developed during research: role-based entry points eliminated the primary navigation confusion reported in interviews, the restructured taxonomy dramatically reduced time-to-find, and the trending technologies module created the "quick scan" experience scouts described as essential for regular return visits.</p>
-    </div>
-
-    <div style="margin: 32px 0;">
-      <div style="font-size: 10px; letter-spacing: 3px; font-weight: 700; color: var(--text-low); text-transform: uppercase; margin-bottom: 12px;">Interactive Prototype — Innovations Database Redesign</div>
-      <a href="https://lfrsd8.axshare.com/#id=7chfgk&p=page_1&c=1" target="_blank" rel="noopener noreferrer" style="display:block; text-decoration:none;">
-        <div style="border: 1px solid rgba(93,232,184,0.2); border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #0d1a2a 0%, #06101a 100%); padding: 56px 40px; display: flex; flex-direction: column; align-items: center; gap: 20px; cursor: pointer; transition: border-color 0.2s;">
-          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(93,232,184,0.12); border: 1px solid rgba(93,232,184,0.25); display: flex; align-items: center; justify-content: center; font-size: 24px;">⚡</div>
-          <div style="text-align: center;">
-            <div style="font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; margin-bottom: 8px;">View Interactive Prototype</div>
-            <div style="font-size: 13px; color: var(--text-mid); line-height: 1.6; max-width: 480px;">Axure prototype featuring the redesigned innovation card layout with improved taxonomy, TRL maturity indicators, inventor attribution, and a single-input newsletter signup with micro-animations.</div>
-          </div>
-          <div style="display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--bg); font-size: 13px; font-weight: 700; padding: 10px 22px; border-radius: 6px;">
-            Launch Prototype <span style="font-weight: 400;">→</span>
-          </div>
-          <div style="font-size: 11px; color: var(--text-low); letter-spacing: 0.5px;">Opens in new tab · Axure Share</div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <!-- 09: INSIGHTS & OUTCOMES -->
-  <div class="cs-section">
-    <h2 class="section-h2">What we learned</h2>
-    <p class="section-body">This project reinforced a fundamental truth about UX research: the stated problem is rarely the actual problem. Purdue OTC asked for a homepage redesign. What they needed — and what this engagement delivered — was a rethinking of how their entire digital presence served the people who needed to use it most.</p>
-
-    <div class="outcome-summary">
-      <div class="os-heading">Key outcomes delivered</div>
-      <div class="os-items">
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Scope expansion through research.</strong> By investing in discovery before touching design, the project moved from a surface-level cosmetic update to a systemic solution with real business impact.</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Taxonomy realigned to industry standards.</strong> The discovery that technology listing taxonomy was misaligned with industry expectations was the pivotal insight that redirected the entire engagement.</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Direct bridge from inventors to the market.</strong> The redesigned experience created a navigable connection between Purdue's researchers and the investors and scouts who could bring their discoveries to market.</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Scout-first information architecture.</strong> By designing for the scout's workflow — not the institution's org chart — the platform became a tool scouts could return to regularly and rely on for their work.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="reflection">
-      <div class="reflection-label">Reflection</div>
-      <div class="reflection-body">Expanding scope through research before touching design is an act of trust — the client came with a specific ask, and we had to demonstrate enough rigor early to earn the right to reframe the problem. The research wasn't just about gathering data; it was about building the shared understanding that made a broader solution possible.</div>
-      <div class="reflection-body">The design principles that guided this work — authority, innovation, and accessibility — weren't chosen arbitrarily. They came directly from what technology scouts described in interviews as the qualities that make them trust and return to a technology transfer site. That's the difference between designing for a user and designing with one.</div>
-    </div>
+    <h2 class="section-h2">Looking back</h2>
+    <p class="section-body">Reframing a client's request takes trust. They asked for one thing, and we had to show enough rigor early on to earn the right to tell them it was something bigger. Most of the research was really about that, getting everyone to the same understanding so a bigger fix felt reasonable rather than like scope creep.</p>
+    <p class="section-body">The look and feel came from the interviews too. When scouts described the tech transfer sites they trust and keep going back to, they kept saying the same few things, and we designed to those.</p>
   </div>
 
 </div>
@@ -449,7 +126,7 @@
   </a>
   <a href="#" class="page-link next">
     <div class="page-direction">Next →</div>
-    <div class="page-title">PERQ.com — Scaling to 1M+ Consumers</div>
+    <div class="page-title">PERQ: Scaling to 1M+ Consumers</div>
     <div class="page-co">PERQ Software</div>
   </a>
 </div>
