@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/case-study.css?v=2" />
+<link rel="stylesheet" href="/assets/case-study.css?v=5" />
 <style>
 .cs-hero {
   background-image: url('/assets/images/tessera_header.png');
@@ -47,7 +47,7 @@
 <div class="cs-hero">
   <div class="cs-company-tag">Design Exercise &nbsp;·&nbsp; 2026</div>
   <h1 class="cs-title">Tessera: Intelligent Third-Party Governance</h1>
-  <p class="cs-subtitle">A complete UX product design exercise — from competitive research and persona development through a design system, interactive prototype, and a continuous-monitoring dashboard built around the real compliance landscape enterprise risk teams live in.</p>
+  <p class="cs-subtitle">A self-directed product design exercise. I did the competitive research, wrote the personas, built a design system, and shipped a working HTML prototype of a vendor risk tool for enterprise security teams.</p>
 
   <div class="outcome-strip">
     <div class="outcome-card">
@@ -94,12 +94,10 @@
   <!-- 01: BRIEF -->
   <div class="cs-section">
     <h2 class="section-h2">The brief: design a vendor risk platform for enterprise security teams</h2>
-    <p class="section-body">This design exercise asked me to design an AI-assisted product that helps large enterprise organizations manage, assess, and monitor their third-party vendor risk. The category — Third-Party Risk Management (TPRM) — is well-established, expensive, and widely acknowledged to be broken: most programs run on annual questionnaires, shared spreadsheets, and email threads that create point-in-time snapshots rather than continuous visibility.</p>
-    <p class="section-body">Rather than jump straight to screens, I built the product the way a product team would: by understanding the problem space, the real users inside it, the competitive landscape, and the regulatory environment those users have to operate within — then designing a system that addresses all of it as a coherent whole.</p>
+    <p class="section-body">The prompt was an AI-assisted product that helps large companies assess and monitor the risk their vendors bring in. The category is Third-Party Risk Management (TPRM). It's mature and expensive, and most people who work in it will tell you it's broken. Programs still run on annual questionnaires, shared spreadsheets, and email, so a team only really knows a vendor's status on the day of the review.</p>
+    <p class="section-body">I held off on screens until I understood the people doing the work, the competitors, and the regulations those people answer to. That took longer than drawing a dashboard, but nearly every decision later on came out of it.</p>
 
-    <div class="callout">
-      <p>"The threat didn't happen at the annual review. It happened five months later, and nobody noticed." — the core failure mode that every design decision in Tessera is built to prevent.</p>
-    </div>
+    <p class="section-body">The failure I kept coming back to: a vendor passes its annual review, gets breached five months later, and nobody on the risk team finds out until it's already a problem.</p>
 
     <div class="tool-chips">
       <span class="tool-chip">Third-Party Risk Management</span>
@@ -116,20 +114,20 @@
   <!-- 02: RESEARCH -->
   <div class="cs-section">
     <h2 class="section-h2">Grounding the design in real people and real compliance stakes</h2>
-    <p class="section-body">TPRM is a deeply compliance-driven domain — the people doing this work aren't using the product casually, they're using it to satisfy DORA (EU), OSFI B-10/B-13 (Canada), NYDFS, and the EU AI Act simultaneously. That means the users, their pain points, and the specific decisions the product needs to support are all shaped by regulatory obligations, not just workflow preference. I grounded the entire product in three research-derived personas representing the full risk team.</p>
+    <p class="section-body">Compliance drives almost everything in TPRM. A risk team at a global bank might be answering to DORA in the EU, OSFI B-10 and B-13 in Canada, NYDFS in New York, and the EU AI Act all at once. Their frustrations and the calls they have to make come straight out of those rules. I wrote three personas covering the manager, a senior analyst, and a junior analyst.</p>
 
     <div class="insight-row">
       <div class="insight-card">
         <div class="insight-num">3</div>
-        <div class="insight-label">Personas spanning manager, senior analyst, and junior analyst roles — each with distinct needs</div>
+        <div class="insight-label">Personas: a manager, a senior analyst, and a junior analyst</div>
       </div>
       <div class="insight-card">
         <div class="insight-num">5+</div>
-        <div class="insight-label">Real compliance frameworks grounding every persona pain point and product feature</div>
+        <div class="insight-label">Compliance frameworks behind the persona pain points and features</div>
       </div>
       <div class="insight-card">
         <div class="insight-num">6</div>
-        <div class="insight-label">Competitor profiles mapped across Gartner, Forrester, and G2 before any screens were drawn</div>
+        <div class="insight-label">Competitor profiles from Gartner, Forrester, and G2, done before any screens</div>
       </div>
     </div>
 
@@ -139,37 +137,34 @@
           <img src="/assets/images/tessera-persona-dana.png" alt="Dana Vasquez persona — Senior Vendor Risk Manager" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Dana Vasquez — Senior Vendor Risk Manager. Primary persona: accountable for the complete vendor risk lifecycle across US, EU, and Canadian operations simultaneously.</div>
+        <div class="artifact-caption">Dana Vasquez, the primary persona. She owns vendor risk for US, EU, and Canadian operations.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:280px;">
           <img src="/assets/images/tessera-competitive-analysis.png" alt="Tessera competitive landscape analysis" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Competitive landscape — six TPRM platforms profiled across Gartner MQ (2026), Forrester Wave, and G2 customer reviews.</div>
+        <div class="artifact-caption">Six TPRM platforms, compared using Gartner MQ (2026), Forrester Wave, and G2 reviews.</div>
       </div>
     </div>
 
     <div class="problem-grid">
       <div class="problem-card">
-        <div class="problem-icon">📋</div>
         <div>
-          <div class="problem-title">Dana's core problem: point-in-time blindness</div>
-          <div class="problem-desc">A vendor can pass its annual review and get breached five months later with no one noticing until it becomes a crisis. Annual questionnaires don't give Dana the between-cycle visibility DORA and OSFI now require — yet continuous monitoring doesn't exist in her current stack.</div>
+          <div class="problem-title">Dana can't see what happens between reviews</div>
+          <div class="problem-desc">DORA and OSFI now expect her to know about vendor problems between annual reviews. Her current tools only tell her what was true on review day.</div>
         </div>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">📄</div>
         <div>
-          <div class="problem-title">Priya's core problem: manual evidence review at scale</div>
-          <div class="problem-desc">Priya reads 60–80 page SOC 2 reports by hand, hunting for exceptions that are often buried on page 47. There's no memory across vendors — when a vendor reappears at renewal, she often starts from scratch because past findings aren't searchable or linked.</div>
+          <div class="problem-title">Priya reads every SOC 2 report by hand</div>
+          <div class="problem-desc">The reports run 60 to 80 pages, and the exception that matters is usually buried somewhere around page 47. Past findings aren't searchable, so when a vendor comes back up for renewal she often starts over.</div>
         </div>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">🔢</div>
         <div>
-          <div class="problem-title">Marcus's core problem: repetitive data entry hiding real urgency</div>
-          <div class="problem-desc">Most of Marcus's day is re-keying vendor questionnaire answers from PDF to spreadsheet. He has no at-a-glance view of what's actually overdue across his queue, no clean way to know whether a vendor is routine or escalation-worthy — and no path toward the technical work that would grow his career.</div>
+          <div class="problem-title">Marcus spends his day re-keying data</div>
+          <div class="problem-desc">He copies questionnaire answers from PDFs into spreadsheets. He can't easily see what's overdue in his queue or tell a routine vendor from one that needs escalating. And none of this work moves his career forward.</div>
         </div>
       </div>
     </div>
@@ -180,8 +175,8 @@
   <!-- 03: DESIGN SYSTEM -->
   <div class="cs-section">
     <h2 class="section-h2">A design system built from the brand identity outward</h2>
-    <p class="section-body">Before designing any screens, I established Tessera's visual identity and design system. The brand centers on a geometric cube mark — the "tessera" as a tile in a larger mosaic — with a blue family sampled directly from the logo's three cube faces: dark (headers, nav), primary (interactive), and accent (data visualization). IBM Plex Sans in three weights carries the product's technical-yet-approachable voice.</p>
-    <p class="section-body">Every color token was contrast-audited against WCAG 2.1 AA across white, the canvas background, and each status tint. Status is never communicated by color alone — every badge, pill, and data row pairs color with a text label or icon. The result is a system that holds up under the scrutiny of compliance-driven enterprise buyers.</p>
+    <p class="section-body">I set up the identity and design system before the screens. A tessera is one tile in a mosaic, so the mark is a geometric cube. I pulled the blues from its three faces: the dark one for headers and nav, the mid one for interactive elements, and the light one for charts. Type is IBM Plex Sans in three weights.</p>
+    <p class="section-body">I checked every color token against WCAG 2.1 AA on white, on the canvas color, and on each status tint. Badges and rows always pair color with a label or icon. People who buy compliance software will notice if that's missing.</p>
 
     <div class="artifact-grid cols-2">
       <div class="artifact-card">
@@ -189,7 +184,7 @@
           <img src="/assets/images/tessera-design-system.png" alt="Tessera design system — color tokens and components" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Tessera design system — color tokens sampled from the brand logo and validated for WCAG AA contrast across every surface in the product.</div>
+        <div class="artifact-caption">Color tokens pulled from the logo and checked for AA contrast on every surface.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img" style="height:260px; background: #131929; display:flex; align-items:center; justify-content:center; border-radius: var(--radius-md);">
@@ -206,51 +201,45 @@
             </div>
           </div>
         </div>
-        <div class="artifact-caption">Tessera type and color system — IBM Plex Sans in three weights; brand blues from the cube mark; status colors audited for WCAG AA on every surface.</div>
+        <div class="artifact-caption">IBM Plex Sans, the three brand blues, and two of the status colors.</div>
       </div>
     </div>
 
     <div class="capability-grid">
       <div class="capability-item">
-        <div class="cap-icon">🎨</div>
         <div>
           <div class="cap-title">Brand-derived palette</div>
-          <div class="cap-desc">Five brand blues sampled from the logo's three cube faces, plus a neutral ink/muted/canvas set that stays within the blue-gray family throughout</div>
+          <div class="cap-desc">Five blues from the cube mark, plus ink, muted, and canvas neutrals in the same blue-gray range.</div>
         </div>
       </div>
       <div class="capability-item">
-        <div class="cap-icon">⚠️</div>
         <div>
           <div class="cap-title">WCAG AA status system</div>
-          <div class="cap-desc">Critical, high, medium, and low — each with a separate fill token and a darker text token audited at 4.5:1+ on white, canvas, and tinted backgrounds</div>
+          <div class="cap-desc">Critical, high, medium, and low each get a fill token and a darker text token that hits 4.5:1 on white, canvas, and tinted backgrounds.</div>
         </div>
       </div>
       <div class="capability-item">
-        <div class="cap-icon">Aa</div>
         <div>
           <div class="cap-title">IBM Plex Sans type scale</div>
-          <div class="cap-desc">ExtraLight for display, Regular for body, SemiBold for labels and data — a technical but legible voice matched to enterprise security tooling</div>
+          <div class="cap-desc">ExtraLight for display, Regular for body, and SemiBold for labels and data.</div>
         </div>
       </div>
       <div class="capability-item">
-        <div class="cap-icon">▦</div>
         <div>
           <div class="cap-title">Faded card component</div>
-          <div class="cap-desc">Stat cards and panels fade into the canvas at their top edge, creating depth without shadows — a deliberate departure from the heavy-shadow patterns common in the category</div>
+          <div class="cap-desc">Cards fade into the canvas at the top edge instead of using drop shadows. Most tools in this space lean hard on shadows, and I wanted something lighter.</div>
         </div>
       </div>
       <div class="capability-item">
-        <div class="cap-icon">✦</div>
         <div>
           <div class="cap-title">AI interaction patterns</div>
-          <div class="cap-desc">A defined set of AI patterns — sparkle icon, confidence scores, inline rationale, human-review prompts — so every AI surface communicates consistently and stays explainable</div>
+          <div class="cap-desc">One sparkle icon, a confidence score, an inline rationale, and a human-review prompt, used the same way everywhere the AI shows up.</div>
         </div>
       </div>
       <div class="capability-item">
-        <div class="cap-icon">🧭</div>
         <div>
           <div class="cap-title">Dark nav system</div>
-          <div class="cap-desc">Dark sidebar at #131929 with icon-plus-label nav, badge counts on in-flight work, and a user context footer — separating workspace chrome from product content</div>
+          <div class="cap-desc">A #131929 sidebar with icon and label nav, badge counts for work in progress, and the user's context at the bottom.</div>
         </div>
       </div>
     </div>
@@ -261,11 +250,9 @@
   <!-- 04: DASHBOARD -->
   <div class="cs-section">
     <h2 class="section-h2">The dashboard: four questions Dana answers every morning</h2>
-    <p class="section-body">Dana's day starts by triaging overnight risk signals. The dashboard is organized around the four questions that structure her actual morning — not around what data the system happens to have. What needs immediate action? What is the team working on? Are new tasks arriving faster than they're closing? Where is risk actually concentrated in the portfolio?</p>
+    <p class="section-body">Dana starts each day by going through whatever came in overnight. I built the dashboard around the four questions she asks herself. What needs action now? What is the team working on? Is work coming in faster than it's getting closed? Where is the risk concentrated?</p>
 
-    <div class="callout">
-      <p>"The risk score and the arrivals-vs-closed tile are deliberately next to each other. The core story of the product is that risk rises because tasks arrive faster than they close. Placing them together lets Dana see cause and effect without doing the arithmetic."</p>
-    </div>
+    <p class="section-body">I put the risk score right next to the arrivals-vs-closed tile on purpose. When the backlog grows, the score goes up, and with the two side by side Dana can see that without having to work it out.</p>
 
     <div class="artifact-grid cols-1" style="grid-template-columns:1fr;">
       <div class="artifact-card">
@@ -273,7 +260,7 @@
           <img src="/assets/images/tessera-dashboard.png" alt="Tessera dashboard — Dana Vasquez view" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Tessera dashboard (Dana's view) — portfolio risk score, open investigation tasks, arrivals vs. closed trend, and team score at a glance. Investigation task list sorted by risk impact, not date.</div>
+        <div class="artifact-caption">Dana's dashboard. The four tiles across the top, then her investigation tasks ordered by how much each one adds to the risk score.</div>
       </div>
     </div>
 
@@ -281,29 +268,29 @@
       <div class="process-step">
         <div class="step-num">1</div>
         <div>
-          <div class="step-title">Health check — four tiles, five seconds</div>
-          <div class="step-desc">Portfolio risk score (0–100 with 30-day trend), open investigation tasks with SLA breach count, arrivals vs. closed over 7 days, and team score. The portfolio score and the backlog tile sit side-by-side because the causal relationship between them is the story of the product.</div>
+          <div class="step-title">A four-tile health check</div>
+          <div class="step-desc">Portfolio risk score (0 to 100, with a 30-day trend), open tasks with SLA breaches, arrivals vs. closed over seven days, and the team score.</div>
         </div>
       </div>
       <div class="process-step">
         <div class="step-num">2</div>
         <div>
-          <div class="step-title">Needs attention — sorted by risk impact, not date</div>
-          <div class="step-desc">The task list is sorted by how many points each open issue adds to the portfolio score right now. Unassigned tasks always surface first — they're the only tasks nobody is working on. Action buttons change state: Assign, Open, Nudge, Escalate — matching what Dana actually does at each stage.</div>
+          <div class="step-title">A task list ordered by risk impact</div>
+          <div class="step-desc">Each open issue is ranked by how many points it's adding to the portfolio score right now. Unassigned tasks always go first, since nobody is working on them. The action button changes with the task's stage (Assign, Open, Nudge, or Escalate) to match what Dana would do next.</div>
         </div>
       </div>
       <div class="process-step">
         <div class="step-num">3</div>
         <div>
           <div class="step-title">Task age split by who is causing the delay</div>
-          <div class="step-desc">"Waiting on vendor" and "waiting on our team" are shown separately — because they call for different actions. If delays are on the team side, Dana rebalances workload. If they're on the vendor side, she escalates to a senior vendor contact. A single average-age number hides which is happening.</div>
+          <div class="step-desc">"Waiting on vendor" and "waiting on our team" are split out. If her team is the bottleneck, Dana moves work around. If the vendor is, she goes to someone more senior on their side. A single average age would hide which one it is.</div>
         </div>
       </div>
       <div class="process-step">
         <div class="step-num">4</div>
         <div>
-          <div class="step-title">Continuous scan mosaic — ambient, not primary</div>
-          <div class="step-desc">The 612-vendor mosaic sits at the bottom of the page by design. It builds trust that Tessera is watching, but Dana can't take action directly from it. Placed low, it works as reassurance without competing for space with the action list above it.</div>
+          <div class="step-title">The scan mosaic sits at the bottom</div>
+          <div class="step-desc">The 612-vendor mosaic shows that Tessera is watching, but Dana can't do anything from it directly. I put it at the bottom so it reassures her without competing with the task list.</div>
         </div>
       </div>
     </div>
@@ -314,7 +301,7 @@
   <!-- 05: KEY SCREENS -->
   <div class="cs-section">
     <h2 class="section-h2">Five interconnected screens covering the full risk lifecycle</h2>
-    <p class="section-body">The prototype covers the complete vendor risk workflow — from initial intake and continuous monitoring through evidence review, assessment tracking, and data mapping. Each screen is designed for its primary user while sharing the same shell, navigation, and status system, so the team can move between contexts without a jarring shift in mental model.</p>
+    <p class="section-body">The prototype walks through intake, monitoring, evidence review, assessments, and data mapping. Each screen is built for whoever uses it most, but they all share the same shell, nav, and status system, so moving between them doesn't feel like switching apps.</p>
 
     <div class="artifact-grid cols-2">
       <div class="artifact-card">
@@ -322,14 +309,14 @@
           <img src="/assets/images/tessera-vendors.png" alt="Tessera vendors list" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Vendor register — 612 active vendors filterable by tier (Critical 24, High 118, Medium 302, Low 168), region, owner, and status. Criticality tiering applied automatically against DORA, OSFI, and US interagency criteria.</div>
+        <div class="artifact-caption">The vendor register: 612 vendors you can filter by tier, region, owner, and status. Tiers are set automatically using DORA, OSFI, and US interagency criteria.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:260px;">
           <img src="/assets/images/tessera-assessments.png" alt="Tessera assessments view" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Assessments — vendor security reviews, RoPA entries, DPIAs, EU AI Act screenings, and criticality tiering in one queue. Type filter chips let Priya and Marcus work their own slice without switching tools.</div>
+        <div class="artifact-caption">Security reviews, RoPA entries, DPIAs, and EU AI Act screenings all land in one queue. Priya and Marcus each filter down to their own work.</div>
       </div>
     </div>
 
@@ -339,7 +326,7 @@
           <img src="/assets/images/tessera-monitoring.png" alt="Tessera monitoring and alerts" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Monitoring &amp; Alerts — continuous scanning of 4,318 public sources (breach dumps, public code repos, CVE feeds, certificate transparency logs, internet-wide scans, news &amp; filings) with AI matching each signal to Northbridge's vendor portfolio in near real-time.</div>
+        <div class="artifact-caption">Monitoring scans 4,318 public sources, including breach dumps, code repos, CVE feeds, certificate logs, and news and filings. The AI matches each signal to a vendor in Northbridge's portfolio.</div>
       </div>
     </div>
   </div>
@@ -349,28 +336,25 @@
   <!-- 06: KEY DESIGN DECISIONS -->
   <div class="cs-section">
     <h2 class="section-h2">Three design decisions that shaped the product</h2>
-    <p class="section-body">Every product has moments where the direction could go one of several reasonable ways. These three decisions were the ones that most directly determined what Tessera became — and what it explicitly chose not to be.</p>
+    <p class="section-body">These are the three places where I could have reasonably gone another way, and the reasoning behind where I landed.</p>
 
     <div class="problem-grid">
       <div class="problem-card">
-        <div class="problem-icon">🔄</div>
         <div>
-          <div class="problem-title">Continuous monitoring as first-class, not add-on</div>
-          <div class="problem-desc">Every competitor treats ongoing monitoring as a secondary module bolted onto an assessment workflow. Tessera inverts this: the dashboard's primary surface is the investigation task list fed by continuous signals. Assessments are still required — but the product's core value is the signal coverage between them, not the assessments themselves.</div>
+          <div class="problem-title">Monitoring is the main feature</div>
+          <div class="problem-desc">Every competitor I looked at sells monitoring as an add-on to the assessment workflow. I flipped that. The main thing on Dana's dashboard is a task list driven by monitoring signals. Assessments still happen, but most of the value comes from what Tessera catches between them.</div>
         </div>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">🤝</div>
         <div>
-          <div class="problem-title">AI assists; humans decide — by design, not as a caveat</div>
-          <div class="problem-desc">Every AI-assisted finding in Tessera has a confidence score, a source reference, and an explicit human-review step before it changes a vendor's risk posture. This is a deliberate design decision — EU AI Act and NIST AI RMF both require explainability and human-in-the-loop review for high-risk AI applications. Tessera's compliance positioning is itself a product differentiator, not just a legal constraint.</div>
+          <div class="problem-title">A person signs off on every AI finding</div>
+          <div class="problem-desc">Every AI finding shows a confidence score and a source, and someone has to review it before it changes a vendor's risk rating. The EU AI Act and NIST AI RMF both require that for high-risk uses. For buyers in this space, being able to show that is a selling point too.</div>
         </div>
       </div>
       <div class="problem-card">
-        <div class="problem-icon">📊</div>
         <div>
-          <div class="problem-title">The team score shows components, not a ranking</div>
-          <div class="problem-desc">The dashboard includes a team performance score — but it deliberately shows its four components (closed on time, time to verify, vendor follow-ups, reopen rate) rather than a single rank. Marcus is sensitive to SLA misses and re-keying errors as reputational — a bare leaderboard would erode trust in the tool. Priya's escalation bottleneck would read as underperformance without context about her workload split. The score is designed as a coaching signal, not a ranking.</div>
+          <div class="problem-title">The team score shows its parts</div>
+          <div class="problem-desc">The team score breaks out into its four inputs: closed on time, time to verify, vendor follow-ups, and reopen rate. Marcus worries that SLA misses make him look bad, and a plain leaderboard would make him distrust the tool. Priya's escalations would look like slow work without the context of what's in her queue. I meant it to help Dana coach people.</div>
         </div>
       </div>
     </div>
@@ -385,15 +369,15 @@
     <div class="insight-row">
       <div class="insight-card">
         <div class="insight-num">Dana</div>
-        <div class="insight-label">One continuously updated register, audit-ready reporting mapped to DORA/OSFI/NYDFS, and visibility into between-cycle risk without weeks of prep</div>
+        <div class="insight-label">One register that stays current, reports that map to DORA, OSFI, and NYDFS, and a view of what changed between reviews.</div>
       </div>
       <div class="insight-card">
         <div class="insight-num">Priya</div>
-        <div class="insight-label">AI pre-reads SOC 2 reports and surfaces exceptions with direct page references — so her time goes to judgment calls, not document hunting</div>
+        <div class="insight-label">The AI reads SOC 2 reports first and flags exceptions with page numbers. Her time goes to deciding what they mean.</div>
       </div>
       <div class="insight-card">
         <div class="insight-num">Marcus</div>
-        <div class="insight-label">Automatic questionnaire ingestion eliminates re-keying; a prioritized SLA queue replaces deadline tracking by memory and spreadsheet</div>
+        <div class="insight-label">Questionnaires get imported automatically, and his deadlines live in a ranked queue now. No more spreadsheet.</div>
       </div>
     </div>
 
@@ -402,31 +386,31 @@
       <div class="os-items">
         <div class="os-item">
           <div class="os-check">✓</div>
-          <div class="os-text"><strong>Three research-grounded personas</strong> — Dana (Vendor Risk Manager), Priya (Senior Analyst, EU coverage), and Marcus (Analyst I, US intake) — each with compliance-specific pain points, a day-in-the-life, and a clear account of how Tessera changes their work</div>
+          <div class="os-text"><strong>Three personas.</strong> Dana (Vendor Risk Manager), Priya (Senior Analyst, EU), and Marcus (Analyst I, US intake), each with a day-in-the-life and what changes for them.</div>
         </div>
         <div class="os-item">
           <div class="os-check">✓</div>
-          <div class="os-text"><strong>Competitive landscape research</strong> — six TPRM/cybersecurity risk platforms profiled across Gartner MQ, Forrester Wave, and G2, with sourcing transparency on every claim</div>
+          <div class="os-text"><strong>Competitive research</strong> on six platforms, with a source cited for every claim.</div>
         </div>
         <div class="os-item">
           <div class="os-check">✓</div>
-          <div class="os-text"><strong>A complete design system</strong> — Tessera brand identity, color tokens (WCAG AA audited), IBM Plex Sans type scale, faded card component, status system, and AI interaction patterns documented as a living style guide</div>
+          <div class="os-text"><strong>A design system</strong> covering the brand, AA-checked color tokens, type scale, cards, status colors, and AI patterns.</div>
         </div>
         <div class="os-item">
           <div class="os-check">✓</div>
-          <div class="os-text"><strong>Five working prototype screens</strong> — Dashboard (Dana's view), Vendor Register, Assessments, Monitoring &amp; Alerts, and Data Mapping — all interconnected in a functional HTML prototype with live data, AI chat, and continuous scan simulation</div>
+          <div class="os-text"><strong>A five-screen HTML prototype</strong> (Dashboard, Vendor Register, Assessments, Monitoring, Data Mapping) with sample data, an AI chat, and a simulated scan.</div>
         </div>
         <div class="os-item">
           <div class="os-check">✓</div>
-          <div class="os-text"><strong>Dashboard design rationale</strong> — a documented decision record covering section order, component specs, scoring formulas, SLA definitions, and open design questions — written to hand off to a product team or to revisit in a second iteration</div>
+          <div class="os-text"><strong>A dashboard decision record</strong> with section order, component specs, scoring formulas, SLA definitions, and the questions I still had.</div>
         </div>
       </div>
     </div>
 
     <div class="reflection">
       <div class="reflection-label">Reflection</div>
-      <p class="reflection-body">What I found most interesting about this exercise was how much the compliance landscape directly shapes the UX. Dana isn't just trying to do her job efficiently — she's trying to do her job in a way that satisfies three different regulatory regimes with overlapping but non-identical definitions of "critical vendor." That's a genuinely hard UX problem: how do you give someone a single system of record when the legal definition of what that record needs to contain is different in Toronto, London, and New York?</p>
-      <p class="reflection-body">Tessera's answer — a unified register with framework-specific views, plus AI that can pre-flag EU AI Act relevance before it becomes an ad hoc Legal escalation — is a design solution to a regulatory fragmentation problem. That's the kind of product thinking I find most compelling: when the interface is the solution to a problem that isn't, on the surface, an interface problem at all.</p>
+      <p class="reflection-body">What surprised me was how much the regulations shaped the UX. Dana has to satisfy three regulators, and each one defines "critical vendor" a little differently. How do you give her one system of record when what that record has to contain changes between Toronto, London, and New York?</p>
+      <p class="reflection-body">Where I landed was one register with a separate view for each framework, plus AI that flags possible EU AI Act issues early so they don't turn into last-minute calls to Legal. If I did a second round, I'd test those framework views with real risk analysts first.</p>
     </div>
   </div>
 

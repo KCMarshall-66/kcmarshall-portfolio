@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/case-study.css?v=2" />
+<link rel="stylesheet" href="/assets/case-study.css?v=5" />
 <style>
   .cs-hero {
     background-image: url('/assets/images/DMI-hero-back.png');
@@ -44,289 +44,120 @@
 </nav>
 
 <!-- HERO -->
-<div class="cs-hero">
-  <div class="cs-company-tag">DMI Consulting · Healthcare · Service Design</div>
-  <h1 class="cs-title">50% call time reduction through healthcare service design</h1>
-  <p class="cs-subtitle">How I embedded with a major healthcare insurer's call centers — running stakeholder workshops, site visits, and deep UX research — to surface hidden process failures and deliver a service design strategy that cut average call handling time in half.</p>
-
-  <div class="outcome-strip">
-    <div class="outcome-card">
-      <div class="o-num">50%</div>
-      <div class="o-label">Reduction in average call handling time across insurance lines</div>
-    </div>
-    <div class="outcome-card">
-      <div class="o-num">3</div>
-      <div class="o-label">Insurance lines analyzed: Medicare, Medicaid, and Private</div>
-    </div>
-    <div class="outcome-card">
-      <div class="o-num">2</div>
-      <div class="o-label">Enterprise clients: Optum (United Healthcare) and Triple-S Salud</div>
-    </div>
-  </div>
-
-  <div class="meta-row">
-    <div class="meta-cell">
-      <div class="meta-key">My Role</div>
-      <div class="meta-val">Sr. UX Architect</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Timeline</div>
-      <div class="meta-val">2019</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Domain</div>
-      <div class="meta-val">Healthcare · Service Design</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Methods</div>
-      <div class="meta-val">Workshops · Site Visits · Blueprints</div>
-    </div>
-    <div class="meta-cell">
-      <div class="meta-key">Client</div>
-      <div class="meta-val">DMI / Optum / Triple-S Salud</div>
-    </div>
-  </div>
+<div class="cs-hero cs-hero--plain">
+  <div class="cs-company-tag">DMI Consulting · 2019</div>
+  <h1 class="cs-title">Cutting call times in half at a health insurer's call centers</h1>
+  <div class="cs-bigstat"><b>50%</b><span>drop in average call handling time across Medicare, Medicaid, and private lines</span></div>
+  <p class="cs-credit">Sr. UX Architect at DMI, working for Optum (UnitedHealthcare) on behalf of Triple-S Salud. Site visits, workshops, interviews, personas, journey maps, and service blueprints.</p>
 </div>
 
 <!-- BODY -->
 <div class="cs-body">
 
-  <!-- 01: CONTEXT -->
   <div class="cs-section">
-    <h2 class="section-h2">A call center system no one fully understood</h2>
-    <p class="section-body">While at DMI Consulting, I was brought in by Optum — the healthcare services arm of United Healthcare — to assist Triple-S Salud, a major Puerto Rico-based health insurer, with a complex operational challenge. Their call centers were fielding a high volume of calls from Medicare, Medicaid, and Private insurance recipients, as well as doctors, healthcare providers, and pharmacists — each type of caller requiring a different set of processes, systems, and institutional knowledge to resolve.</p>
-    <p class="section-body">The problem wasn't that call center workers were underperforming. It was that the systems, processes, and coding standards they relied on had been built — and rebuilt — across three distinct insurance lines, each with its own technology stack and workflow. The environment workers were operating in had never been designed holistically. It had accumulated over time, and the people doing the work had quietly learned to work around it.</p>
-    <div class="callout">
-      <p>"If you gather data from users and then incorporate your findings into your product design, you'll be more likely to meet their true needs. In return, they will probably like the end result better and become more efficient at using it."</p>
-    </div>
+    <h2 class="section-h2">The setup</h2>
+    <p class="section-body">Optum brought DMI in to help Triple-S Salud, a large health insurer in Puerto Rico. Their call centers took calls from Medicare, Medicaid, and private plan members, and also from doctors, providers, and pharmacists. Every type of caller needed different processes, different systems, and different knowledge to get resolved.</p>
+    <p class="section-body">The reps weren't the problem. Each insurance line had built its own tools, workflows, and coding standards over the years, and nobody had ever looked at the whole thing together. The reps had quietly learned to work around it.</p>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 02: DISCOVERY -->
   <div class="cs-section">
-    <h2 class="section-h2">Getting into the environment, not just the meeting room</h2>
-    <p class="section-body">This project wasn't something that could be understood from a conference room. I conducted call center site visits to observe workers in their actual environment — watching how they navigated between systems, handled mid-call lookups, and managed the cognitive load of fielding complex insurance queries in real time. Observation revealed things that interviews alone never would: the small adaptations, the workarounds, the moments of hesitation that indicated where the system was failing the person using it.</p>
-    <p class="section-body">Alongside the site visits, I ran in-person workshops with stakeholders and subject matter experts, working collaboratively with DMI's business process consultants to map the full scope of the problem. User interviews with call center representatives provided the qualitative depth to complement what observation had surfaced — giving workers the space to articulate pain points in their own language, not just the language of the process documentation.</p>
-
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-title">Call Center Site Visits</div>
-          <div class="step-desc">Naturalistic observation of call center workers in active sessions — watching real workflows, system interactions, and the informal adaptations workers had developed to compensate for process gaps. Observation is more valuable than asking alone: people do things they can't fully articulate.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-title">Stakeholder &amp; SME Workshops</div>
-          <div class="step-desc">Facilitated in-person workshops with business stakeholders and subject matter experts from across Medicare, Medicaid, and Private insurance lines. Workshops aligned organizational understanding of the problem space and surfaced institutional knowledge that had never been formally documented.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-title">User Interviews — Call Center Representatives</div>
-          <div class="step-desc">One-on-one interviews with call center representatives (SCRs and CSRs) provided direct insight into daily friction, system confusion, and the personal workarounds workers had developed. Sessions opened with generalized questions and progressed toward specific scenarios to surface both surface-level and deep-seated pain points.</div>
-        </div>
-      </div>
-      <div class="process-step">
-        <div class="step-num">4</div>
-        <div>
-          <div class="step-title">Cross-Functional Collaboration with Business Process Consultants</div>
-          <div class="step-desc">Working alongside DMI's business process consultants, UX findings were continuously integrated with operational and process data — ensuring the final recommendations were grounded in both human experience and business feasibility.</div>
-        </div>
-      </div>
-    </div>
+    <h2 class="section-h2">Sitting with the reps</h2>
+    <p class="section-body">You can't understand a call center from a conference room, so I went to the floor. I watched reps jump between systems, look things up mid-call, and juggle complicated coverage questions with someone waiting on the line. Watching showed me things interviews wouldn't have. I saw the little pauses, the workarounds, and the spots where people slowed down because the tool wasn't helping.</p>
+    <p class="section-body">I also ran workshops with stakeholders and subject matter experts from all three lines, alongside DMI's business process consultants. Then I did one-on-one interviews with reps (SCRs and CSRs). I'd start broad and work toward specific calls, so they could describe the problems in their own words.</p>
 
     <div class="artifact-grid cols-2">
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:240px;">
-          <img src="/assets/images/IMG_5546.jpg" alt="Call Center Site Visit" />
+          <img src="/assets/images/IMG_5546.jpg" alt="Call center site visit" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Call center site visit — observing workers in their live environment to capture the informal adaptations and workflow realities that stakeholder interviews alone couldn't reveal.</div>
+        <div class="artifact-caption">On the floor during a site visit.</div>
       </div>
       <div class="artifact-card">
         <div class="artifact-img lb-trigger" style="height:240px;">
-          <img src="/assets/images/Persona_workshop_0001.jpg" alt="Persona Workshop" />
+          <img src="/assets/images/Persona_workshop_0001.jpg" alt="Persona workshop with stakeholders" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">In-person persona workshop with stakeholders and SMEs — collaboratively building a shared understanding of the users the call center system needed to serve.</div>
-      </div>
-    </div>
-
-    <div class="tool-chips">
-      <span class="tool-chip">Site Visits</span>
-      <span class="tool-chip">Stakeholder Workshops</span>
-      <span class="tool-chip">User Interviews</span>
-      <span class="tool-chip">SME Sessions</span>
-    </div>
-  </div>
-
-  <div class="section-divider"></div>
-
-  <!-- 03: PERSONAS -->
-  <div class="cs-section">
-    <h2 class="section-h2">Giving the research a human face</h2>
-    <p class="section-body">Personas are realistic descriptions of the people at the center of a design challenge — not abstract user types, but believable representations grounded in real data. For this project, two primary personas were developed to represent the distinct roles within the call center environment: the SCR (Service Center Representative) handling incoming calls, and the CSR (Customer Service Representative) navigating the operational side of case resolution.</p>
-    <p class="section-body">These personas served a critical function beyond research documentation. They replaced "I think users want..." with "Our SCR persona needs..." — shifting stakeholder conversations from assumption-based opinion to user-centered evidence. Each persona was built from a combination of site visit observations, interview data, and workshop synthesis.</p>
-
-    <div class="artifact-grid cols-2">
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:260px;">
-          <img src="/assets/images/Persona-SCR.png" alt="SCR Persona" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">SCR Persona — Service Center Representative. Captures goals, daily friction, system dependencies, and the informal workarounds developed to manage call volume across insurance lines.</div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:260px;">
-          <img src="/assets/images/Persona-CSR.png" alt="CSR Persona" />
-          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
-        </div>
-        <div class="artifact-caption">CSR Persona — Customer Service Representative. Documents the operational role, cross-system navigation requirements, and the cognitive load created by inconsistent coding standards across Medicare, Medicaid, and Private insurance platforms.</div>
+        <div class="artifact-caption">Building personas with stakeholders and SMEs.</div>
       </div>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 04: JOURNEY MAPS & BLUEPRINTS -->
   <div class="cs-section">
-    <h2 class="section-h2">Mapping the experience from every angle</h2>
-    <p class="section-body">With personas established, the research needed to be translated into artifacts that could show — visually and systematically — where the experience was breaking down and why. Customer journey maps documented the series of interactions between call center workers and the systems, supervisors, and callers they engaged with — capturing emotional highs, lows, and the moments where friction compounded into failure. Service blueprints went deeper: mapping all the variables and relationships between service components directly tied to those touchpoints.</p>
-    <p class="section-body">The service blueprints were where the most critical findings emerged. Documenting the full back-stage and front-stage processes for each insurance line made the inconsistencies impossible to ignore — and provided a precise record of where individual workers had built personal workarounds to bridge the gaps the system had never closed.</p>
+    <h2 class="section-h2">Two personas</h2>
+    <p class="section-body">I wrote two personas from the visits, interviews, and workshops. One was the SCR, who takes the incoming calls. The other was the CSR, who handles the operations side of resolving a case. The biggest thing they did was change how meetings went. People stopped saying "I think users want..." and started saying "the SCR needs..."</p>
 
     <div class="artifact-grid cols-2">
       <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:220px;">
-          <img src="/assets/images/JourneyMap-Thimbnail-560.png" alt="Customer Journey Map" />
+        <div class="artifact-img lb-trigger" style="height:260px;">
+          <img src="/assets/images/Persona-SCR.png" alt="SCR persona" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Customer journey map — visualizing the full series of interactions across call phases, surfacing emotional friction points and the moments most critical to resolution speed.</div>
+        <div class="artifact-caption">SCR persona</div>
       </div>
       <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:220px;">
-          <img src="/assets/images/Service-Blueprint-template.png" alt="Service Blueprint Template" />
+        <div class="artifact-img lb-trigger" style="height:260px;">
+          <img src="/assets/images/Persona-CSR.png" alt="CSR persona" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">Service blueprint framework — mapping all service variables and their relationships to customer-facing touchpoints across the call center workflow.</div>
+        <div class="artifact-caption">CSR persona</div>
       </div>
     </div>
+  </div>
+
+  <div class="cs-section">
+    <h2 class="section-h2">The blueprints are where it clicked</h2>
+    <p class="section-body">Journey maps showed how a call felt from the rep's side and where frustration piled up. The service blueprints went further. Once I'd mapped the front-stage and back-stage process for each insurance line, the inconsistencies were impossible to miss. Each blueprint also showed exactly where reps had invented their own fixes to cover the gaps.</p>
 
     <div class="artifact-grid cols-1" style="grid-template-columns:1fr;">
       <div class="artifact-card">
-        <div class="artifact-img lb-trigger" style="height:280px;">
-          <img src="/assets/images/ServiceBlueprint-CSR-scaled-1.png" alt="CSR Service Blueprint" />
+        <div class="artifact-img lb-trigger" style="height:320px;">
+          <img src="/assets/images/ServiceBlueprint-CSR-scaled-1.png" alt="CSR service blueprint" />
           <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
         </div>
-        <div class="artifact-caption">CSR Service Blueprint — the detailed, full-system view of the Customer Service Representative's workflow across Medicare, Medicaid, and Private insurance lines, with workarounds and process gaps annotated throughout.</div>
+        <div class="artifact-caption">The CSR blueprint across all three insurance lines, with workarounds and gaps marked.</div>
+      </div>
+    </div>
+
+    <div class="artifact-grid cols-2">
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger" style="height:220px;">
+          <img src="/assets/images/JourneyMap-Thimbnail-560.png" alt="Customer journey map" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">Journey map</div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-img lb-trigger" style="height:220px;">
+          <img src="/assets/images/Service-Blueprint-template.png" alt="Service blueprint template" />
+          <span class="lb-icon"><svg viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/><line x1="8.5" y1="6.5" x2="4.5" y2="6.5"/><line x1="6.5" y1="4.5" x2="6.5" y2="8.5"/></svg></span>
+        </div>
+        <div class="artifact-caption">The blueprint template we started from</div>
       </div>
     </div>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 05: FINDINGS -->
   <div class="cs-section">
-    <h2 class="section-h2">Three insurance lines. Zero consistent systems.</h2>
-    <p class="section-body">The research uncovered a systemic problem that went deeper than UI inconsistency. Medicare, Medicaid, and Private insurance operations had each been built independently — with different technology platforms, different UI patterns, different process flows, and critically, different coding systems. A call center worker handling all three lines wasn't moving between views of the same system. They were switching between entirely different operational environments, each requiring its own mental model.</p>
-    <p class="section-body">The most telling finding wasn't in any system audit — it was in the site visits. Workers had developed their own personal workarounds to bridge the gaps their tools had never closed. Sticky notes. Personal reference sheets. Unofficial shorthand. These weren't signs of individual failure; they were evidence of a system that had forced intelligent, experienced people to build unofficial infrastructure just to do their jobs. Each workaround was catalogued, mapped to its corresponding service blueprint touchpoint, and presented as a diagnostic indicator of where process improvement was most needed.</p>
-
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-icon">⚠</div>
-        <div>
-          <div class="problem-title">Inconsistent Systems Across Insurance Lines</div>
-          <div class="problem-desc">Medicare, Medicaid, and Private insurance platforms operated on different technology stacks with incompatible UI patterns, layouts, and interaction models. Workers handling cross-line calls were required to context-switch between entirely different systems mid-call — compounding cognitive load and extending resolution time at every handoff.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">⛓</div>
-        <div>
-          <div class="problem-title">Mismatched Coding Systems</div>
-          <div class="problem-desc">Diagnostic and billing codes were not standardized across insurance lines. The same condition, procedure, or coverage scenario could have different codes depending on which line the call was fielded under — forcing workers to mentally translate between coding systems in real time, a task that added friction and introduced error risk at the most sensitive points of a call.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">◉</div>
-        <div>
-          <div class="problem-title">Worker-Invented Workarounds</div>
-          <div class="problem-desc">Site visits revealed that individual call center representatives had developed their own personal systems to compensate for institutional gaps — personal reference notes, informal shortcuts, and unofficial process steps that existed nowhere in the official documentation. These workarounds were highly varied across workers, making onboarding inconsistent and institutional knowledge fragile.</div>
-        </div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">◫</div>
-        <div>
-          <div class="problem-title">No Unified Process Documentation</div>
-          <div class="problem-desc">Process documentation existed in silos, each maintained separately for Medicare, Medicaid, and Private operations. There was no cross-line view of how a call that touched multiple insurance types should be handled — leaving workers to improvise at exactly the moments when standardization would have had the highest impact on call resolution speed.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="insight-row">
-      <div class="insight-card">
-        <div class="insight-num">3×</div>
-        <div class="insight-label">Separate system environments workers navigated across a single shift</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-num">0</div>
-        <div class="insight-label">Standardized coding conventions shared across Medicare, Medicaid, and Private lines</div>
-      </div>
-      <div class="insight-card">
-        <div class="insight-num">100%</div>
-        <div class="insight-label">Of observed workers had developed personal workarounds not reflected in official process documentation</div>
-      </div>
-    </div>
+    <h2 class="section-h2">What we found</h2>
+    <p class="section-body">Medicare, Medicaid, and private had each been built on their own. A rep who handled all three wasn't looking at three views of one system. They were switching between three different jobs, sometimes in the middle of a single call.</p>
+    <ul class="cs-list">
+      <li><strong>Three systems that didn't match.</strong> Different platforms, layouts, and interactions. Every time a call crossed lines, the rep had to switch tools.</li>
+      <li><strong>Codes that didn't match.</strong> The same procedure or coverage case could have a different code depending on the line. Reps were translating codes in their heads, often at the most sensitive moment of the call.</li>
+      <li><strong>Homemade workarounds.</strong> Sticky notes, personal cheat sheets, and shorthand that wasn't written down anywhere official. Everyone's were different, which made onboarding hard and meant a lot of knowledge left when people did.</li>
+      <li><strong>No documentation across lines.</strong> Each line kept its own docs. Nothing covered a call that touched more than one, which is exactly where reps needed it most.</li>
+    </ul>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 06: OUTCOMES -->
   <div class="cs-section">
-    <h2 class="section-h2">Research that moved the operational needle</h2>
-    <p class="section-body">The UX research deliverables — personas, journey maps, and annotated service blueprints — gave Optum and Triple-S Salud a precise, evidence-based picture of where their call center operations were losing time and why. The service blueprints in particular became the primary tool for cross-functional alignment: a shared visual document that business process consultants, operations leadership, and technology teams could all read from the same page.</p>
-    <p class="section-body">The recommendations focused on three areas: standardizing UI and process patterns across insurance lines, normalizing the coding systems that workers were forced to mentally translate, and formalizing the most effective worker-invented workarounds into official process documentation — turning fragile individual knowledge into institutional infrastructure.</p>
-
-    <div class="outcome-summary">
-      <div class="os-heading">Key Results</div>
-      <div class="os-items">
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>50% reduction in average call handling time</strong> — the primary metric driving the engagement, achieved through process standardization and elimination of cross-system friction identified during research</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Full UX research suite delivered</strong> — empathy maps, SCR and CSR personas, customer journey maps, and annotated service blueprints documenting the complete call center experience across all three insurance lines</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Worker workarounds formally catalogued</strong> — every informal adaptation identified during site visits was documented, mapped to its blueprint touchpoint, and presented as a diagnostic indicator of where systemic improvement was most needed</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Cross-functional alignment artifact</strong> — service blueprints served as a shared reference document across UX, business process consulting, operations, and technology stakeholders throughout the engagement</div>
-        </div>
-        <div class="os-item">
-          <div class="os-check">✓</div>
-          <div class="os-text"><strong>Process improvement roadmap</strong> — prioritized recommendations for UI standardization, coding normalization, and official process documentation presented to Optum and Triple-S Salud leadership</div>
-        </div>
-      </div>
-    </div>
+    <h2 class="section-h2">What changed</h2>
+    <p class="section-body">We made three recommendations. Standardize UI and process patterns across the lines. Normalize the coding so reps didn't have to translate. And take the best of the reps' own workarounds and make them official process. The blueprints became the document that ops leadership, the process consultants, and the tech teams all worked from.</p>
+    <p class="section-body">Average call handling time dropped by half.</p>
   </div>
 
-  <div class="section-divider"></div>
-
-  <!-- 07: REFLECTION -->
   <div class="cs-section">
-    <h2 class="section-h2">What this project reinforced about service design in the field</h2>
-    <div class="reflection">
-      <div class="reflection-label">Honest Retrospective</div>
-      <p class="reflection-body">The most important thing I did on this project was get out of the meeting room. Stakeholder workshops are essential for alignment, but they show you the organization's understanding of its own problems — which is not the same as the problems themselves. The site visits were where the real picture emerged. Watching a call center representative pause mid-call to consult a handwritten reference sheet they'd made themselves told me more about the system's failure modes than any process document could have. You can't design solutions to problems you've only heard described.</p>
-      <p class="reflection-body">What I'd do again: treating every worker workaround as a signal, not a distraction. In most operational contexts, workarounds get dismissed as non-standard behavior. Here, they were the most precise diagnostic data I had. Each one mapped exactly to a gap in the official system — a place where the designed process had failed and human ingenuity had quietly patched over it. Cataloguing those workarounds and surfacing them as findings gave the recommendations a specificity and credibility that abstract process analysis couldn't have produced.</p>
-    </div>
+    <h2 class="section-h2">Looking back</h2>
+    <p class="section-body">The best thing I did on this project was get out of the meeting room. Workshops show you how an organization sees its own problems, and that isn't always the same as the problems themselves. I saw a rep stop mid-call to check a reference sheet they'd made themselves, and that taught me more than any process doc.</p>
+    <p class="section-body">I'd do the workaround audit again in a heartbeat. People usually treat workarounds as non-standard behavior to clean up. Here, every one pointed straight at a gap in the official process. That's why the recommendations were specific enough that people believed them.</p>
   </div>
 
 </div>
