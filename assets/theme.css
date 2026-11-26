@@ -1,0 +1,144 @@
+/* ─────────────────────────────────────────────────────────
+   kcmarshall.com — "Prototypes built to ship" theme
+   Shared palette, type and elements from the redesigned homepage.
+   Loaded last on every inner page so it overrides older styles.
+   Palette: Warm Ivory #F5F1EB · Muted Taupe #8A7F73 · Dusty Blue #6C8CA3
+   Type: Archivo (display, expanded) · Inter (body) · JetBrains Mono (labels)
+   ───────────────────────────────────────────────────────── */
+:root {
+  --paper-0: #FFFFFF;
+  --paper-1: #F5F1EB;   /* warm ivory – page */
+  --paper-2: #E6DED3;   /* sand */
+  --paper-3: #DDD3C6;
+  --ink-0:   #1F1C19;
+  --ink-1:   #1F1C19;
+  --ink-2:   #3A342E;
+  --ink-3:   #5C544B;   /* deep taupe – small text on light */
+  --ink-4:   #6E655B;
+  --line-1:  #D9D1C6;
+  --line-2:  #C9BFB2;
+  --line-on-ink: rgba(245,241,235,.14);
+  --clay-1:  #3F5E74;   /* deep dusty blue – links, small accents */
+  --clay-2:  #3F5E74;
+  --clay-3:  #A9C0D1;   /* light dusty blue – accents on dark */
+  --clay-soft: #E8EEF2;
+  --clay-line: #B5C7D4;
+  --sage-1:  #3F5E74;
+  --sage-soft: #E8EEF2;
+  --taupe:   #8A7F73;
+  --dusty:   #6C8CA3;
+
+  --bg: var(--paper-1); --bg-2: var(--paper-0); --bg-3: var(--paper-2);
+  --bg-page: var(--paper-1); --bg-surface: var(--paper-0);
+  --border: var(--line-1); --border-m: var(--line-2); --border-subtle: var(--line-1);
+  --accent: var(--clay-1); --accent-hover: var(--ink-1);
+  --text: var(--ink-1); --text-mid: var(--ink-2); --text-low: var(--ink-3);
+  --text-strong: var(--ink-1); --text-body: var(--ink-2); --text-muted: var(--ink-3);
+  --text-faint: var(--ink-4); --text-accent: var(--clay-1);
+
+  --shadow-xs: 0 1px 2px rgba(31,28,25,.05);
+  --shadow-sm: 0 1px 3px rgba(31,28,25,.06), 0 1px 2px rgba(31,28,25,.04);
+  --shadow-md: 0 4px 14px rgba(31,28,25,.08), 0 2px 4px rgba(31,28,25,.04);
+  --shadow-lg: 0 12px 32px rgba(31,28,25,.12), 0 4px 8px rgba(31,28,25,.05);
+  --shadow-accent: 0 6px 20px rgba(63,94,116,.22);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --sans:         'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+}
+
+body { font-family: var(--font-sans); background: var(--paper-1); color: var(--ink-1); }
+*:focus-visible { outline: 2px solid var(--clay-1); outline-offset: 3px; }
+
+/* Display type: wide, heavy, uppercase — as on the homepage */
+.cs-title, .page-title, .section-h2, .os-heading,
+.closing__title, .modal__title {
+  font-family: var(--font-display);
+  font-stretch: 125%;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.005em;
+}
+.cs-title  { font-size: clamp(32px, 4.6vw, 60px); line-height: 1; max-width: 900px; }
+.page-title { font-size: clamp(40px, 5.4vw, 72px); line-height: .98; }
+.section-h2 { font-size: clamp(22px, 2.6vw, 32px); line-height: 1.08; }
+.o-num, .insight-num, .cs-bigstat b, .work-num, .stat-num {
+  font-family: var(--font-display); font-stretch: 125%; letter-spacing: -0.01em;
+}
+.o-num, .insight-num { color: var(--clay-1); }
+
+/* Labels: lowercase-friendly mono, deep blue */
+.cs-company-tag, .section-eyebrow, .page-eyebrow, .reflection-label {
+  font-family: var(--font-mono); letter-spacing: .04em; text-transform: none; font-weight: 500;
+}
+.cs-company-tag::before, .page-eyebrow::before { display: none; }
+
+/* Navigation: wordmark + quiet links + dark "Let's build" button */
+.nav {
+  background: color-mix(in srgb, var(--paper-1) 90%, transparent);
+  border-bottom: 1px solid var(--line-1);
+}
+.nav-logo-mark { display: none !important; }
+.nav-logo {
+  font-family: var(--font-display) !important; font-stretch: 125%;
+  font-weight: 800 !important; font-size: 17px !important;
+  text-transform: uppercase; letter-spacing: .02em; color: var(--ink-1) !important;
+}
+.nav-back { border-radius: var(--radius-sm); background: transparent; color: var(--ink-3); }
+.nav-back:hover { border-color: var(--ink-1); color: var(--ink-1); }
+.nav-right { gap: 22px !important; font-size: 14px !important; color: var(--ink-1) !important; }
+.nav-right a { color: var(--ink-1) !important; }
+.nav-right a:hover { color: var(--clay-1) !important; }
+.nav-right a.nav-cta, .nav-cta {
+  display: inline-flex; align-items: center; min-height: 40px;
+  padding: 0 18px !important; border-radius: var(--radius-md) !important;
+  background: var(--ink-1) !important; color: var(--paper-1) !important;
+  font-weight: 600; font-size: 14px;
+}
+.nav-right a.nav-cta:hover, .nav-cta:hover { background: var(--clay-1) !important; color: #fff !important; }
+
+/* Hero (case studies) */
+.cs-hero { background-color: var(--paper-2); }
+.cs-hero.cs-hero--plain::before {
+  background: linear-gradient(90deg, rgba(31,28,25,.92) 0%, rgba(31,28,25,.8) 45%, rgba(31,28,25,.35) 100%);
+}
+.outcome-card { border-radius: var(--radius-md); }
+.outcome-card::before { background: var(--dusty); }
+
+/* Buttons and chips share the homepage's 14px corners */
+.btn, .filter-btn, .proto-link, .callout, .problem-grid, .process-steps,
+.artifact-card, .full-img-card, .insight-card, .ab-card, .capability-item,
+.outcome-summary, .reflection { border-radius: var(--radius-md); }
+.filter-btn.active { background: var(--ink-1); border-color: var(--ink-1); color: var(--paper-1); }
+.filter-btn:hover { border-color: var(--ink-1); color: var(--ink-1); }
+.tool-chip { background: var(--paper-2); border-color: var(--line-2); color: var(--ink-2); }
+code { background: var(--paper-2); color: var(--ink-1); }
+.step-num, .os-check { background: var(--paper-2); border-color: var(--line-2); color: var(--ink-1); }
+.capability-item { border-top-color: var(--dusty); }
+.proto-link:hover { border-color: var(--ink-1); }
+.page-link:hover { background: var(--paper-2); }
+
+/* Footer: dark ink band, as on the homepage */
+.footer { background: var(--ink-0); border-top: 0; }
+.footer-left { color: #B8AEA2 !important; }
+.footer-right a { color: var(--paper-1) !important; }
+.footer-right a:hover { color: var(--clay-3) !important; }
+
+/* Lightbox tint */
+.lb-overlay { background: rgba(31,28,25,.86); }
+
+@media (max-width: 768px) {
+  .nav-right a:not(.nav-cta) { display: none; }
+  .nav-back { display: none !important; }
+  .nav-logo { font-size: 15px !important; white-space: nowrap; }
+  .nav-right a.nav-cta { white-space: nowrap; min-height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
